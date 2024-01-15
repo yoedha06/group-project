@@ -9,6 +9,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>List</th>
                     <th>ID Partai</th>
                     <th>Nama Partai</th>
                     <th>Ideologi</th>
@@ -20,6 +21,7 @@
             <tbody>
                 @foreach($partaiPolitiks as $partaiPolitik)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $partaiPolitik->Id_Partai }}</td>
                         <td>{{ $partaiPolitik->NamaPartai }}</td>
                         <td>{{ $partaiPolitik->Ideologi }}</td>
