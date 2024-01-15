@@ -16,6 +16,9 @@
 
 <body>
     @yield('content')
+    <div class="container">
+        <!-- Content here -->
+    </div>
 </body>
 
 </html>
