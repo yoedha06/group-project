@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KandidatController;
+use App\Http\Controllers\HasilPemilihanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,13 @@ Route::get('/kandidat/edit/{id}', [KandidatController::class, 'edit'])->name('ka
 Route::post('/kandidat/update/{id}', [KandidatController::class, 'update'])->name('kandidat.update');
 Route::delete('/kandidat/destroy{id}', [KandidatController::class, 'destroy'])->name('kandidat.destroy');
 Route::get('/kandidat/search', [KandidatController::class, 'search'])->name('kandidat.search');
+
+
+Route::prefix('hasilpemilihan')->group(function () {
+    Route::get('/', [HasilPemilihanController::class, 'index'])->name('hasilpemilihan.index');
+    Route::get('/create', [HasilPemilihanController::class, 'create'])->name('hasilpemilihan.create');
+    Route::post('/store', [HasilPemilihanController::class, 'store'])->name('hasilpemilihan.store');
+    Route::get('/edit/{id}', [HasilPemilihanController::class, 'edit'])->name('hasilpemilihan.edit');
+    Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
+    Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
+});
