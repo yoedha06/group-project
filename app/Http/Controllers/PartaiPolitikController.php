@@ -57,6 +57,6 @@ class PartaiPolitikController extends Controller
         $partaiPolitik = PartaiPolitik::findOrFail($Id_Partai);
         $partaiPolitik->delete();
 
-        return redirect()->route('partai_politik.index')->with('success', 'Partai Politik berhasil dihapus.');
+        return redirect()->route('partai_politik.index')->with('successs', 'Partai Politik berhasil dihapus.');
     }
 }
