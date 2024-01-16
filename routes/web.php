@@ -26,6 +26,8 @@ Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('p
 Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
+Route::get('/pemilih/search', [PemilihController::class, 'search'])->name('pemilih.search');
+
  
 //Partai Politik
 Route::get('/partai_politik', [PartaiPolitikController::class, 'index'])->name('partai_politik.index');
@@ -34,6 +36,7 @@ Route::post('partai_politik/store', [PartaiPolitikController::class, 'store'])->
 Route::get('partai_politik/{Id_Partai}/edit', [PartaiPolitikController::class, 'edit'])->name('partai_politik.edit');
 Route::put('partai_politik/{Id_Partai}', [PartaiPolitikController::class, 'update'])->name('partai_politik.update');
 Route::delete('partai_politik/delete/{Id_Partai}', [PartaiPolitikController::class, 'delete'])->name('partai_politik.delete');
+Route::get('/partai-politik/search', [PartaiPolitikController::class, 'search'])->name('partai_politik.search');
 
 //Kandidat
 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
@@ -52,4 +55,5 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::get('/edit/{id}', [HasilPemilihanController::class, 'edit'])->name('hasilpemilihan.edit');
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
+    Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
 });
