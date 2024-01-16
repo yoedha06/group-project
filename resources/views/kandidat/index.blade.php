@@ -13,7 +13,8 @@
                 </div>
             @endif
 
-            <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data Kandidat</a>
+            <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data
+                Kandidat</a>
 
             <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
                 <div class="input-group">
@@ -33,27 +34,27 @@
                         <th scope="col">Partai Politik</th>
                         <th scope="col">Nomor Urut</th>
                         <th scope="col">Program Kerja</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col" style="width= 50px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($kandidat as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td style="width: 10px">{{ $item->Nama_Kandidat }}</td>
+                            <td width="200px;">{{ $item->Nama_Kandidat }}</td>
                             <td>{{ $item->Tanggal_Lahir }}</td>
                             <td>{{ $item->Partai_Politik }}</td>
                             <td>{{ $item->Nomor_Urut }}</td>
                             <td>{{ $item->Program_Kerja }}</td>
                             <td>
                                 <a href="/kandidat/edit/{{ $item->Id_Kandidat }}" class="btn btn-warning btn-sm"><i
-                                        class="bi bi-pencil-square"></i>Edit</a>
+                                        class="bi bi-pencil-square">&nbsp;</i>Edit</a>
                                 <form action="/kandidat/destroy{{ $item->Id_Kandidat }}" method="POST"
                                     style="display: inline-block;" onsubmit="return confirm('Yakin ingin hapus data?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i
-                                            class="bi bi-trash3-fill"></i>Hapus</button>
+                                            class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                                 </form>
                             </td>
                         </tr>

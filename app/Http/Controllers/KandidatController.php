@@ -70,7 +70,7 @@ class KandidatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $barang = Kandidat::find($id);
+        $kandidat = Kandidat::find($id);
 
         $request->validate([
             'Nama_Kandidat' => 'required',
@@ -79,7 +79,7 @@ class KandidatController extends Controller
             'Nomor_Urut	' => 'integer',
             'Program_Kerja' => 'required',
         ]);
-        $barang->update([
+        $kandidat->update([
             'Nama_Kandidat' => $request->Nama_Kandidat,
             'Tanggal_Lahir' => $request->Tanggal_Lahir,
             'Partai_Politik' => $request->Partai_Politik,
