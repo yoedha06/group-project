@@ -62,6 +62,8 @@
             </table>
             {{-- <a href="/admin/admin" class="btn btn-success btn-block mt-1"><i class="bi bi-arrow-left-circle"></i>
                 Kembali</a> --}}
+        <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
+
         </main>
     </div>
 @endsection
