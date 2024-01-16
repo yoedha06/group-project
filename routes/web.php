@@ -26,9 +26,7 @@ Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('p
 Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
-// });
-
-
+ 
 //Partai Politik
 Route::get('/partai_politik', [PartaiPolitikController::class, 'index'])->name('partai_politik.index');
 Route::get('/partai_politik/create', [PartaiPolitikController::class, 'create'])->name('partai_politik.create');
