@@ -15,15 +15,16 @@
 
             <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data
                 Kandidat</a>
-                <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="keyword" placeholder="Cari kandidat...">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
-                        </div>
+
+            <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="keyword" placeholder="Cari kandidat...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
                     </div>
-                </form>
-                
+                </div>
+            </form>
+
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -60,8 +61,11 @@
                     @endforeach
                 </tbody>
             </table>
-            {{-- <a href="/admin/admin" class="btn btn-success btn-block mt-1"><i class="bi bi-arrow-left-circle"></i>
-                Kembali</a> --}}
+
+            @if (request()->has('keyword') && isset($kandidat) && count($kandidat) > 0)
+                <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
+                        class="bi bi-arrow-left-circle"></i> Kembali</a>
+            @endif
         </main>
     </div>
 @endsection
