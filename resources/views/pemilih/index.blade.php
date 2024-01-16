@@ -23,10 +23,10 @@
             </form>
 
 
-            <table class="table" style="margin-top: 10px;">
+            <table class="table table-bordered table-striped" style="margin-top: 10px;">
                 <thead>
                     <tr>
-                        <th>id pemilih</th>
+                        <th>No</th>
                         <th>nama pemilih</th>
                         <th>tanggal lahir</th>
                         <th>alamat</th>
@@ -38,7 +38,7 @@
                 <tbody>
                     @foreach ($pemilih as $p)
                         <tr>
-                            <td>{{ $p->Id_Pemilih }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $p->nama_pemilih }}</td>
                             <td>{{ $p->tanggal_lahir }}</td>
                             <td>{{ $p->alamat }}</td>
@@ -81,7 +81,7 @@
 
 
             @if (!request()->has('keyword'))
-                <a href="{{ route('dashboard') }}" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Back
+                <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i class="bi bi-arrow-left-circle"></i> Back
                     to Dashboard</a>
             @endif
         </div>

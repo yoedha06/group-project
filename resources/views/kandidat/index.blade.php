@@ -1,5 +1,7 @@
 @extends('layouts')
+
 <title>Data Kandidat</title>
+
 @section('content')
     <div class="container mt-4">
         <center>
