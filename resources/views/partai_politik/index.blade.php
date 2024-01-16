@@ -4,8 +4,7 @@
     <div class="container">
         <h1>Daftar Partai Politik</h1>
 
-        <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3"><i class="bi bi-plus-lg"></i> Tambah
-            Partai Politik</a>
+        <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3">Tambah Partai Politik</a>
 
         <form action="{{ route('partai_politik.search') }}" method="GET" class="mb-4">
             <div class="input-group">
@@ -45,30 +44,22 @@
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
                         <td>{{ $partaiPolitik->PemimpinPartai }}</td>
                         <td>
-                            <a href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
-                                class="btn btn-warning">Edit</a>
-                                class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                            <a
+                                href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"class="btn btn-warning"><i
+                                    class="bi bi-pencil-square">&nbsp;</i>Edit</a>
                             <form action="{{ route('partai_politik.delete', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
                                 method="post" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>                        </form>
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        @if (request()->has('keyword') && isset($partaiPolitiks) && count($partaiPolitiks) > 0)
-            <a href="{{ url()->previous() }}" class="btn btn-success btn-sm mt-3">
-                <i class="bi bi-arrow-left-circle"></i> Kembali
-            </a>
-        @endif
-
-        @if (!request()->has('keyword'))
-            <a href="{{ route('dashboard') }}" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Back
-                to Dashboard</a>
-        @endif
+        <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
 
     </div>
 @endsection
