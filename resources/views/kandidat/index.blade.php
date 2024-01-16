@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-4">
         <center>
-            <h1>Pemilu</h1>
+            <h1>Kandidat</h1>
         </center>
         <h2>Kandidat</h2>
         <main>
