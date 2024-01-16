@@ -13,8 +13,7 @@
                 </div>
             @endif
 
-            <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data
-                Kandidat</a>
+            <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data Kandidat</a>
 
             <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
                 <div class="input-group">
@@ -61,15 +60,16 @@
                     @endforeach
                 </tbody>
             </table>
-
             @if (request()->has('keyword') && isset($kandidat) && count($kandidat) > 0)
                 <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                         class="bi bi-arrow-left-circle"></i> Kembali</a>
             @endif
-            {{-- <a href="/admin/admin" class="btn btn-success btn-block mt-1"><i class="bi bi-arrow-left-circle"></i>
-                Kembali</a> --}}
-        <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
 
+            {{-- Display "Back to Dashboard" button if no search keyword is present --}}
+            @if (!request()->has('keyword'))
+                <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i
+                        class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+            @endif
         </main>
     </div>
 @endsection
