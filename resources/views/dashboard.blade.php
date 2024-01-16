@@ -8,8 +8,8 @@
     <style>
          body {
             background: url('assets/images/cprs.jpg') center center fixed; 
-            background-size: 104%;
-            background-position: center 15%; /* Adjust the vertical position (20% from the top in this example) */
+            background-size: 103%;
+            background-position: center 20%; /* Adjust the vertical position (20% from the top in this example) */
             margin: 0; 
             padding: 0;
             display: flex;
@@ -23,15 +23,11 @@
             font-size: 70px;
             color: black;
         }
-
-        .container-fluid {
-            margin-top: -250px;
-        }
     </style>
 </head>
 <body>
 
-<div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center">
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
     <h1 class="mb-4">Pemilu</h1>
     <div class="card">
         <div class="card-body">
