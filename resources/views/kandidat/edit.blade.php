@@ -1,5 +1,5 @@
-@extends('layout.jek')
-
+@extends('layouts')
+<title>Edit Data Kandidat</title>
 @section('content')
     <div class="container mt-5">
         <div class="card border-0 shadow-lg">

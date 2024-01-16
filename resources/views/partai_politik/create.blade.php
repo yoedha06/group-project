@@ -1,8 +1,8 @@
 @extends('layouts')
-
+<title>Tambah Data Partai Politik</title>
 @section('content')
     <div class="container">
-        <h1>Formulir Pembuatan Partai Politik Baru</h1>
+        <h2>Formulir Pembuatan Partai Politik Baru</h2>
 
         <form action="{{ route('partai_politik.store') }}" method="post">
             @csrf
