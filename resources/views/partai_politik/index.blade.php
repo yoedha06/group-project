@@ -6,6 +6,16 @@
 
         <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3">Tambah Partai Politik</a>
 
+        <form action="{{ route('partai_politik.search') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" name="keyword" placeholder="Cari Partai Politik...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
+                </div>
+            </div>
+        </form>
+
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -34,9 +44,9 @@
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
                         <td>{{ $partaiPolitik->PemimpinPartai }}</td>
                         <td>
-                            <a href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
-                                class="btn btn-warning">Edit</a>
-
+                            <a
+                                href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"class="btn btn-warning"><i
+                                    class="bi bi-pencil-square">&nbsp;</i>Edit</a>
                             <form action="{{ route('partai_politik.delete', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
                                 method="post" style="display:inline;">
                                 @csrf
