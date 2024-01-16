@@ -42,7 +42,7 @@ tbody tr:nth-child(odd) {
     color: #ffffff; /* Warna teks tombol danger */
 }
 
-h1{
-    font-size: 80px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+h1 {
+    font-size: 40px;
+    font-family: Georgia, "Times New Roman", Times, serif;
 }
