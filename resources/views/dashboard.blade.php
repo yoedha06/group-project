@@ -9,7 +9,7 @@
          body {
             background: url('assets/images/cprs.jpg') center center fixed; 
             background-size: 103%;
-            background-position: center 20%; /* Adjust the vertical position (20% from the top in this example) */
+            background-position: center 20%; /* AAdjust the vertical position (20% from the top in this example) */
             margin: 0; 
             padding: 0;
             display: flex;
