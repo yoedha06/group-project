@@ -91,4 +91,16 @@ class HasilPemilihanController extends Controller
         $hasilPemilihan->delete();
         return redirect()->route('hasilpemilihan.index');
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $hasilpemilihan = HasilPemilihan::where('Id_HasilPemilihan', 'like', "%$keyword%")
+            ->orWhere('Id_Pemilih', 'like', "%$keyword%")
+            ->orWhere('Id_Kandidat', 'like', "%$keyword%")
+            ->get();
+
+        return view('hasilpemilih.index', compact('hasilpemilihan'));
+    }
 }

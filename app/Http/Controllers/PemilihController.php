@@ -83,4 +83,17 @@ class PemilihController extends Controller
 
         return redirect()->route('pemilih.index')->with('success', 'Pemilih berhasil dihapus!');
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $pemilih = Pemilih::where('nama_pemilih', 'like', "%$keyword%")
+            ->orWhere('alamat', 'like', "%$keyword%")
+            ->orWhere('no_ktp', 'like', "%$keyword%")
+            ->orWhere('status_pemilihan', 'like', "%$keyword%")
+            ->get();
+
+        return view('pemilih.index', compact('pemilih'));
+    }
 }
