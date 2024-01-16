@@ -46,16 +46,14 @@
                         <td>{{ $partaiPolitik->PemimpinPartai }}</td>
                         <td>
                             <a href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
+                                class="btn btn-warning">Edit</a>
                                 class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-
                             <form action="{{ route('partai_politik.delete', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"
                                 method="post" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
-                                        class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
-                            </form>
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>                        </form>
                         </td>
                     </tr>
                 @endforeach
