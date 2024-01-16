@@ -66,6 +66,8 @@ class PartaiPolitikController extends Controller
 
         $partaiPolitiks = PartaiPolitik::where('NamaPartai', 'like', "%$keyword%")
             ->orWhere('Ideologi', 'like', "%$keyword%")
+            ->orWhere('Id_Partai', 'like', "%$keyword%")
+            ->orWhere('Ideologi', 'like', "%$keyword%")
             ->orWhere('JumlahAnggota', 'like', "%$keyword%")
             ->orWhere('PemimpinPartai', 'like', "%$keyword%")
             ->get();
