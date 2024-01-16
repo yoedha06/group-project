@@ -14,7 +14,7 @@
 
             <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="keyword" placeholder="Cari pemilih...">
+                    <input type="text" class="form-control" name="keyword" style="border-radius: 7px;" placeholder="Cari pemilih...">&nbsp;
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i>
                             Cari</button>
