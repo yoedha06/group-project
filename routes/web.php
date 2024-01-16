@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
@@ -15,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/',[PemilihController::class,'tampil'])->name('dashboard');
+
+// CRUD Pemilih
+
+Route::get('pemilih/index',[PemilihController::class, 'index'])->name('pemilih.index');
+Route::get('pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.create');
+Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('pemilih.store');
+Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
+Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
+Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
+// });
 
 
 //Partai Politik
@@ -24,10 +36,8 @@ Route::post('partai_politik/store', [PartaiPolitikController::class, 'store'])->
 Route::get('partai_politik/{Id_Partai}/edit', [PartaiPolitikController::class, 'edit'])->name('partai_politik.edit');
 Route::put('partai_politik/{Id_Partai}', [PartaiPolitikController::class, 'update'])->name('partai_politik.update');
 Route::delete('partai_politik/delete/{Id_Partai}', [PartaiPolitikController::class, 'delete'])->name('partai_politik.delete');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
+//Kandidat
 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
 Route::get('/kandidat/create', [KandidatController::class, 'create'])->name('kandidat.create');
 Route::post('/kandidat/store', [KandidatController::class, 'store'])->name('kandidat.store');

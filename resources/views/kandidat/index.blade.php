@@ -66,6 +66,10 @@
                 <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                         class="bi bi-arrow-left-circle"></i> Kembali</a>
             @endif
+            {{-- <a href="/admin/admin" class="btn btn-success btn-block mt-1"><i class="bi bi-arrow-left-circle"></i>
+                Kembali</a> --}}
+        <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
+
         </main>
     </div>
 @endsection
