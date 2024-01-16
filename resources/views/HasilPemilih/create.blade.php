@@ -1,5 +1,5 @@
 @extends('layouts')
-
+<title>Tambah Data Pemilih </title>
 @section('content')
     <div class="container">
         <h2 class="my-4">Tambah Hasil Pemilihan Baru</h2>

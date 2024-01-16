@@ -1,5 +1,5 @@
 @extends('layouts')
-
+<title>Data Partai Politik</title>
 @section('content')
     <div class="container mt-4">
         <center>

@@ -1,5 +1,5 @@
 @extends('layouts')
-<title>Data Produk Biasa</title>
+<title>Pemilih</title>
 @section('content')
         <div class="container mt-4">
             <center>
