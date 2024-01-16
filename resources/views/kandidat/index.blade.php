@@ -1,10 +1,11 @@
 @extends('layout.jek')
 
 @section('content')
-    <div class="container">
-        <header class="mb-4">
-            <h1 class="text-center">DATA KANDIDAT</h1>
-        </header>
+    <div class="container mt-4">
+        <center>
+            <h1>Pemilu</h1>
+        </center>
+        <h2>Kandidat</h2>
         <main>
 
             @if (session('success'))

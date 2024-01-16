@@ -1,10 +1,13 @@
 @extends('layouts')
 
 @section('content')
-    <div class="container">
-        <h1>Daftar Partai Politik</h1>
-
-        <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3">Tambah Partai Politik</a>
+    <div class="container mt-4">
+        <center>
+            <h1>Pemilu</h1>
+        </center>
+        <h2>Partai Politik</h2>
+        <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3"> <i class="bi bi-plus-lg"></i> Partai
+            Politik</a>
 
         <form action="{{ route('partai_politik.search') }}" method="GET" class="mb-4">
             <div class="input-group">
@@ -14,8 +17,6 @@
                 </div>
             </div>
         </form>
-
-
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -40,7 +41,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $partaiPolitik->Id_Partai }}</td>
                         <td>{{ $partaiPolitik->NamaPartai }}</td>
-                        <td>{{ $partaiPolitik->Ideologi }}</td>
+                        <td width="200px;">{{ $partaiPolitik->Ideologi }}</td>
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
                         <td>{{ $partaiPolitik->PemimpinPartai }}</td>
                         <td>
@@ -59,7 +60,13 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
-
+        @if (request()->has('keyword') && isset($partaiPolitiks) && count($partaiPolitiks) > 0)
+            <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
+                    class="bi bi-arrow-left-circle"></i>Kembali</a>
+        @endif
+        @if (!request()->has('keyword'))
+            <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i
+                    class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+        @endif
     </div>
 @endsection

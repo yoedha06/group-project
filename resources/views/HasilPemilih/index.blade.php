@@ -1,9 +1,11 @@
 @extends('layouts')
 
 @section('content')
-    <div class="container">
-        <h2 class="my-4">Daftar Hasil Pemilihan</h2>
-
+    <div class="container mt-4">
+        <center>
+            <h1>Pemilu</h1>
+        </center>
+        <h2>Hasil Pemilih</h2>
         <div class="mb-3">
             <a href="/hasilpemilihan/create" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Tambah Hasil Pemilih</a>
         </div>
@@ -44,8 +46,8 @@
             </tbody>
         </table>
         @if (request()->has('keyword') && isset($hasilpemilihan) && count($hasilpemilihan) > 0)
-            <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i class="bi bi-arrow-left-circle"></i>
-                Kembali</a>
+            <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
+                    class="bi bi-arrow-left-circle"></i>Kembali</a>
         @endif
         @if (!request()->has('keyword'))
             <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i
