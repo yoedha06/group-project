@@ -1,4 +1,4 @@
-@extends('layout.jek')
+@extends('layouts')
 
 @section('content')
     <div class="container mt-4">
