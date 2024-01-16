@@ -1,6 +1,4 @@
-
-
-@extends('layouts') 
+@extends('layouts')
 
 @section('content')
     <div class="container">
@@ -22,16 +20,18 @@
 
             <div class="form-group">
                 <label for="JumlahAnggota">Jumlah Anggota:</label>
-                <input type="number" class="form-control" name="JumlahAnggota" value="{{ $partaiPolitik->JumlahAnggota }}" required>
+                <input type="number" class="form-control" name="JumlahAnggota"value="{{ $partaiPolitik->JumlahAnggota }}"
+                    required>
             </div>
 
             <div class="form-group">
                 <label for="PemimpinPartai">Pemimpin Partai:</label>
-                <input type="text" class="form-control" name="PemimpinPartai" value="{{ $partaiPolitik->PemimpinPartai }}" required>
+                <input type="text" class="form-control" name="PemimpinPartai"value="{{ $partaiPolitik->PemimpinPartai }}"
+                    required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-            <a href="{{ route('partai_politik.index') }}" class="btn btn-outline-secondary">Batal</a>
+            <button type="submit" class="btn btn-primary mt-4">Simpan Perubahan</button>
+            <a href="{{ route('partai_politik.index') }}" class="btn btn-outline-secondary mt-4">Batal</a>
         </form>
     </div>
 @endsection

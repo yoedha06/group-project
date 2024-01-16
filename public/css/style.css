@@ -1,0 +1,43 @@
+/* public/css/style.css */
+
+/* Gaya umum */
+body {
+    background-color: #f8f9fa; /* Warna latar belakang */
+}
+
+.container {
+    margin-top: 20px; /* Ruang di atas kontainer */
+}
+
+/* Gaya untuk tabel */
+.table {
+    margin-top: 20px; /* Ruang di atas tabel */
+}
+
+/* Gaya untuk tombol */
+.btn {
+    margin-right: 5px; /* Ruang antara tombol */
+}
+
+/* Gaya untuk header tabel */
+thead {
+    background-color: #343a40; /* Warna latar belakang header tabel */
+    color: #ffffff; /* Warna teks header tabel */
+}
+
+/* Gaya untuk baris ganjil */
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Warna latar belakang baris ganjil */
+}
+
+/* Gaya untuk tombol warna warning (Edit) */
+.btn-warning {
+    background-color: #ffc107; /* Warna latar belakang tombol warning */
+    color: #212529; /* Warna teks tombol warning */
+}
+
+/* Gaya untuk tombol warna danger (Hapus) */
+.btn-danger {
+    background-color: #dc3545; /* Warna latar belakang tombol danger */
+    color: #ffffff; /* Warna teks tombol danger */
+}
