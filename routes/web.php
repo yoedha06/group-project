@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PemilihController::class,'tampil'])->name('dashboard');
 
 // CRUD Pemilih
+
 Route::get('pemilih/index',[PemilihController::class, 'index'])->name('pemilih.index');
 Route::get('pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.create');
 Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('pemilih.store');
 Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
+// });
 
 
 //Partai Politik

@@ -26,8 +26,8 @@
                 <input type="text" class="form-control" name="PemimpinPartai" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="{{ route('partai_politik.index') }}" class="btn btn-outline-secondary">Batal</a>
+            <button type="submit" class="btn btn-primary mt-4">Simpan</button>
+            <a href="{{ route('partai_politik.index') }}" class="btn btn-outline-secondary mt-4">Batal</a>
         </form>
     </div>
 @endsection
