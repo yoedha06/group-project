@@ -41,3 +41,8 @@ tbody tr:nth-child(odd) {
     background-color: #dc3545; /* Warna latar belakang tombol danger */
     color: #ffffff; /* Warna teks tombol danger */
 }
+
+h1{
+    font-size: 80px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

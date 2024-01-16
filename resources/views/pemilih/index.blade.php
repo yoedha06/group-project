@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Produk Biasa</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        h1{
-            font-size: 80px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-    </style>
-</head>
-<body>
+@extends('layouts')
 
+    <title>Data Produk Biasa</title>
+@section('content')
     <div class="container mt-4">
         <center><h1>Pemilu</h1></center>
         <h2>Pemilih</h2>
@@ -22,7 +10,7 @@
         <table class="table" style="margin-top: 10px;">
             <thead>
                 <tr>
-                    <th>id pemilih</th>
+                    <th>No</th>
                     <th>nama pemilih</th>
                     <th>tanggal lahir</th>
                     <th>alamat</th>
@@ -34,7 +22,7 @@
             <tbody>
                 @foreach ($pemilih as $p)
                     <tr>
-                        <td>{{ $p->Id_Pemilih }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
                         <td>{{ $p->alamat }}</td>
@@ -66,11 +54,4 @@
         </table>
         <a href="{{ route('dashboard') }}" class="btn btn-primary">Kembali</a>
     </div>
-    
-
-    <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection   
