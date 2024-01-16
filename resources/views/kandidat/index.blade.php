@@ -40,7 +40,7 @@
                     @foreach ($kandidat as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->Nama_Kandidat }}</td>
+                            <td style="width: 10px">{{ $item->Nama_Kandidat }}</td>
                             <td>{{ $item->Tanggal_Lahir }}</td>
                             <td>{{ $item->Partai_Politik }}</td>
                             <td>{{ $item->Nomor_Urut }}</td>
