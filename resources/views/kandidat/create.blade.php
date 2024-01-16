@@ -1,5 +1,5 @@
-@extends('layout.jek')
-
+@extends('layouts')
+<title>Tambah Data Kandidat</title>
 @section('content')
 
     <div class="container mt-5">

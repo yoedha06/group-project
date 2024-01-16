@@ -1,8 +1,8 @@
 @extends('layouts')
-
+<title>Edit Data Partai Politik</title>
 @section('content')
     <div class="container">
-        <h1>Edit Partai Politik</h1>
+        <h2>Edit Partai Politik</h2>
 
         <form action="{{ route('partai_politik.update', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}" method="post">
             @csrf
