@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PemilihController extends Controller
 {
+    public function tampil()
+    {
+        return view('dashboard');
+    }
+
     public function index()
     {
         $pemilih = Pemilih::all();
