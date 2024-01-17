@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- Name Title --}}
     <title>Pemilu 2024</title>
-
-
+     
     {{-- Link Bootstapppp --}}
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
