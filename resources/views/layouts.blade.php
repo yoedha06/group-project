@@ -16,7 +16,7 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- link logo pemilu check--}}
+    {{-- link logo pemilu checks--}}
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
