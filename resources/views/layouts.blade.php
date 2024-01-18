@@ -27,6 +27,7 @@
     <!-- Link CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
+{{-- Bagian body --}}
 
 <body>
     <div class="container mt-5">
