@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('Id_Pemilih');
             $table->unsignedBigInteger('Id_Kandidat');
             $table->timestamps();
+
+            $table->foreign('Id_Pemilih')->references('Id_Pemilih')->on('pemilih');
+            $table->foreign('Id_Kandidat')->references('Id_Kandidat')->on('kandidat');
         });
     }
 

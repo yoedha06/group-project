@@ -22,9 +22,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Id Hasil</th>
-                    <th scope="col">Id Pemilihan</th>
-                    <th scope="col">Id Kandidat</th>
+                    {{-- <th scope="col">Id Hasil</th> --}}
+                    <th scope="col">Nama Pemilih</th>
+                    <th scope="col">Nama Kandidat</th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -32,9 +32,9 @@
                 @foreach ($hasilpemilihan as $hasil)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $hasil->Id_HasilPemilihan }}</td>
-                        <td>{{ $hasil->Id_Pemilih }}</td>
-                        <td>{{ $hasil->Id_Kandidat }}</td>
+                        {{-- <td>{{ $hasil->Id_HasilPemilihan }}</td> --}}
+                        <td>{{ $hasil->pemilih->nama_pemilih ?? 'Null' }}</td>
+                        <td>{{ $hasil->kandidat->Nama_Kandidat ?? 'Null' }}</td>
                         <td>
                             <a href="{{ route('hasilpemilihan.edit', ['id' => $hasil->Id_HasilPemilihan]) }}"
                                 class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>

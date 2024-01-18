@@ -18,4 +18,13 @@ class HasilPemilihan extends Model
         'Id_Pemilih',
         'Id_Kandidat',
     ];
+
+    public function pemilih()
+    {
+        return $this->belongsTo(pemilih::class, 'Id_Pemilih');
+    }
+    public function kandidat()
+    {
+        return $this->belongsTo(kandidat::class, 'Id_Kandidat');
+    }
 }
