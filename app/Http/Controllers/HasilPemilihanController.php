@@ -79,13 +79,13 @@ class HasilPemilihanController extends Controller
         $hasilpemilihan = HasilPemilihan::find($id);
 
         $request->validate([
-            'Id_HasilPemilihan' => 'required',
+            // 'Id_HasilPemilihan' => 'required',
             'Id_Pemilih' => 'required',
             'Id_Kandidat' => 'required',
         ]);
 
         $hasilpemilihan->update([
-            'Id_HasilPemilihan' => $request->Id_HasilPemilihan,
+            // 'Id_HasilPemilihan' => $request->Id_HasilPemilihan,
             'Id_Pemilih' => $request->Id_Pemilih,
             'Id_Kandidat' => $request->Id_Kandidat,
         ]);

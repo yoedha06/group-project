@@ -12,7 +12,6 @@ class Kandidat extends Model
     protected $primaryKey = 'Id_Kandidat';
     protected $fillable = [
         'Nama_Kandidat',
-        'Nama_Kandidat',
         'Tanggal_Lahir',
         'Partai_Politik',
         'Nomor_Urut',
