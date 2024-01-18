@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\HasilPemilihan;
 use App\Http\Controllers\Controller;
+use App\Models\Kandidat;
+use App\Models\Pemilih;
 use Illuminate\Http\Request;
 
 class HasilPemilihanController extends Controller
@@ -22,7 +24,9 @@ class HasilPemilihanController extends Controller
      */
     public function create()
     {
-        return view('HasilPemilih.create');
+        $pemilih = Pemilih::all();
+        $kandidat = Kandidat::all();
+        return view('HasilPemilih.create', compact('pemilih', 'kandidat'));
     }
 
     /**
@@ -31,15 +35,18 @@ class HasilPemilihanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Id_HasilPemilihan' => 'required',
+            // 'Id_HasilPemilihan' => 'required',
             'Id_Pemilih' => 'required',
             'Id_Kandidat' => 'required',
         ]);
 
+        $pemilih = Pemilih::find($request->Id_Pemilih);
+        $kandidat = Kandidat::find($request->Id_Kandidat);
+
         HasilPemilihan::create([
-            'Id_HasilPemilihan' => $request->Id_HasilPemilihan,
-            'Id_Pemilih' => $request->Id_Pemilih,
-            'Id_Kandidat' => $request->Id_Kandidat,
+            // 'Id_HasilPemilihan' => $request->Id_HasilPemilihan,
+            'Id_Pemilih' => $pemilih->Id_Pemilih,
+            'Id_Kandidat' => $kandidat->Id_Kandidat,
         ]);
         return redirect()->route('hasilpemilihan.index');
     }
@@ -58,7 +65,10 @@ class HasilPemilihanController extends Controller
     public function edit(Request $request, $id)
     {
         $hasilpemilihan = HasilPemilihan::find($id);
-        return view('HasilPemilih.edit', compact('hasilpemilihan'));
+
+        $pemilih = Pemilih::all();
+        $kandidat = kandidat::all();
+        return view('HasilPemilih.edit', compact('hasilpemilihan', 'pemilih', 'kandidat'));
     }
 
     /**
