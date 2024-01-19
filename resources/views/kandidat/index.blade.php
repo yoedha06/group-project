@@ -66,9 +66,6 @@
                 <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                         class="bi bi-arrow-left-circle"></i> Kembali</a>
             @endif
-
-            {{-- Display "Back to Dashboard" button if no search keyword is present --}}
-           
         </main>
     </div>
 @endsection
