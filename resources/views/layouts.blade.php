@@ -33,66 +33,64 @@
 <body>
     </head>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<body>
-{{-- CEPIIII --}}
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <img src="{{ asset("/assets/images/ppp-removebg-preview.png") }}" alt="Logo">
-                <h3>Pemilu</h3>
-=======
-=======
->>>>>>> f51ef492a09afedbf3aad9d526fa63ecbe7b1fbd
     <body>
-
+        {{-- CEPIIII --}}
         <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" alt="Logo">
                     <h3>Pemilu</h3>
-                </div>
-                <ul class="list-unstyled">
-                    <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
-                        <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
-                    </li>
-                    <li class="{{ Request::is('kandidat*') ? 'active' : '' }}">
-                        <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a>
-                    </li>
-                    <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
-                        <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i> Partai Politik</a>
-                    </li>
-                    <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
-                        <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil
-                            Pemilihan</a>
-                    </li>
-                    @if (!request()->has('keyword'))
-                        <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
-                                class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
-                    @endif
-                </ul>
-            </nav>
 
-            <div class="container mt-5">
-                {{-- content all --}}
-                @yield('content')
+                    <body>
 
-<<<<<<< HEAD
->>>>>>> f51ef49 (.)
-=======
->>>>>>> f51ef492a09afedbf3aad9d526fa63ecbe7b1fbd
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-            </script>
-            <!-- LInk Js -->
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
-    {{-- Penutup Body --}}
+                        <div class="wrapper">
+                            <!-- Sidebar -->
+                            <nav id="sidebar">
+                                <div class="sidebar-header">
+                                    <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" alt="Logo">
+                                    <h3>Pemilu</h3>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
+                                        <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
+                                    </li>
+                                    <li class="{{ Request::is('kandidat*') ? 'active' : '' }}">
+                                        <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i>
+                                            Kandidat</a>
+                                    </li>
+                                    <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
+                                        <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i>
+                                            Partai Politik</a>
+                                    </li>
+                                    <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
+                                        <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i>
+                                            Hasil
+                                            Pemilihan</a>
+                                    </li>
+                                    @if (!request()->has('keyword'))
+                                        <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
+                                                class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+                                    @endif
+                                </ul>
+                            </nav>
+
+                            <div class="container mt-5">
+                                {{-- content all --}}
+                                @yield('content')
+
+                                <<<<<<< HEAD>>>>>>> f51ef49 (.)
+                                    =======
+                                    >>>>>>> f51ef492a09afedbf3aad9d526fa63ecbe7b1fbd
+                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+                            </script>
+                            <!-- LInk Js -->
+                            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    </body>
+                    {{-- Penutup Body --}}
 
 </html>
