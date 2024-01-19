@@ -11,7 +11,7 @@
         body {
             background: url('assets/images/cprs.jpg') center center fixed;
             background-size: 103%;
-            background-position: center 20%;
+            background-position: center 60%;
             margin: 0;
             padding: 0;
             display: flex;
@@ -58,6 +58,14 @@
             padding-top: 60px;
             padding-bottom: 20px;
         }
+
+        b {
+            color: black;
+        }
+
+        b:hover{
+            color: red;
+        }
         
     </style>
 </head>
@@ -75,16 +83,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto" >
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pemilih.index') }}">Pemilih</a>
+                        <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('kandidat.index') }}">Kandidat</a>
+                        <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('partai_politik.index') }}">Partai Politik</a>
+                        <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('hasilpemilihan.index') }}">Hasil Pemilih</a>
+                        <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilih</b></a>
                     </li>
                 </ul>
             </div>
