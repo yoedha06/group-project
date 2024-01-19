@@ -28,21 +28,21 @@
         }
 
         .navbar {
-            background-color: #343a40;
-            /* Warna latar belakang navbar */
+            background-color: #f8f9fa;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
             font-size: 24px;
-            color: #ffffff;
-            /* Warna teks logo */
+            /* Optional: Add padding to the logo */
             padding: 10px;
         }
 
         .navbar-brand img {
+            /* Set width and height for the logo */
             width: 40px;
             height: auto;
+            /* Optional: Adjust margin or other styles as needed */
             margin-right: 10px;
         }
 
@@ -54,36 +54,26 @@
             margin-right: 10px;
         }
 
-        .navbar-nav .nav-link {
-            color: #ffffff !important;
-            /* Warna teks tautan navbar */
-            transition: color 0.3s ease;
-            /* Efek transisi warna */
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #c91a31 !important;
-            /* Warna teks tautan navbar pada hover */
-        }
-
         .container-fluid {
             padding-top: 60px;
             padding-bottom: 20px;
         }
+        
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:70px;">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
+                <ul class="navbar-nav mx-auto" >
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pemilih.index') }}">Pemilih</a>
                     </li>
@@ -107,10 +97,12 @@
         </div>
     </div>
 
+
     <!-- Include the necessary JavaScript libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </body>
 
