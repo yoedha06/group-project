@@ -24,7 +24,7 @@ class PemilihController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         $request->validate([
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
