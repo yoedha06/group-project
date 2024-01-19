@@ -40,6 +40,8 @@
                 </div>
             @endif
             <button type="submit" class="btn btn-primary mt-4">Tambah Hasil Pemilihan</button>
+            <a href="/hasilpemilihan" class="btn btn-warning btn-block mt-4"><i class="bi bi-arrow-left-circle"></i>
+                Kembali</a>
         </form>
     </div>
 @endsection

@@ -26,14 +26,46 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
     <!-- Link CSS -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 </head>
 {{-- Bagian body --}}
 
 <body>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ asset("/assets/images/ppp-removebg-preview.png") }}" alt="Logo">
+                <h3>Pemilu</h3>
+            </div>
+            <ul class="list-unstyled">
+                <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
+                    <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
+                </li>
+                <li class="{{ Request::is('kandidat*') ? 'active' : '' }}">
+                    <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a>
+                </li>
+                <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
+                    <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i> Partai Politik</a>
+                </li>
+                <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
+                    <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
+                </li>
+                @if (!request()->has('keyword'))
+                <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
+                        class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+            @endif
+            </ul>
+        </nav>
+
     <div class="container mt-5">
         {{-- content all --}}
         @yield('content')
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">

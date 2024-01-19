@@ -68,10 +68,7 @@
             @endif
 
             {{-- Display "Back to Dashboard" button if no search keyword is present --}}
-            @if (!request()->has('keyword'))
-                <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i
-                        class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
-            @endif
+           
         </main>
     </div>
 @endsection
