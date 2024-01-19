@@ -34,7 +34,7 @@
     </head>
 
     <body>
-        {{-- JEkiii --}}
+        {{-- Pembuka DIV --}}
         <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
