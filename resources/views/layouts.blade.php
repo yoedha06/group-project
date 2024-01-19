@@ -34,6 +34,7 @@
     </head>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <body>
 {{-- CEPIIII --}}
     <div class="wrapper">
@@ -43,6 +44,8 @@
                 <img src="{{ asset("/assets/images/ppp-removebg-preview.png") }}" alt="Logo">
                 <h3>Pemilu</h3>
 =======
+=======
+>>>>>>> f51ef492a09afedbf3aad9d526fa63ecbe7b1fbd
     <body>
 
         <div class="wrapper">
@@ -77,7 +80,10 @@
                 {{-- content all --}}
                 @yield('content')
 
+<<<<<<< HEAD
 >>>>>>> f51ef49 (.)
+=======
+>>>>>>> f51ef492a09afedbf3aad9d526fa63ecbe7b1fbd
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
