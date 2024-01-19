@@ -11,5 +11,9 @@ class Pemilih extends Model
 
     protected $primaryKey = 'Id_Pemilih';
     protected $table = 'pemilih';
-    protected $fillable = ['Id_Pemilih','nama_pemilih','tanggal_lahir','alamat','no_ktp','status_pemilihan'];
+    protected $fillable = ['Id_Pemilih', 'nama_pemilih', 'tanggal_lahir', 'alamat', 'no_ktp', 'status_pemilihan'];
+    public function kandidat()
+    {
+        return $this->hasOne(HasilPemilihan::class, 'Id_Pemilih');
+    }
 }

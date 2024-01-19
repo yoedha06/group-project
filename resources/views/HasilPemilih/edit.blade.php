@@ -7,24 +7,38 @@
         <form action="{{ route('hasilpemilihan.update', ['id' => $hasilpemilihan->Id_HasilPemilihan]) }}" method="POST">
             @csrf
 
+            <!-- Id_Pemilih -->
             <div class="form-group">
-                <label for="id_hasil">ID Hasil:</label>
-                <input type="text" class="form-control" id="id_hasil" name="Id_HasilPemilihan"
-                    value="{{ $hasilpemilihan->Id_HasilPemilihan }}" required>
+                <label for="Id_Pemilih" class="form-label">
+                    <h4>Id Pemilih</h4>
+                </label>
+                <select class="form-select form-select-lg" name="Id_Pemilih" id="Id_Pemilih">
+                    @foreach ($pemilih as $p)
+                        <option value="{{ $p->Id_Pemilih }}">{{ $p->Id_Pemilih }} - {{ $p->nama_pemilih }}</option>
+                    @endforeach
+                </select>
             </div>
 
+            <!-- Id_Kandidat -->
             <div class="form-group">
-                <label for="id_pemilihan">ID Pemilihan:</label>
-                <input type="text" class="form-control" id="id_pemilihan" name="Id_Pemilih"
-                    value="{{ $hasilpemilihan->Id_Pemilih }}"required>
+                <label for="Id_Kandidat" class="form-label">
+                    <h4>Id Kandidat</h4>
+                </label>
+                <select class="form-select form-select-lg" name="Id_Kandidat" id="Id_Kandidat">
+                    @foreach ($kandidat as $k)
+                        <option value="{{ $k->Id_Kandidat }}">{{ $k->Id_Kandidat }} - {{ $k->Nama_Kandidat }}</option>
+                    @endforeach
+                </select>
             </div>
-
-            <div class="form-group">
-                <label for="id_kandidat">ID Kandidat:</label>
-                <input type="text" class="form-control" id="id_kandidat"
-                    name="Id_Kandidat"value="{{ $hasilpemilihan->Id_Kandidat }}" required>
-            </div>
-
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <button type="submit" class="btn btn-primary mt-4">Tambah Hasil Pemilihan</button>
         </form>
     </div>

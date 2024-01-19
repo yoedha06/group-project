@@ -12,11 +12,13 @@ class Kandidat extends Model
     protected $primaryKey = 'Id_Kandidat';
     protected $fillable = [
         'Nama_Kandidat',
-        'nama_barang',
         'Tanggal_Lahir',
         'Partai_Politik',
         'Nomor_Urut',
         'Program_Kerja',
     ];
-
+    public function pemilih()
+    {
+        return $this->hasOne(HasilPemilihan::class, 'Id_Kandidat');
+    }
 }
