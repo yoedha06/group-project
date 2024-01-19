@@ -12,7 +12,6 @@
             background: url('assets/images/cprs.jpg') center center fixed;
             background-size: 103%;
             background-position: center 20%;
-            /* AAdjust the vertical position (20% from the top in this example) */
             margin: 0;
             padding: 0;
             display: flex;
@@ -25,25 +24,69 @@
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: 70px;
             color: black;
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            background-color: #f8f9fa;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .container-fluid {
+            padding-top: 60px; /* Adjust the top padding to create space between navbar and content */
+            padding-bottom: 20px; /* Optional: Add padding to the bottom if needed */
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-        <h1 class="mb-4">Pemilu</h1>
-        <div class="card">
-            <div class="card-body">
-                <a href="{{ route('pemilih.index') }}" class="btn btn-primary">Pemilih</a>
-                <a href="{{ route('kandidat.index') }}" class="btn btn-secondary">Kandidat</a>
-                <a href="{{ route('partai_politik.index') }}" class="btn btn-primary">Partai Politik</a>
-                <a href="{{ route('hasilpemilihan.index') }}" class="btn btn-secondary">Hasil Pemilih</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Pemilu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pemilih.index') }}">Pemilih</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kandidat.index') }}">Kandidat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('partai_politik.index') }}">Partai Politik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('hasilpemilihan.index') }}">Hasil Pemilih</a>
+                    </li>
+                </ul>
             </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <h1>Pemilu</h1>
+        <div class="card">
+            <!-- Your card content goes here -->
         </div>
     </div>
 
-    <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->
+    <!-- Include the necessary JavaScript libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
