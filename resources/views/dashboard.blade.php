@@ -34,6 +34,16 @@
 
         .navbar-brand {
             font-size: 24px;
+            /* Optional: Add padding to the logo */
+            padding: 10px;
+        }
+
+        .navbar-brand img {
+            /* Set width and height for the logo */
+            width: 40px;
+            height: auto;
+            /* Optional: Adjust margin or other styles as needed */
+            margin-right: 10px;
         }
 
         .navbar-nav {
@@ -45,9 +55,10 @@
         }
 
         .container-fluid {
-            padding-top: 60px; /* Adjust the top padding to create space between navbar and content */
-            padding-bottom: 20px; /* Optional: Add padding to the bottom if needed */
+            padding-top: 60px;
+            padding-bottom: 20px;
         }
+        
     </style>
 </head>
 
@@ -55,13 +66,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Pemilu</a>
+            <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:70px;">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mx-auto" >
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pemilih.index') }}">Pemilih</a>
                     </li>
@@ -80,16 +92,17 @@
     </nav>
 
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-        <h1>Pemilu</h1>
         <div class="card">
             <!-- Your card content goes here -->
         </div>
     </div>
 
+
     <!-- Include the necessary JavaScript libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </body>
 

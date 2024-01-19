@@ -5,7 +5,7 @@
         <center>
             <h1>Pemilu</h1>
         </center>
-        <h2>Hasil Pemilih</h2>
+        <h2>Hasil Pemilihan</h2>
         <div class="mb-3">
             <a href="/hasilpemilihan/create" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Tambah Hasil Pemilih</a>
         </div>
@@ -48,10 +48,6 @@
         @if (request()->has('keyword') && isset($hasilpemilihan) && count($hasilpemilihan) > 0)
             <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                     class="bi bi-arrow-left-circle"></i>Kembali</a>
-        @endif
-        @if (!request()->has('keyword'))
-            <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4"><i
-                    class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
         @endif
     </div>
 @endsection
