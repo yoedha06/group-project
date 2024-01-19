@@ -58,6 +58,7 @@
             padding-top: 60px;
             padding-bottom: 20px;
         }
+<<<<<<< HEAD
 
         b {
             color: black;
@@ -67,6 +68,8 @@
             color: red;
         }
         
+=======
+>>>>>>> d7639ce (.)
     </style>
 </head>
 
@@ -81,7 +84,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto" >
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
                     </li>
