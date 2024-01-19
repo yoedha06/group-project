@@ -58,18 +58,14 @@
             padding-top: 60px;
             padding-bottom: 20px;
         }
-<<<<<<< HEAD
 
         b {
             color: black;
         }
 
-        b:hover{
+        b:hover {
             color: red;
         }
-        
-=======
->>>>>>> d7639ce (.)
     </style>
 </head>
 
