@@ -5,7 +5,6 @@ use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,7 @@ Route::get('/',[PemilihController::class,'tampil'])->name('dashboard');
 
 // CRUD Pemilih
 
-Route::get('pemilih/i ndex',[PemilihController::class, 'index'])->name('pemilih.index');
+Route::get('pemilih/index',[PemilihController::class, 'index'])->name('pemilih.index');
 Route::get('pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.create');
 Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('pemilih.store');
 Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
@@ -28,7 +27,7 @@ Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->nam
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
 Route::get('/pemilih/search', [PemilihController::class, 'search'])->name('pemilih.search');
 
- 
+
 //Partai Politik
 Route::get('/partai_politik', [PartaiPolitikController::class, 'index'])->name('partai_politik.index');
 Route::get('/partai_politik/create', [PartaiPolitikController::class, 'create'])->name('partai_politik.create');
