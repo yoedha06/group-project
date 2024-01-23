@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                <div class="card" style="margin-top: 50px;">
+                <div class="card bt-3">
                     <div class="card-header">Edit Pemilih</div>
 
                     <div class="card-body">
@@ -30,31 +30,43 @@
                             
                             <div class="form-group">
                                 <label for="nama_pemilih">Nama Pemilih:</label>
-                                <input type="text" name="nama_pemilih" id="nama_pemilih" class="form-control"
+                                <input type="text" name="nama_pemilih" id="nama_pemilih" class="form-control {{ $errors->has('nama_pemilih') ? 'is-invalid' : '' }}"
                                 value="{{ $pemilih->nama_pemilih }}">
+                                @error('nama_pemilih')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="tanggal_lahir">Tanggal Lahir:</label>
-                                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control"
+                                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control {{ $errors->has('tanggal_lahir') ? 'is-invalid' : '' }}"
                                 value="{{ $pemilih->tanggal_lahir }}">
+                                @error('tanggal_lahir')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="alamat">Alamat:</label>
-                                <input type="text" name="alamat" id="alamat" class="form-control"
+                                <input type="text" name="alamat" id="alamat" class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
                                 value="{{ $pemilih->alamat }}">
+                                @error('alamat')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             
                             <div class="form-group">
                                 <label for="no_ktp">no KTP:</label>
-                                <input type="text" name="no_ktp" id="no_ktp" class="form-control"
+                                <input type="text" name="no_ktp" id="no_ktp" class="form-control {{ $errors->has('no_ktp') ? 'is-invalid' : '' }}"
                                     value="{{ $pemilih->no_ktp }}">
                                 </div>
+                                @error('no_ktp')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 
                                 <div class="form-group">
                                     <label for="status_pemilihan">status pemilihan:</label>
-                                    <select name="status_pemilihan" id="status_pemilihan" class="form-control">
+                                    <select name="status_pemilihan" id="status_pemilihan" class="form-control {{ $errors->has('status_pemilihan') ? 'is-invalid' : '' }}">
                                         <option value="Belum Memilih"
                                         {{ old('status_pemilihan', $pemilih->status_pemilihan) == 'Belum Memilih' ? 'selected' : '' }}>
                                         Belum Memilih</option>
@@ -62,18 +74,10 @@
                                         {{ old('status_pemilihan', $pemilih->status_pemilihan) == 'Sudah Memilih' ? 'selected' : '' }}>
                                         Sudah Memilih</option>
                                     </select>
+                                    @error('status_pemilihan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                
-                                <div class="text-center">
-                                    @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
                                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                 <a href="{{ route('pemilih.index') }}" class="btn btn-secondary">Batal</a>
                             </div>

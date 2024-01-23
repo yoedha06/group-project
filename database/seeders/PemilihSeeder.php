@@ -17,7 +17,7 @@ class PemilihSeeder extends Seeder
             'nama_pemilih' => 'Yuda Hidayat',
             'tanggal_lahir' => '2005-01-02',
             'alamat' => 'Jalan Contoh No.3',
-            'no_ktp' => '12345678',
+            'no_ktp' => '1234567835676875',
             'status_pemilihan' => 'Belum Memilih',
         ]);
 
@@ -25,7 +25,7 @@ class PemilihSeeder extends Seeder
             'nama_pemilih' => 'Zaki ',
             'tanggal_lahir' => '2005-06-11',
             'alamat' => 'Jalan Lain No. 456',
-            'no_ktp' => '987654321',
+            'no_ktp' => '9876543212567658',
             'status_pemilihan' => 'Sudah Memilih',
         ]);
     }
