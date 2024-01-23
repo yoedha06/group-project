@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Pemilu</title>
 
     <!-- Link Bootstrap -->
@@ -27,6 +28,7 @@
 </head>
 
 <body>
+
 
 <lord-icon
     src="https://cdn.lordicon.com/kthelypq.json"
@@ -58,6 +60,32 @@
             @if (!request()->has('keyword'))
             <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
                     class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+=======
+<body>
+{{-- CEPIIII --}}
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ asset("/assets/images/ppp-removebg-preview.png") }}" alt="Logo">
+                <h3>Pemilu</h3>
+            </div>
+            <ul class="list-unstyled">
+                <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
+                    <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
+                </li>
+                <li class="{{ Request::is('kandidat*') ? 'active' : '' }}">
+                    <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a>
+                </li>
+                <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
+                    <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i> Partai Politik</a>
+                </li>
+                <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
+                    <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
+                </li>
+                @if (!request()->has('keyword'))
+                <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
+                        class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
             @endif
         </ul>
     </nav>
