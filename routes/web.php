@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[PemilihController::class,'tampil'])->name('dashboard');
+
+Route::get('/', [PemilihController::class, 'tampil'])->name('dashboard');
 
 // CRUD Pemilih
 
-Route::get('pemilih/index',[PemilihController::class, 'index'])->name('pemilih.index');
+Route::get('pemilih/index', [PemilihController::class, 'index'])->name('pemilih.index');
 Route::get('pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.create');
 Route::post('pemilih/index/store', [PemilihController::class, 'store'])->name('pemilih.store');
 Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->name('pemilih.edit');
