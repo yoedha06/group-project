@@ -5,7 +5,6 @@ use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +27,7 @@ Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->n
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
 Route::get('/pemilih/search', [PemilihController::class, 'search'])->name('pemilih.search');
+
 
 //Partai Politik
 Route::get('/partai_politik', [PartaiPolitikController::class, 'index'])->name('partai_politik.index');
