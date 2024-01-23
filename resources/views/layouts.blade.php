@@ -38,7 +38,6 @@
     </head>
 
     <body>
-        {{-- CEPIIII --}}
         <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
