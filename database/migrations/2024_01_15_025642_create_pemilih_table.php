@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_pemilih');
             $table->date('tanggal_lahir'); 
             $table->string('alamat');
-            $table->string('no_ktp')->unique();
+            $table->string('no_ktp', 16)->unique();
             $table->string('status_pemilihan');
             $table->timestamps();
         });

@@ -29,7 +29,7 @@ class PemilihController extends Controller
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
-            'no_ktp' => 'required|unique:pemilih',
+            'no_ktp' => 'required|numeric|digits:16|unique:pemilih',
             'status_pemilihan' => 'required',
         ]);
 
@@ -59,7 +59,7 @@ class PemilihController extends Controller
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
-            'no_ktp' => 'required', // Menambahkan pengecualian untuk ID pemilih saat ini
+            'no_ktp' => 'required|numeric|digits:16', 
             'status_pemilihan' => 'required',
         ]);
 
