@@ -10,7 +10,6 @@
             <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah
                 Pemilih</a>
         </div>
-
         {{-- button search --}}
         <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
             <div class="input-group">
@@ -22,8 +21,12 @@
                 </div>
             </div>
         </form>
-
-
+        @if ($message = session('berhasil'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+        @endif
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
             <thead>
                 <tr>
@@ -87,6 +90,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
-    
+
     </html>
 @endsection
