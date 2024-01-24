@@ -131,18 +131,6 @@
                 </li>
                 <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
-
-                    <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i>
-                        Kandidat</a>
-                </li>
-                <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
-                    <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i>
-                        Partai Politik</a>
-                </li>
-                <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
-                    <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i>
-                        Hasil
-                        Pemilihan</a>
                 </li>
                 @if (!request()->has('keyword'))
                     <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
@@ -167,11 +155,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // Menunggu konten utama dimuat
-        window.addEventListener('load', function() {
-            // Menghilangkan splash screen setelah 2 detik
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menghilangkan splash screen setelah 1 detik
             setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
-            }, 2000);
+            }, 700);
         });
     </script>
 </body>
