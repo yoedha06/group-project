@@ -25,7 +25,6 @@
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
 
     <style>
-        
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -91,8 +90,8 @@
     <div id="splash-screen">
         <div id="splash-content">
             <!-- Ganti konten lord-icon dengan gambar GIF -->
-            <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif"
-                alt="GIF Logo" style="width: 250px; height: 250px;" id="myLordIcon">
+            <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif" alt="GIF Logo"
+                style="width: 250px; height: 250px;" id="myLordIcon">
 
             <h2>Pemilu...</h2>
         </div>
@@ -140,11 +139,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // Menunggu konten utama dimuat
-        window.addEventListener('load', function () {
-            // Menghilangkan splash screen setelah 2 detik
-            setTimeout(function () {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menghilangkan splash screen setelah 1 detik
+            setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
-            }, 2000);
+            }, 800);
         });
     </script>
 </body>
