@@ -73,7 +73,9 @@ class PemilihController extends Controller
             'status_pemilihan' => $request->status_pemilihan,
         ]);
 
-        return redirect()->route('pemilih.index')->with('success', 'pemilih berhasil diperbarui.');
+        session()->flash('berhasil', "{$request->nama_pemilih} berhasil diupdate!");
+
+        return to_route('pemilih.index');
     }
 
     public function delete($Id_Pemilih)
