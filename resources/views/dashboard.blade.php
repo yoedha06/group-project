@@ -125,7 +125,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <!-- Splash Screeenn -->
+        <!-- Splash Screeennn -->
         <div id="splash-screen">
             <div id="splash-content">
                 <!-- Ganti konten lord-icon dengan gambar GIF -->
