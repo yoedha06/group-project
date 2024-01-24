@@ -35,7 +35,6 @@
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
 
     <style>
-        
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -102,8 +101,8 @@
     <div id="splash-screen">
         <div id="splash-content">
             <!-- Ganti konten lord-icon dengan gambar GIF -->
-            <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif"
-                alt="GIF Logo" style="width: 250px; height: 250px;" id="myLordIcon">
+            <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif" alt="GIF Logo"
+                style="width: 250px; height: 250px;" id="myLordIcon">
 
             <h2>Pemilu...</h2>
         </div>
@@ -168,9 +167,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // Menunggu konten utama dimuat
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             // Menghilangkan splash screen setelah 2 detik
-            setTimeout(function () {
+            setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
             }, 2000);
         });
@@ -178,14 +177,14 @@
 </body>
 
 
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-        </script>
-        <!-- LInk Js -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+<!-- LInk Js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 {{-- Penutup Body --}}
 
