@@ -190,6 +190,7 @@ return [
 
         'status_pemilihan' => [
             'required' => 'Kolom Status Pemilihan wajib diisi',
+                
         ],
     ],
 
