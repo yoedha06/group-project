@@ -178,7 +178,6 @@
         .logo-container {
             display: flex;
             align-items: center;
-            text-decoration: none;
             color: #000;
             /* Warna teks */
         }
@@ -191,6 +190,93 @@
         .logo-text p {
             margin: 5px 0;
             /* Jarak antara paragraf tulisan "Pemilu" dan subjudulnya */
+        }
+
+        .candidate-details {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .candidate:hover .candidate-details {
+            display: block;
+        }
+
+        .candidate {
+            position: relative;
+        }
+
+        .candidate img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .candidate-details {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Transparansi putih */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1;
+            text-align: center;
+            width: 80%;
+            /* Sesuaikan lebar sesuai kebutuhan */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .candidate:hover .candidate-details {
+            display: block;
+        }
+
+        .candidate h3 {
+            margin-top: 10px;
+        }
+
+        .candidate p {
+            margin-bottom: 10px;
+        }
+
+        .schedule table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .schedule-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+        b{
+            color: black;
+        }
+
+        b:hover{
+            color: red;
         }
     </style>
 </head>
@@ -209,7 +295,7 @@
 
         <div class="container">
             <div class="container">
-                <a href="{{ route('dashboard') }}" class="logo-container">
+                <a href="{{ route('dashboard') }}" class="logo-container" style="text-decoration: none;">
                     <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:70px;">
                     <div class="logo-text">
                         <p style="font-size: 1.5em; margin: 0;">Pemilu</p>
@@ -279,31 +365,83 @@
             </div>
         </section>
 
+        <section class="schedule">
+            <div class="schedule-box">
+            <h2 class="display-4 text-center">Jadwal dan Kegiatan Pemilu</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Kegiatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 April 2024</td>
+                                <td>Pembukaan Pendaftaran Kandidat</td>
+                            </tr>
+                            <tr>
+                                <td>5 April 2024</td>
+                                <td>Debat Kandidat</td>
+                            </tr>
+                            <tr>
+                                <td>15 April 2024</td>
+                                <td>Debat Kandidat Putaran Kedua (jika ada)</td>
+                            </tr>
+                            <tr>
+                                <td>20 April 2024</td>
+                                <td>Pemilihan Umum</td>
+                            </tr>
+                            <tr>
+                                <td>25 April 2024</td>
+                                <td>Pengumuman Hasil</td>
+                            </tr>
+                            <tr>
+                                <td>28 April 2024</td>
+                                <td>Deklarasi Pemenang</td>
+                            </tr>
+                            <!-- Tambahkan kegiatan pemilu lainnya sesuai kebutuhan -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
         <section class="candidates">
             <h2 class="display-4 text-center">Kandidat Pemilu</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidate">
                         <img src="/assets/images/anis.jpg" alt="Candidate 1" class="img-fluid sama-ukuran">
-                        <h3 class="h4">Anies Baswedan - H. A. Muhaimin Iskandar</h3>
-                        <p>Memastikan Ketersediaan Kebutuhan Pokok dan Biaya Hidup Murah melalui Kemandirian Pangan,
-                            Ketahanan Energi, dan Kedaulatan Air.
-                        </p>
-                        <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.</p>
+                        <!-- Tambahkan elemen untuk detail kandidat -->
+                        <div class="candidate-details">
+                            <h3 class="h4">Anies Baswedan - H. A. Muhaimin Iskandar</h3>
+                            <p>Memastikan Ketersediaan Kebutuhan Pokok dan Biaya Hidup Murah melalui Kemandirian Pangan,
+                                Ketahanan Energi, dan Kedaulatan Air.
+                            </p>
+                            <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="candidates">
             <h2 class="display-4 text-center">Kandidat Pemilu</h2>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidate">
                         <img src="/assets/images/wowo.jpg" alt="Candidate 2" class="img-fluid sama-ukuran">
-                        <h3 class="h4">Prabowo Subianto - Gibran Rakabuming Raka</h3>
-                        <p>Memperkuat Pertahanan Negara</p>
-                        <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.</p>
+                        <!-- Tambahkan elemen untuk detail kandidat -->
+                        <div class="candidate-details">
+                            <h3 class="h4">Prabowo Subianto - Gibran Rakabuming Raka</h3>
+                            <p>Memperkuat penyelarasan kehidupan yang harmonis dengan lingkungan, alam, dan budaya,
+                                serta peningkatan toleransi antarumat beragama untuk mencapai masyarakat yang adil dan
+                                makmur</p>
+                            <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -315,9 +453,14 @@
                 <div class="col-md-6">
                     <div class="candidate">
                         <img src="/assets/images/ganjar.jpg" alt="Candidate 3" class="img-fluid sama-ukuran">
-                        <h3 class="h4">Ganjar Pranowo - H. Madhfud MD</h3>
-                        <p>Menciptakan 17 juta lapangan kerja</p>
-                        <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.</p>
+                        <!-- Tambahkan elemen untuk detail kandidat -->
+                        <div class="candidate-details">
+                            <h3 class="h4">Ganjar Pranowo - H. Madhfud MD</h3>
+                            <p>Mempercepat pembangunan manusia Indonesia unggul yang berkualitas, produktif, dan
+                                berkepribadian</p>
+                            <p>Detail lengkap profil kandidat dapat dilihat di <a href="/">halaman kandidat</a>.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
