@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
@@ -16,7 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PemilihController::class, 'tampil'])->name('dashboard');
+Route::get('/dashboard', [PemilihController::class, 'tampil'])->name('dashboard');
+Route::middleware('guest')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/', 'login')->name('login');
+        Route::post('/', 'doLogin');
+    });
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->middleware('can:role,"admin"')->name('logout');
+
+});
+
 
 // CRUD Pemilih
 
