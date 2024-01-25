@@ -23,7 +23,6 @@ class KandidatController extends Controller
     {
         return view('kandidat.create');
     }
-
     /**
      * Store a newly created resource in storage.
      */
