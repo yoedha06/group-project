@@ -40,7 +40,7 @@
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            <input type="submit" value="Login" />
+            <input type="submit" value="Login" /><br><br>
         </form>
     </div>
     <script>
@@ -54,5 +54,7 @@
           wrapper.classList.remove("active");
         });
       </script>
+</div>
+</section>
 </body>
 </html>
