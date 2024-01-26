@@ -13,10 +13,10 @@
                     {{ session('success') }}
                 </div>
             @endif
-
+            @if(auth()->user()->role === 'admin')
             <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data
                 Kandidat</a>
-
+@endif
             <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" name="keyword" placeholder="Cari kandidat...">
@@ -35,7 +35,9 @@
                         <th scope="col">Partai Politik</th>
                         <th scope="col">Nomor Urut</th>
                         <th scope="col">Program Kerja</th>
-                        <th scope="col" style="width= 50px;">Aksi</th>
+                        @if(auth()->user()->role === 'admin')
+                        <th scope="col" style="width: 50px;">Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +50,7 @@
                             <td>{{ $item->Nomor_Urut }}</td>
                             <td>{{ $item->Program_Kerja }}</td>
                             <td>
+                            @if(auth()->user()->role === 'admin')
                                 <a href="/kandidat/edit/{{ $item->Id_Kandidat }}" class="btn btn-warning btn-sm"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
                                 <form action="/kandidat/destroy{{ $item->Id_Kandidat }}" method="POST"
@@ -57,6 +60,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm"><i
                                             class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -7,8 +7,10 @@
         </center>
         <h2>Pemilih</h2>
         <div class="mb-3">
+        @if(auth()->user()->role === 'admin')
             <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah
                 Pemilih</a>
+                @endif
         </div>
         {{-- button search --}}
         <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
@@ -36,7 +38,9 @@
                     <th>alamat</th>
                     <th>no KTP</th>
                     <th>status pemilihan</th>
+                    @if(auth()->user()->role === 'admin')
                     <th>aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -50,8 +54,10 @@
                         <td>{{ $p->status_pemilihan }}</td>
 
                         <td>
+                        @if(auth()->user()->role === 'admin')
                             <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                     class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+
                             <form id="deleteForm-{{ $p->Id_Pemilih }}"
                                 action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
                                 @csrf
@@ -60,6 +66,7 @@
                                     onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
                                         class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                             </form>
+                                    @endif
 
                             <script>
                                 function confirmDelete(Id_Pemilih) {
