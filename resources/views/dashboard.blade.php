@@ -183,7 +183,6 @@
 
         .logo-text {
             margin-left: 10px;
-            /* Jarak antara logo dan teks */
         }
 
         .logo-text p {
