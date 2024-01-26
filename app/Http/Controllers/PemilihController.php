@@ -4,27 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemilih;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PemilihController extends Controller
 {
+
     public function tampil()
     {
-        return view('dashboard');
+      return view('dashboard');
     }
-
     public function index()
     {
         $pemilih = Pemilih::all();
         return view('pemilih.index', compact('pemilih'));
     }
-
     public function create()
     {
         return view('pemilih.tambah');
     }
 
     public function store(Request $request)
-    {   
+    {
         $request->validate([
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
@@ -59,7 +60,7 @@ class PemilihController extends Controller
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
-            'no_ktp' => 'required|numeric|digits:16', 
+            'no_ktp' => 'required|numeric|digits:16',
             'status_pemilihan' => 'required',
         ]);
 
