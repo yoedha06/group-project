@@ -188,7 +188,7 @@
 
         .logo-text p {
             margin: 5px 0;
-            /* Jarak antara paragraf tulisan "Pemilu" dan subjudulnya */
+
         }
 
         .candidate-details {
@@ -574,7 +574,7 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="features">
             <div class="container">
                 <div class="row">
