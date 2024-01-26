@@ -30,7 +30,7 @@ class AuthController extends Controller
         return to_route('dashboard');
     } else {
         return back()->withErrors([
-            'email' => 'Wrong email or password',
+            'email' => 'Wrong email or passwordd',
         ]);
     }
 }
