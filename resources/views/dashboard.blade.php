@@ -304,23 +304,23 @@
                     <p style="font-size: 1em; margin: 0; color: #666;">Masa Depan dalam Genggaman Anda</p>
                 </div>
             </a>
-            </div>
-            <div class="container" style="margin-">
-                    <ul class="navbar-nav" style="margin-left:180px;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
-                        </li>
-                    </ul>
-            </div>
+        </div>
+        <div class="container" style="margin-">
+            <ul class="navbar-nav" style="margin-left:180px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <br>
     <br>
@@ -407,7 +407,6 @@
                                 <td>28 April 2024</td>
                                 <td>Deklarasi Pemenang</td>
                             </tr>
-                            <!-- Tambahkan kegiatan pemilu lainnya sesuai kebutuhan -->
                         </tbody>
                     </table>
                 </div>
