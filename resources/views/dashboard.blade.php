@@ -267,12 +267,19 @@
             background-color: #f2f2f2;
         }
 
-        b{
+        b {
             color: black;
         }
 
-        b:hover{
+        b:hover {
             color: red;
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 2em;
+            margin-top: 20px;
+            color: #333;
         }
     </style>
 </head>
@@ -297,33 +304,41 @@
                     <p style="font-size: 1em; margin: 0; color: #666;">Masa Depan dalam Genggaman Anda</p>
                 </div>
             </a>
-            </div>
-            <div class="container" style="margin-">
-                    <ul class="navbar-nav" style="margin-left:180px;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
-                        </li>
-                    </ul>
-            </div>
+        </div>
+        <div class="container" style="margin-">
+            <ul class="navbar-nav" style="margin-left:180px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <br>
     <br>
+
     <header style="text-align: center; padding: 50px; background-color: red; color: #fff;">
         <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">Selamat Datang di Pemilu 2024</h1>
         <p style="font-size: 1.2em; line-height: 1.5; max-width: 800px; margin: 0 auto;">Beri suara Anda untuk masa
             depan yang lebih baik! Ikuti debat, pelajari visi dan misi kandidat, dan partisipasi aktif dalam Pemilu
             2024.</p>
     </header>
-
+    <div class="container">
+        <section class="features">
+            <section class="countdown" id="countdown">
+                <h2 class="display-4">Pemilu Akan Dimulai Dalam Waktu:</h2>
+                <div id="timer" class="countdown-timer"></div>
+            </section>
+        </section>
+    </div>
     <div class="container">
         <section class="features">
             <div class="feature-box">
@@ -358,7 +373,7 @@
 
         <section class="schedule">
             <div class="schedule-box">
-            <h2 class="display-4 text-center">Jadwal dan Kegiatan Pemilu</h2>
+                <h2 class="display-4 text-center">Jadwal dan Kegiatan Pemilu</h2>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -392,13 +407,12 @@
                                 <td>28 April 2024</td>
                                 <td>Deklarasi Pemenang</td>
                             </tr>
-                            <!-- Tambahkan kegiatan pemilu lainnya sesuai kebutuhan -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        
+
         <section class="candidates">
             <h2 class="display-4 text-center">Kandidat Pemilu</h2>
             <div class="row justify-content-center">
@@ -477,6 +491,41 @@
             document.getElementById('splash-screen').style.display = 'none';
         }, 1000);
     });
+
+    // Tanggal pemilu dimulai (tahun, bulan (0-11), tanggal, jam, menit, detik)
+    var electionStartDate = new Date(2024, 3, 20, 0, 0, 0).getTime();
+
+    // Fungsi untuk mengupdate tampilan timer
+    function updateTimer() {
+        // Waktu sekarang
+        var now = new Date().getTime();
+
+        // Selisih waktu antara sekarang dan tanggal pemilu dimulai
+        var timeDifference = electionStartDate - now;
+
+        // Hitung hari, jam, menit, dan detik
+        var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Tampilkan waktu di elemen dengan id "timer"
+        var timerElement = document.getElementById("timer");
+        timerElement.innerHTML = days + " days " + hours + " hours " +
+            minutes + " minutes " + seconds + " seconds ";
+
+        // Jika waktu sudah habis, tampilkan pesan
+        if (timeDifference < 0) {
+            clearInterval(countdownTimer);
+            timerElement.innerHTML = "Pemilu Sudah Dimulai!";
+        }
+    }
+
+    // Update timer setiap detik
+    var countdownTimer = setInterval(updateTimer, 1000);
+
+    // Panggil fungsi updateTimer untuk menampilkan timer secara langsung
+    updateTimer();
 </script>
 </body>
 
