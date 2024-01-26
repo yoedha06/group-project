@@ -73,3 +73,9 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
 });
+
+
+Route::get('/Lokasi', function () {
+    return view('Lokasi');
+});
+    
