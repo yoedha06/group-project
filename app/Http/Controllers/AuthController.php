@@ -40,7 +40,7 @@ public function logout(Request $request)
 
         $request->session()->regenerate();
 
-        return to_route('login');
+        return to_route('dashboard');
     }
 
 
