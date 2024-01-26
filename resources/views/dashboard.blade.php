@@ -295,20 +295,17 @@
                 <h2>Pemilu...</h2>
             </div>
         </div>
-        <div class="container">
-            <div class="container">
-                <a href="{{ route('dashboard') }}" class="logo-container">
+            <div class="d-flex align-items-left">
+                <a href="{{ route('dashboard') }}" class="logo-container" style="text-decoration: none;">
                     <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:70px;">
                     <div class="logo-text">
                         <p style="font-size: 1.5em; margin: 0;">Pemilu</p>
                         <p style="font-size: 1em; margin: 0; color: #666;">Masa Depan dalam Genggaman Anda</p>
                     </div>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+            </div>
+            <div class="container">
+                <div class="navbar-nav" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                     @if(auth()->check())
                         <li class="nav-item">
@@ -324,8 +321,9 @@
                             <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
                         </li>
                         @endif
-      </ul>
-        </div>
+                    </ul>
+                </div>
+
                 @if(auth()->guest())
                             <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
                         @endif
@@ -334,6 +332,7 @@
             @csrf
             <button type="submit" class="btn btn-outline-dark">Logout</button>
         </form>
+        </div>
     </div>
 @endif
 
