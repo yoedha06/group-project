@@ -297,7 +297,7 @@
         </div>
             <div class="d-flex align-items-left">
                 <a href="{{ route('dashboard') }}" class="logo-container" style="text-decoration: none;">
-                    <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:70px;">
+                    <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" style="max-width:60px;">
                     <div class="logo-text">
                         <p style="font-size: 1.5em; margin: 0;">Pemilu</p>
                         <p style="font-size: 1em; margin: 0; color: #666;">Masa Depan dalam Genggaman Anda</p>
@@ -305,39 +305,40 @@
                 </a>
             </div>
             <!-- //nandainn-->
-            <div class="container">
-                <div class="navbar-nav" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                    @if(auth()->check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
-                        </li>
-                        @endif
-                    </ul>
-                </div>
-
-                @if(auth()->guest())
-                            <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
-                        @endif
-                @if(auth()->check())
-                <form action="{{ route('logout') }}" method="POST" class="d-inline">
-            @csrf
-            <button type="submit" class="btn btn-outline-dark">Logout</button>
-        </form>
-        </div>
-    </div>
-@endif
-
+            <div class="container ">
+                    <div class="container justify-content-center">
+                        <ul class="navbar-nav">
+                        @if(auth()->check())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="margin-right:150px;">
+                            @if(auth()->guest())
+                                        <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
+                                    @endif
+                            @if(auth()->check())
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-dark">Logout</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
             </div>
+            
     </nav>
     <br>
     <br>

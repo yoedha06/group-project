@@ -33,6 +33,7 @@ body {
       0.1
     );
   overflow: hidden;
+
 }
 .form.login {
   position: absolute;
@@ -60,6 +61,7 @@ body {
   border-radius: 35%;
   box-shadow: 0 -5px
     10px rgba(0, 0, 0, 0.1);
+  height: auto;
 }
 .form
   header {
