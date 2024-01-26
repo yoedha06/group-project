@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
     <title>Pemilu</title>
     <style>
@@ -117,6 +118,8 @@
             flex: 1;
             margin: 0 10px;
             max-width: 300px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .feature {
@@ -135,6 +138,7 @@
             border: 1px solid #ddd;
             margin: 20px 0;
         }
+
 
         .candidates {
             background-color: #fff;
@@ -162,11 +166,10 @@
 
         /* Footer Styles */
         footer {
-            background-color: red;
+            background-color: #f44336;
             color: #fff;
             text-align: center;
             padding: 10px;
-            position: fixed;
             bottom: 0;
             width: 100%;
         }
@@ -180,12 +183,11 @@
 
         .logo-text {
             margin-left: 10px;
-            /* Jarak antara logo dan teks */
         }
 
         .logo-text p {
             margin: 5px 0;
-            /* Jarak antara paragraf tulisan "Pemilu" dan subjudulnya */
+
         }
 
         .candidate-details {
@@ -279,7 +281,18 @@
             text-align: center;
             font-size: 2em;
             margin-top: 20px;
-            color: #333;
+            color: #fff;
+            background-color: #f44336;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: #f44336;
+            color: #fff;
+            padding: 50px;
+            text-align: center;
         }
     </style>
 </head>
@@ -442,6 +455,65 @@
                 </div>
             </div>
         </section>
+        <section class="features">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="feature-box">
+                            <h3>Tujuan Pemilu</h3>
+                            <p>
+                                Tujuan dari Pemilu 2024 adalah memberikan hak suara kepada warga negara untuk memilih
+                                pemimpin
+                                dan wakil rakyat yang akan mewakili dan mengambil keputusan atas nama masyarakat. Pemilu
+                                juga
+                                bertujuan untuk meningkatkan partisipasi politik, menetapkan legitimasi pemerintah, dan
+                                mewujudkan prinsip demokrasi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan Pemilu -->
+                    <div class="col-lg-6">
+                        <div class="feature-box">
+                            <h3>Kesimpulan</h3>
+                            <p>
+                                Pemilu adalah suatu proses yang krusial dalam menjalankan prinsip demokrasi di suatu
+                                negara.
+                                Melalui pemilu, warga negara dapat memilih pemimpin dan perwakilan yang dianggap mampu
+                                mewakili serta mengimplementasikan kepentingan masyarakat.
+                            </p>
+                            <p>
+                                Pemilu juga menjadi wujud partisipasi aktif dalam kehidupan politik dan merupakan
+                                fondasi
+                                utama dalam menjaga stabilitas dan keberlanjutan suatu sistem pemerintahan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Pengumuman Pemilu Section -->
+        <section class="features">
+            <div class="container">
+                <div class="feature-box">
+                    <h2 class="display-4 text-center">Pengumuman Pemilu</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="feature">
+                                <img src="http://smkn11bdg.sch.id/fotoGuru/1620289429.jpg" alt="Pengumuman Pemilu"
+                                    class="img-fluid">
+                                <p class="mt-3">
+                                    Pemilihan Umum 2024 adalah kesempatan bagi Anda untuk memiliki suara dalam
+                                    menentukan
+                                    masa depan negara. Berikan suara Anda dan tunjukkan bahwa setiap suara memiliki
+                                    arti yang besar!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="candidates">
             <h2 class="display-4 text-center">Kandidat Pemilu</h2>
@@ -462,6 +534,7 @@
                 </div>
             </div>
         </section>
+
         <section class="candidates">
             <h2 class="display-4 text-center">Kandidat Pemilu</h2>
             <div class="row justify-content-center">
@@ -500,10 +573,66 @@
                 </div>
             </div>
         </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3>Kontak Pemilu</h3>
+                        <p>
+                            Alamat Pemilu: Jl. Demokrasi<br>
+                            Kota Pemilihan, Kec. Pemilih<br><br>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>Telpon</h3>
+                        <p>
+                            <strong>Telepon:</strong> +62 83123456789<br>
+                            <strong>Email:</strong> info@pemilu2024.com<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3>Media Sosial</h3>
+                        <p>
+                            <strong>Ikuti Kami:</strong>
+                        </p>
+                        <div class="social-media" style="display: flex; flex-direction: column;">
+                            <a href="https://www.facebook.com/pemilu2024" target="_blank"><i
+                                    class="bi bi-facebook"></i>Facebook</a>
+                            <br>
+                            <a href="https://twitter.com/pemilu2024" target="_blank"><i
+                                    class="bi bi-twitter"></i>Twitter</a>
+                            <br>
+                            <a href="https://www.instagram.com/pemilu2024/" target="_blank"><i
+                                    class="bi bi-instagram"></i>Instagram</a>
+                            <br>
+                            <a href="https://www.youtube.com/pemilu2024/" target="_blank"><i
+                                    class="bi bi-youtube"></i>Youtube</a>
+                            <br>
+                            <a href="https://www.tiktok.com/pemilu2024/" target="_blank"><i
+                                    class="bi bi-tiktok"></i>Tiktok</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h3>Lokasi</h3>
+                        <!-- Masukkan URL Google Maps Anda di bagian "src" -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9602393178247!2d107.53767906983687!3d-6.895359452209558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e59b48322cdb%3A0x10a755b12e9aef37!2sBITC%20(Baros%20Information%2C%20Technology%2C%20%26%20Creative%20Center!5e0!3m2!1sid!2sid!4v1706238002196!5m2!1sid!2sid"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
     </div>
+    </section>
+
 
     <footer>
-        <p class="mb-0">&copy; 2024 Pemilu. Hak Cipta Dilindungi.</p>
+        <p class="mb-0">&copy;CopyrightCIGS PRIDE 2024.</p>
     </footer>
 </body>
 
@@ -541,8 +670,8 @@
 
         // Tampilkan waktu di elemen dengan id "timer"
         var timerElement = document.getElementById("timer");
-        timerElement.innerHTML = days + " days " + hours + " hours " +
-            minutes + " minutes " + seconds + " seconds ";
+        timerElement.innerHTML = days + " Hari " + hours + " Jam " +
+            minutes + " Menit " + seconds + " Detik ";
 
         // Jika waktu sudah habis, tampilkan pesan
         if (timeDifference < 0) {
@@ -557,6 +686,7 @@
     // Panggil fungsi updateTimer untuk menampilkan timer secara langsung
     updateTimer();
 </script>
+
 </body>
 
 </html>
