@@ -6,9 +6,10 @@
             <h1>Pemilu</h1>
         </center>
         <h2>Partai Politik</h2>
+        @if(auth()->user()->role === 'admin')
         <a href="{{ route('partai_politik.create') }}" class="btn btn-primary mb-3"> <i class="bi bi-plus-lg"></i> Partai
             Politik</a>
-
+        @endif
         <form action="{{ route('partai_politik.search') }}" method="GET" class="mb-4">
             <div class="input-group">
                 <input type="text" class="form-control" name="keyword" placeholder="Cari Partai Politik...">
@@ -32,7 +33,10 @@
                     <th>Ideologi</th>
                     <th>Jumlah Anggota</th>
                     <th>Pemimpin Partai</th>
+                    @if(auth()->user()->role === 'admin')
                     <th>Aksi</th>
+               @endif
+
                 </tr>
             </thead>
             <tbody>
@@ -45,6 +49,7 @@
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
                         <td>{{ $partaiPolitik->PemimpinPartai }}</td>
                         <td>
+                        @if(auth()->user()->role === 'admin')
                             <a
                                 href="{{ route('partai_politik.edit', ['Id_Partai' => $partaiPolitik->Id_Partai]) }}"class="btn btn-warning"><i
                                     class="bi bi-pencil-square">&nbsp;</i>Edit</a>
@@ -54,6 +59,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
