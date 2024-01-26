@@ -11,18 +11,28 @@
 
 <body>
 <section class="wrapper">
-      <div class="form signup">
-        <header>Signup</header>
-        <form action="#">
-          <input type="text" placeholder="Email address" required />
-          <input type="password" placeholder="Password" required />
-          <div class="checkbox">
-            <input type="checkbox" id="signupCheck" />
+<div class="form signup">
+    <header>Signup</header>
+    <form action="{{ route('register') }}" method="POST">
+        @csrf
+        <input type="text" placeholder="Full Name" name="name" required />
+        <input type="text" placeholder="Email address" name="email" value="{{ old('email') }}" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <input type="password" placeholder="Confirm Password" name="password_confirmation" required />
+
+        <select name="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <div class="checkbox">
+            <input type="checkbox" id="signupCheck" required />
             <label for="signupCheck">I accept all terms & conditions</label>
-          </div>
-          <input type="submit" value="Signup" />
-        </form>
-      </div>
+        </div>
+        <input type="submit" value="Signup" />
+    </form>
+</div>
+
 <div class="form login">
 <header>Login</header>
     <div class="container">
