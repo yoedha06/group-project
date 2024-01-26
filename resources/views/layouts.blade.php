@@ -150,7 +150,7 @@
             // Menghilangkan splash screen setelah 1 detik
             setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
-            }, 700);
+            }, 100);
         });
     </script>
 </body>
