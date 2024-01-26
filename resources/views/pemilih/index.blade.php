@@ -55,7 +55,10 @@
 
                         <td>
                         @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
+                        <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-success"><i
+                            class="bi bi-pencil-square">&nbsp;</i>maps</a>
+                        
+                        <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                     class="bi bi-pencil-square">&nbsp;</i>Edit</a>
 
                             <form id="deleteForm-{{ $p->Id_Pemilih }}"
