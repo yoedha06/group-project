@@ -14,29 +14,31 @@ class AuthController extends Controller
 
 
     public function doLogin(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+{
+    // Validate the user's input
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->route('items.index'); // Menggunakan 'route' untuk mengarahkan ke rute 'items.index'
-        } else {
-            return back()->withErrors([
-                'email' => 'Wrong email or password',
-            ]);
-        }
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
+    // Attempt to authenticate the user
+    if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
 
-        return redirect()->route('login'); // Menggunakan 'route' untuk mengarahkan ke rute 'login'
+        // Redirect to the intended URL or the default dashboard route
+        return to_route('dashboard');
+    } else {
+        return back()->withErrors([
+            'email' => 'Wrong email or password',
+        ]);
     }
 }
+public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->regenerate();
+
+    return to_route('login');
+}
+        }

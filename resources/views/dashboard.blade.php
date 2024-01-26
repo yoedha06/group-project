@@ -222,6 +222,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
+                    @if(auth()->check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
                         </li>
@@ -234,14 +235,38 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
                         </li>
-                    </ul>
-                </div>
+                        @endif
+      </ul>
+        </div>
+                @if(auth()->guest())
+                            <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
+                        @endif
+                @if(auth()->check())
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">Logout</button>
+        </form>
+    </div>
+@endif
+
             </div>
     </nav>
     <br>
     <br>
     <header style="text-align: center; padding: 50px; background-color: red; color: #fff;">
-        <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">Selamat Datang di Pemilu 2024</h1>
+    @if(auth()->check())
+    @php
+        $userName = auth()->user()->name;
+    @endphp
+    <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
+        Selamat Datang, {{ $userName }} di Pemilu 2024
+    </h1>
+@else
+    <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
+        Selamat Datang di Pemilu 2024
+    </h1>
+@endif
+
         <p style="font-size: 1.2em; line-height: 1.5; max-width: 800px; margin: 0 auto;">Beri suara Anda untuk masa
             depan yang lebih baik! Ikuti debat, pelajari visi dan misi kandidat, dan partisipasi aktif dalam Pemilu
             2024.</p>

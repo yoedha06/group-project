@@ -2,46 +2,57 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Login</title>
+<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Login & Signup Form</title>
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Login</h1>
-
+<section class="wrapper">
+      <div class="form signup">
+        <header>Signup</header>
+        <form action="#">
+          <input type="text" placeholder="Email address" required />
+          <input type="password" placeholder="Password" required />
+          <div class="checkbox">
+            <input type="checkbox" id="signupCheck" />
+            <label for="signupCheck">I accept all terms & conditions</label>
+          </div>
+          <input type="submit" value="Signup" />
+        </form>
+      </div>
+<div class="form login">
+<header>Login</header>
     <div class="container">
         <form action="" method="POST">
             @csrf
-            <div class="mb-3">
                 <label for="id" class="form-label">Email</label>
-                <input value="{{ old('email') }}" name="email" type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                    id="id">
+                <input value="{{ old('email') }}" placeholder="Email address"name="email" type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                    id="id"required >
                 @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
-            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input name="password" type="password"
-                    class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password">
+                <input name="password" type="password"placeholder="Password"
+                    class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password"required >
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="submit" value="Login" />
         </form>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+    <script>
+        const wrapper = document.querySelector(".wrapper"),
+          signupHeader = document.querySelector(".signup header"),
+          loginHeader = document.querySelector(".login header");
+        loginHeader.addEventListener("click", () => {
+          wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+          wrapper.classList.remove("active");
+        });
+      </script>
 </body>
-
 </html>

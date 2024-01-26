@@ -16,19 +16,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/dashboard', [PemilihController::class, 'tampil'])->name('dashboard');
+Route::get('/', [PemilihController::class, 'tampil'])->name('dashboard');
 Route::middleware('guest')->group(function () {
     Route::controller(AuthController::class)->group(function () {
-        Route::get('/', 'login')->name('login');
-        Route::post('/', 'doLogin');
+        Route::get('/login', 'login')->name('login');
+        Route::post('/login', 'doLogin');
     });
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->middleware('can:role,"admin"')->name('logout');
-
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+
 
 
 // CRUD Pemilih
