@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'doRegister']);
 Route::get('/', [PemilihController::class, 'tampil'])->name('dashboard');
 Route::middleware('guest')->group(function () {
     Route::controller(AuthController::class)->group(function () {
