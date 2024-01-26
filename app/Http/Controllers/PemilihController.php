@@ -12,13 +12,14 @@ class PemilihController extends Controller
 
     public function tampil()
     {
-      return view('dashboard');
+        return view('dashboard');
     }
     public function index()
     {
         $pemilih = Pemilih::all();
         return view('pemilih.index', compact('pemilih'));
     }
+
     public function create()
     {
         return view('pemilih.tambah');
