@@ -1,5 +1,6 @@
 @extends('layouts')
-<title>Pemilih</title>
+<title>
+    Pemilih</title>
 @section('content')
     <div class="container mt-4">
         <center>
@@ -7,10 +8,10 @@
         </center>
         <h2>Pemilih</h2>
         <div class="mb-3">
-        @if(auth()->user()->role === 'admin')
-            <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah
-                Pemilih</a>
-                @endif
+            @if (auth()->user()->role === 'admin')
+                <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah
+                    Pemilih</a>
+            @endif
         </div>
         {{-- button search --}}
         <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
@@ -24,10 +25,10 @@
             </div>
         </form>
         @if ($message = session('berhasil'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ $message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
             <thead>
@@ -38,8 +39,8 @@
                     <th>alamat</th>
                     <th>no KTP</th>
                     <th>status pemilihan</th>
-                    @if(auth()->user()->role === 'admin')
-                    <th>aksi</th>
+                    @if (auth()->user()->role === 'admin')
+                        <th>aksi</th>
                     @endif
                 </tr>
             </thead>
@@ -49,27 +50,45 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
-                        <td>{{ $p->alamat }}</td>
+                        <td> {{ $p->alamat }}
+                            @if (auth()->user()->role === 'admin')
+                                <!-- Add a button with a link to Google Maps -->
+                                <a href="https://www.google.com/maps/search/{{ urlencode($p->alamat) }}" target="_blank">
+                                    Lihat di Google Maps
+                                </a>
+
+                                <!-- Check if latitude and longitude are available before creating the link -->
+                                @if (isset($p->latitude) && isset($p->longitude))
+                                    <a
+                                        href="{{ route('lokasi', ['latitude' => $p->latitude, 'longitude' => $p->longitude]) }}">
+                                        Lihat Lokasi
+                                    </a>
+                                @else
+                                    <span>Lokasi tidak tersedia</span>
+                                @endif
+                            @endif
+                        </td>
                         <td>{{ $p->no_ktp }}</td>
                         <td>{{ $p->status_pemilihan }}</td>
 
                         <td>
-                        @if(auth()->user()->role === 'admin')
-                        <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-success"><i
-                            class="bi bi-pencil-square">&nbsp;</i>maps</a>
-                        
-                        <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
-                                    class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                            @if (auth()->user()->role === 'admin')
+                                {{-- <a href="{{ route('Lokasi', $p->Id_Pemilih) }}" class="btn btn-success"><i
+                                        class="bi bi-pencil-square">&nbsp;</i>maps</a> --}}
 
-                            <form id="deleteForm-{{ $p->Id_Pemilih }}"
-                                action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger"
-                                    onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
-                                        class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
-                            </form>
-                                    @endif
+
+                                <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
+                                        class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+
+                                <form id="deleteForm-{{ $p->Id_Pemilih }}"
+                                    action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
+                                            class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
+                                </form>
+                            @endif
 
                             <script>
                                 function confirmDelete(Id_Pemilih) {

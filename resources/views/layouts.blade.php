@@ -123,10 +123,7 @@
                 <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
                 </li>
-                <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
-                    <a href="/Lokasi"><i class="bi bi-bar-chart"></i>&nbsp Maps</a>
-                </li>
-
+                <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt"></i>Map</a>
                 @if (!request()->has('keyword'))
                     <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
                             class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
@@ -154,7 +151,7 @@
             // Menghilangkan splash screen setelah 1 detik
             setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
-            }, 100);
+            }, 0);
         });
     </script>
 </body>

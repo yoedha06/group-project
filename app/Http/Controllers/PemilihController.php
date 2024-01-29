@@ -12,13 +12,14 @@ class PemilihController extends Controller
 
     public function tampil()
     {
-      return view('dashboard');
+        return view('dashboard');
     }
     public function index()
     {
         $pemilih = Pemilih::all();
         return view('pemilih.index', compact('pemilih'));
     }
+
     public function create()
     {
         return view('pemilih.tambah');
@@ -98,5 +99,17 @@ class PemilihController extends Controller
             ->get();
 
         return view('pemilih.index', compact('pemilih'));
+    }
+
+    public function showMap()
+    {
+        $pemilih = Pemilih::all();
+
+        if ($pemilih->isEmpty()) {
+            // Handle the case when $pemilih is empty, maybe log a message or redirect
+            return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
+        }
+
+        return view('Lokasi', compact('pemilih'));
     }
 }
