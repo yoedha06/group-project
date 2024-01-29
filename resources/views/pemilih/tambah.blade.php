@@ -35,12 +35,36 @@
                             <br>
                             <div class="form-group">
                                 <label for="alamat">Alamat:</label>
+<<<<<<< HEAD
                                 <input type="text" name="alamat" id="alamat" class="form-control {{ $errors->has('alamat') ? 'is-invalid' : ''}}" value="{{ old('alamat') }}">
                             @error('alamat')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
+=======
+                                <input type="text" name="alamat" id="alamat"
+                                    class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
+                                    value="{{ old('alamat') }}">
+                                @error('alamat')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <br>
+                            {{-- //koordinat --}}
+                            <div class="form-group">
+                                <label for="koordinat">koordinat:</label>
+                                <input type="text" name="koordinat" id="koordinat"
+                                    class="form-control {{ $errors->has('koordinat') ? 'is-invalid' : '' }}"
+                                    value="{{ old('koordinat') }}">
+                                @error('koordinat')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+>>>>>>> 7d866fd1ea40a9dba7b2e5f115568410e85ea8b8
                             </div>
                             <br>
                             <div class="form-group">

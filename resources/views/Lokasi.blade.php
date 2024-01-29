@@ -16,24 +16,25 @@
             <input type="text" id="searchInput" placeholder="Masukkan nama pemilih">
             <button type="button" onclick="searchPemilih()">Cari</button>
         </form>
-        
+
         <div id="map" style="height: 70vh; margin-top:5px;"></div>
 
         <script>
-            var pemilih = {!! json_encode($pemilih) !!};
+         var pemilih = {!! json_encode($pemilih) !!};
+
             var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
-    
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-    
+
             var markers = [];
-    
+
             pemilih.forEach(function (p) {
                 var coordinates = p.koordinat.split(',').map(function (coord) {
                     return parseFloat(coord.trim());
                 });
-    
+
                 var marker = L.marker(coordinates).addTo(map);
                 marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Koordinat:</b> " + p.koordinat);
                 markers.push({
@@ -41,11 +42,11 @@
                     nama_pemilih: p.nama_pemilih.toLowerCase()
                 });
             });
-    
+
             function showLocationOnMap(latitude, longitude) {
                 map.setView([latitude, longitude], 13);
             }
-    
+
             function searchPemilih() {
                 var searchInput = document.getElementById('searchInput').value.toLowerCase();
 
