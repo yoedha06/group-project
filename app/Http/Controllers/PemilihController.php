@@ -16,7 +16,7 @@ class PemilihController extends Controller
     }
     public function index()
     {
-        $pemilih = Pemilih::all();
+        $pemilih = Pemilih::paginate(5);
         return view('pemilih.index', compact('pemilih'));
     }
 
@@ -113,7 +113,7 @@ class PemilihController extends Controller
             // Handle the case when $pemilih is empty, maybe log a message or redirect
             return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
         }
-        
+
         return view('Lokasi', compact('pemilih'));
     }
 }
