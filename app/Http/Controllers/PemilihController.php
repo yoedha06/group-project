@@ -113,7 +113,7 @@ class PemilihController extends Controller
             // Handle the case when $pemilih is empty, maybe log a message or redirect
             return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
         }
-
+        
         return view('Lokasi', compact('pemilih'));
     }
 }
