@@ -31,7 +31,7 @@
             </div>
         @endif
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
-            <thead>
+            <thead style="text-align: center;">
                 <tr>
                     <th>No</th>
                     <th>nama pemilih</th>
@@ -52,21 +52,17 @@
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
                         <td> {{ $p->alamat }}</td>
-                        <td> {{ $p->koordinat }}</td>
+                        <td style="width:100px;"> {{ $p->koordinat }}</td>
                         <td>{{ $p->no_ktp }}</td>
-                        <td>{{ $p->status_pemilihan }}</td>
+                        <td>
+                            <span class="badge {{ $p->status_pemilihan == 'Sudah Memilih' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $p->status_pemilihan }}
+                            </span>
+                        </td>
                         <td>
                             @if (auth()->user()->role === 'admin')
-                                {{-- <a href="{{ route('Lokasi', $p->Id_Pemilih) }}" class="btn btn-success"><i
-                                        class="bi bi-pencil-square">&nbsp;</i>maps</a> --}}
-
-
                                 <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-
-                                <a href="{{ route('lokasi', $p->Id_Pemilih) }}" class="btn btn-success"><i
-                                        class="bi bi-pencil-square">&nbsp;</i>Map</a>
-
                                 <form id="deleteForm-{{ $p->Id_Pemilih }}"
                                     action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
                                     @csrf
@@ -90,6 +86,7 @@
                         </td>
                     </tr>
                 @endforeach
+            </tbody>
             </tbody>
         </table>
         @if (request()->has('keyword') && isset($pemilih) && count($pemilih) > 0)
