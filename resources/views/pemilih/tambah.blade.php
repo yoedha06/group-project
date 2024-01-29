@@ -48,6 +48,7 @@
                                 @enderror
                             </div>
                             <br>
+                            {{-- //koordinat --}}
                             <div class="form-group">
                                 <label for="koordinat">koordinat:</label>
                                 <input type="text" name="koordinat" id="koordinat"
