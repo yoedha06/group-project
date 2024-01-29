@@ -30,8 +30,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <table class="table table-bordered table-striped" style="margin-top: 10px; text-align: center;">
-            <thead>
+        <table class="table table-bordered table-striped" style="margin-top: 10px;">
+            <thead style="text-align: center;">
                 <tr>
                     <th>No</th>
                     <th>nama pemilih</th>
@@ -52,7 +52,7 @@
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
                         <td> {{ $p->alamat }}</td>
-                        <td> {{ $p->koordinat }}</td>
+                        <td style="width:100px;"> {{ $p->koordinat }}</td>
                         <td>{{ $p->no_ktp }}</td>
                         <td>{{ $p->status_pemilihan }}</td>
                         <td>
