@@ -123,7 +123,9 @@
                 <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
                 </li>
-                <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt"></i>Map</a>
+                <a href="{{ route('lokasi') }}">
+                    <i class="bi bi-geo-alt"></i>Map
+                </a>
                 @if (!request()->has('keyword'))
                     <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
                             class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
@@ -145,6 +147,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         // Menunggu konten utama dimuat
         document.addEventListener('DOMContentLoaded', function() {
