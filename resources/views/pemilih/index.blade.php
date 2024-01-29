@@ -50,17 +50,17 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
-                        <td> {{ $p->alamat }}
+                        <td>
+                            {{ $p->alamat }}
                             @if (auth()->user()->role === 'admin')
                                 <!-- Add a button with a link to Google Maps -->
                                 <a href="https://www.google.com/maps/search/{{ urlencode($p->alamat) }}" target="_blank">
                                     Lihat di Google Maps
                                 </a>
-
+            
                                 <!-- Check if latitude and longitude are available before creating the link -->
                                 @if (isset($p->latitude) && isset($p->longitude))
-                                    <a
-                                        href="{{ route('lokasi', ['latitude' => $p->latitude, 'longitude' => $p->longitude]) }}">
+                                    <a href="{{ route('lokasi', ['latitude' => $p->latitude, 'longitude' => $p->longitude]) }}">
                                         Lihat Lokasi
                                     </a>
                                 @else
@@ -69,17 +69,18 @@
                             @endif
                         </td>
                         <td>{{ $p->no_ktp }}</td>
-                        <td>{{ $p->status_pemilihan }}</td>
-
+                        <td>
+                            <div class="status-container">
+                                <span class="{{ $p->status_pemilihan == 'Sudah Memilih' ? 'text-success' : 'text-danger' }}">
+                                    {{ $p->status_pemilihan }}
+                                </span>
+                            </div>
+                        </td>
                         <td>
                             @if (auth()->user()->role === 'admin')
-                                {{-- <a href="{{ route('Lokasi', $p->Id_Pemilih) }}" class="btn btn-success"><i
-                                        class="bi bi-pencil-square">&nbsp;</i>maps</a> --}}
-
-
                                 <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-
+            
                                 <form id="deleteForm-{{ $p->Id_Pemilih }}"
                                     action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
                                     @csrf
@@ -89,7 +90,7 @@
                                             class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                                 </form>
                             @endif
-
+            
                             <script>
                                 function confirmDelete(Id_Pemilih) {
                                     if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
