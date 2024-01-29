@@ -34,6 +34,14 @@
             font-family: Arial, sans-serif;
         }
 
+        #sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+        }
+
         #splash-screen {
             position: fixed;
             top: 0;
@@ -124,11 +132,12 @@
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
                 </li>
                 <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt">&nbsp</i>Maps Pemilih</a>
-                @if (!request()->has('keyword'))
-                    <a href="{{ route('dashboard') }}" class="btn btn-danger btn-block mt-4"><i
-                            class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
-                @endif
             </ul>
+            @if (!request()->has('keyword'))
+                <center><a href="{{ route('dashboard') }}" class="btn btn-danger"><i
+                            class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+                </center>
+                @endif
         </nav>
 
         <div class="container mt-5">
