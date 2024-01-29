@@ -20,8 +20,8 @@
         <div id="map" style="height: 70vh; margin-top:5px;"></div>
 
         <script>
-         var pemilih = {!! json_encode($pemilih) !!};
 
+        var pemilih = {!! isset($pemilih) ? json_encode($pemilih) : 'null' !!};
             var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
