@@ -63,31 +63,31 @@
                                 @enderror
                             </div>
                             <script>
-                                var map = L.map('map').setView([-6.9147, 107.6098], 13);  
-                            
+                                var map = L.map('map').setView([-6.9147, 107.6098], 13);
+
                                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                     attribution: '© Kontributor OpenStreetMap'
                                 }).addTo(map);
-                            
+
                                 // Tambahkan marker di tengah-tengah peta sebagai petunjuk
                                 var centerMarker = L.marker(map.getCenter(), { draggable: true }).addTo(map);
-                            
+
                                 // Event listener untuk menangani perubahan lokasi marker ketika digeser
                                 centerMarker.on('dragend', function(event) {
                                     var marker = event.target;
                                     var position = marker.getLatLng();
-                            
+
                                     // Update the input field value
                                     document.getElementById('koordinat').value = position.lat + ', ' + position.lng;
                                 });
-                            
+
                                 // Event listener untuk menangani perubahan tampilan peta setelah digeser oleh pengguna
                                 map.on('move', function() {
                                     var center = map.getCenter();
-                            
+
                                     // Update the marker on the map
                                     centerMarker.setLatLng(center);
-                            
+
                                     // Update the input field value
                                     document.getElementById('koordinat').value = center.lat + ', ' + center.lng;
                                 });
