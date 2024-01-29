@@ -24,13 +24,13 @@
             }).addTo(map);
 
             pemilih.forEach(function(p) {
-                var coordinates = p.alamat.split(',').map(function(coord) {
+                var coordinates = p.koordinat.split(',').map(function(coord) {
                     return parseFloat(coord.trim());
                 });
 
                 var marker = L.marker(coordinates).addTo(map);
 
-                marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Alamat:</b> " + p.alamat)
+                marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>koordinat:</b> " + p.koordinat)
                     .openPopup();
             });
 

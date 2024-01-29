@@ -334,9 +334,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
                             </li>
-                            <li class="nav-item">
-                            <a href="/Lokasi"class="nav-link><i class="bi bi-bar-chart"></i>&nbsp Maps</a>
-                            </li>
                             @endif
                         </ul>
                     </div>
