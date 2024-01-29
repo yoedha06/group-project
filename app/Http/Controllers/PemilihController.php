@@ -12,7 +12,7 @@ class PemilihController extends Controller
 
     public function tampil()
     {
-      return view('dashboard');
+        return view('dashboard');
     }
     public function index()
     {
@@ -98,5 +98,10 @@ class PemilihController extends Controller
             ->get();
 
         return view('pemilih.index', compact('pemilih'));
+    }
+    public function showMap($id)
+    {
+        $pemilih = Pemilih::find($id); // Sesuaikan dengan model Pemilih Anda
+        return view('Lokasi', compact('pemilih'));
     }
 }
