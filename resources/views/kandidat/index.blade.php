@@ -49,7 +49,7 @@
                             <td>{{ $item->Partai_Politik }}</td>
                             <td>{{ $item->Nomor_Urut }}</td>
                             <td>{{ $item->Program_Kerja }}</td>
-                            <td>
+                            <td style="width:200px;">
                             @if(auth()->user()->role === 'admin')
                                 <a href="/kandidat/edit/{{ $item->Id_Kandidat }}" class="btn btn-warning btn-sm"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
@@ -64,8 +64,12 @@
                             </td>
                         </tr>
                     @endforeach
+                    
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $kandidat->links('pagination::bootstrap-5') }}
+            </div>
             @if (request()->has('keyword') && isset($kandidat) && count($kandidat) > 0)
                 <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                         class="bi bi-arrow-left-circle"></i> Kembali</a>

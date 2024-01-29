@@ -92,11 +92,6 @@
                                     document.getElementById('koordinat').value = center.lat + ', ' + center.lng;
                                 });
                             </script>
-
-
-
-
-
                             <br>
                             <div class="form-group">
                                 <label for="no_ktp">No KTP:</label>

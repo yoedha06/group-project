@@ -98,12 +98,14 @@
                     var marker = L.marker(coordinates, {
                         icon: L.divIcon({
                             className: 'custom-marker',
-                            html: '<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9" stroke="black" stroke-width="1" fill="' +
+                            html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
+                                '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
                                 markerColor + '"/></svg>',
-                            iconSize: [20, 20],
-                            iconAnchor: [10, 10],
+                            iconSize: [15, 15],
+                            iconAnchor: [15, 15],
                         })
                     }).addTo(map);
+
 
                     var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
                         .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
