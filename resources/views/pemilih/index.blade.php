@@ -30,7 +30,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <table class="table table-bordered table-striped" style="margin-top: 10px;">
+        <table class="table table-bordered table-striped" style="margin-top: 10px; text-align: center;">
             <thead>
                 <tr>
                     <th>No</th>
@@ -64,8 +64,9 @@
                                 <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
 
-                                <a href="{{ route('lokasi', $p->Id_Pemilih) }}" class="btn btn-success"><i
-                                        class="bi bi-pencil-square">&nbsp;</i>Map</a>
+                                        <a href="{{ route('lokasi', $p->Id_Pemilih) }}" class="btn btn-success">
+                                            <i class="bi bi-pencil-square">&nbsp;</i>Peta
+                                        </a>
 
                                 <form id="deleteForm-{{ $p->Id_Pemilih }}"
                                     action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
