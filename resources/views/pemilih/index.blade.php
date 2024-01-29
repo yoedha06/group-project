@@ -98,7 +98,7 @@
 
         {{-- Pagination Links --}}
         <div class="flex justify-content-center">
-            {{ $pemilih->links('pagination::bootstrap-  5') }}
+            {{ $pemilih->links('pagination::bootstrap-5') }}
         </div>
 
         {{-- Back Button --}}
