@@ -23,6 +23,7 @@
                 align-items: center;
             }
 
+
             .map-controls input {
                 padding: 8px;
                 margin-right: 10px;
@@ -153,7 +154,5 @@
                 }
             </script>
     </body>
-
-
     </html>
 @endsection
