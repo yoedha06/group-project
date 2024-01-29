@@ -10,6 +10,7 @@
     </head>
 
     <body>
+
         <style>
             .map-controls {
                 background-color: #f8f9fa;
