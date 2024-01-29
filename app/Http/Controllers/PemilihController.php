@@ -31,6 +31,7 @@ class PemilihController extends Controller
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
+            'koordinat' => 'required',
             'no_ktp' => 'required|numeric|digits:16|unique:pemilih',
             'status_pemilihan' => 'required',
         ]);
@@ -39,6 +40,7 @@ class PemilihController extends Controller
             'nama_pemilih' => $request->input('nama_pemilih'),
             'tanggal_lahir' => $request->input('tanggal_lahir'),
             'alamat' => $request->input('alamat'),
+            'koordinat' => $request->koordinat,
             'no_ktp' => $request->input('no_ktp'),
             'status_pemilihan' => $request->input('status_pemilihan'),
 
@@ -61,6 +63,7 @@ class PemilihController extends Controller
             'nama_pemilih' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
+            'koordinat' => 'required',
             'no_ktp' => 'required|numeric|digits:16',
             'status_pemilihan' => 'required',
         ]);
@@ -71,6 +74,7 @@ class PemilihController extends Controller
             'nama_pemilih' => $request->nama_pemilih,
             'tanggal_lahir' => $request->tanggal_lahir,
             'alamat' => $request->alamat,
+            'koordinat' => $request->koordinat,
             'no_ktp' => $request->no_ktp,
             'status_pemilihan' => $request->status_pemilihan,
         ]);

@@ -37,6 +37,7 @@
                     <th>nama pemilih</th>
                     <th>tanggal lahir</th>
                     <th>alamat</th>
+                    <th>koordinat</th>
                     <th>no KTP</th>
                     <th>status pemilihan</th>
                     @if (auth()->user()->role === 'admin')
@@ -50,32 +51,10 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $p->nama_pemilih }}</td>
                         <td>{{ $p->tanggal_lahir }}</td>
-                        <td>
-                            {{ $p->alamat }}
-                            @if (auth()->user()->role === 'admin')
-                                <!-- Add a button with a link to Google Maps -->
-                                <a href="https://www.google.com/maps/search/{{ urlencode($p->alamat) }}" target="_blank">
-                                    Lihat di Google Maps
-                                </a>
-            
-                                <!-- Check if latitude and longitude are available before creating the link -->
-                                @if (isset($p->latitude) && isset($p->longitude))
-                                    <a href="{{ route('lokasi', ['latitude' => $p->latitude, 'longitude' => $p->longitude]) }}">
-                                        Lihat Lokasi
-                                    </a>
-                                @else
-                                    <span>Lokasi tidak tersedia</span>
-                                @endif
-                            @endif
-                        </td>
+                        <td> {{ $p->alamat }}</td>
+                        <td> {{ $p->koordinat }}</td>
                         <td>{{ $p->no_ktp }}</td>
-                        <td>
-                            <div class="status-container">
-                                <span class="{{ $p->status_pemilihan == 'Sudah Memilih' ? 'text-success' : 'text-danger' }}">
-                                    {{ $p->status_pemilihan }}
-                                </span>
-                            </div>
-                        </td>
+                        <td>{{ $p->status_pemilihan }}</td>
                         <td>
                             @if (auth()->user()->role === 'admin')
                                 <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
