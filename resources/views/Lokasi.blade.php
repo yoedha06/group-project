@@ -1,27 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+@extends('layouts')
 
-    <title>Document</title>
-</head>
-<body>
-    <h1>jijdiod</h1>
-    <div id="map" style="height: 400px;"></div>
-</body>
-<script>
-    // Inisialisasi peta dengan koordinat dan level zoom yang menampilkan Bandung
-    var mymap = L.map('map').setView([-6.914744, 107.609810], 12);
+@section('content')
+    <!DOCTYPE html>
+    <html>
 
-    // Tambahkan layer peta dari OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(mymap);
+    <head>
+        <title>Map</title>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    </head>
 
-    // Tambahkan marker untuk Bandung
-    L.marker([-6.914744, 107.609810]).addTo(mymap)
-        .bindPopup('<b>Bandung</b><br>Known as the "Paris of Java"');
-</script>
+    <body>
+        <div id="map" style="height: 600px"></div>
 
-</html>
+        <script>
+            // Assuming $pemilih is properly defined and populated on the server-side
+            var pemilih = {!! json_encode($pemilih) !!};
+
+            var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            pemilih.forEach(function(p) {
+                var coordinates = p.alamat.split(',').map(function(coord) {
+                    return parseFloat(coord.trim());
+                });
+
+                var marker = L.marker(coordinates).addTo(map);
+
+                marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Alamat:</b> " + p.alamat)
+                    .openPopup();
+            });
+
+            function showLocationOnMap(latitude, longitude) {
+                map.setView([latitude, longitude], 13);
+            }
+        </script>
+    </body>
+
+    </html>
+@endsection
