@@ -1,75 +1,156 @@
 @extends('layouts')
-
 @section('content')
     <!DOCTYPE html>
     <html>
 
     <head>
-        <title>Map</title>
+        <title>Peta</title>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     </head>
 
     <body>
-        <div id="map" style="height: 600px"></div>
-
-        <script>
-            // Assuming $pemilih is properly defined and populated on the server-side
-            var pemilih = {!! json_encode($pemilih) !!};
-
-            var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            pemilih.forEach(function(p) {
-                var coordinates = p.koordinat.split(',').map(function(coord) {
-                    return parseFloat(coord.trim());
-                });
-
-                var marker = L.marker(coordinates).addTo(map);
-
-                marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>koordinat:</b> " + p.koordinat)
-                    .openPopup();
-            });
-
-            function showLocationOnMap(latitude, longitude) {
-                map.setView([latitude, longitude], 13);
+        <style>
+            .map-controls {
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
-            var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
+            .map-controls input {
+                padding: 8px;
+                margin-right: 10px;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+            }
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            .map-controls button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
 
-            pemilih.forEach(function(p) {
-                var coordinates = p.alamat.split(',').map(function(coord) {
-                    return parseFloat(coord.trim());
-                });
+            .map-controls button.search {
+                background-color: #007bff;
+                color: white;
+            }
 
-                var markerColor = p.status_pemilihan == 'Sudah Memilih' ? 'green' : 'red';
+            .map-controls button.filter-sudah {
+                background-color: #28a745;
+                color: white;
+            }
 
-                var marker = L.marker(coordinates, {
-                    icon: L.divIcon({
-                        className: 'custom-marker',
-                        html: '<div style="background-color: ' + markerColor +
-                            ';" class="marker-dot"></div>',
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10],
-                    })
+            .map-controls button.filter-belum {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .map-controls button.reset {
+                background-color: #007bff;
+                color: white;
+            }
+
+            .map-controls button:hover {
+                opacity: 0.8;
+            }
+        </style>
+        <div class="map-container">
+            <div class="map-controls">
+                <div>
+                    <input type="text" id="searchInput" placeholder="Cari Nama Pemilih">
+                    <button class="search" onclick="searchByName()">Cari</button>
+                </div>
+                <div>
+                    <button class="filter-sudah" onclick="filterMarkers('Sudah Memilih')">Sudah Memilih</button>
+                    <button class="filter-belum" onclick="filterMarkers('Belum Memilih')">Belum Memilih</button>
+                    <button class="reset" onclick="resetMarkers()">Lihat Semua</button>
+                </div>
+            </div>
+
+            <div id="map" style="height: 600px"></div>
+
+            <script>
+                var pemilih = {!! json_encode($pemilih) !!};
+                var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 
-                marker.bindPopup("<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Alamat:</b> " + p.alamat)
-                    .openPopup();
-            });
+                var markers = [];
 
-            function showLocationOnMap(latitude, longitude) {
-                map.setView([latitude, longitude], 13);
-            }
-        </script>
+                function addMarker(p) {
+                    var coordinates = p.koordinat.split(',').map(function(coord) {
+                        return parseFloat(coord.trim());
+                    });
+
+                    var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' : 'red';
+
+                    var marker = L.marker(coordinates, {
+                        icon: L.divIcon({
+                            className: 'custom-marker',
+                            html: '<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="9" stroke="black" stroke-width="1" fill="' +
+                                markerColor + '"/></svg>',
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10],
+                        })
+                    }).addTo(map);
+
+                    var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
+                        .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
+                    marker.bindPopup(popupContent).openPopup();
+
+                    markers.push({
+                        marker,
+                        status: p.status_pemilihan,
+                        nama: p.nama_pemilih
+                    });
+                }
+
+                pemilih.forEach(function(p) {
+                    addMarker(p);
+                });
+
+                function filterMarkers(status) {
+                    markers.forEach(function(m) {
+                        if (m.status === status) {
+                            m.marker.addTo(map);
+                        } else {
+                            map.removeLayer(m.marker);
+                        }
+                    });
+                }
+
+                function resetMarkers() {
+                    markers.forEach(function(m) {
+                        m.marker.addTo(map);
+                    });
+                }
+
+                function showLocationOnMap(latitude, longitude) {
+                    map.setView([latitude, longitude], 13);
+                }
+
+                function searchByName() {
+                    var searchValue = document.getElementById('searchInput').value.toLowerCase();
+                    markers.forEach(function(m) {
+                        if (m.nama.toLowerCase().includes(searchValue)) {
+                            m.marker.addTo(map);
+                        } else {
+                            map.removeLayer(m.marker);
+                        }
+                    });
+                }
+            </script>
     </body>
+
 
     </html>
 @endsection

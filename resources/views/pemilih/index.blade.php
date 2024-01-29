@@ -54,12 +54,16 @@
                         <td> {{ $p->alamat }}</td>
                         <td> {{ $p->koordinat }}</td>
                         <td>{{ $p->no_ktp }}</td>
-                        <td>{{ $p->status_pemilihan }}</td>
+                        <td>
+                            <span class="badge {{ $p->status_pemilihan == 'Sudah Memilih' ? 'bg-success' : 'bg-danger' }}">
+                                {{ $p->status_pemilihan }}
+                            </span>
+                        </td>
                         <td>
                             @if (auth()->user()->role === 'admin')
                                 <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-            
+
                                 <form id="deleteForm-{{ $p->Id_Pemilih }}"
                                     action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
                                     @csrf
@@ -69,7 +73,7 @@
                                             class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                                 </form>
                             @endif
-            
+
                             <script>
                                 function confirmDelete(Id_Pemilih) {
                                     if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
@@ -83,6 +87,7 @@
                         </td>
                     </tr>
                 @endforeach
+            </tbody>
             </tbody>
         </table>
         @if (request()->has('keyword') && isset($pemilih) && count($pemilih) > 0)
