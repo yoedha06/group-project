@@ -19,6 +19,7 @@ class PemilihController extends Controller
         $pemilih = Pemilih::all();
         return view('pemilih.index', compact('pemilih'));
     }
+
     public function create()
     {
         return view('pemilih.tambah');
@@ -99,9 +100,16 @@ class PemilihController extends Controller
 
         return view('pemilih.index', compact('pemilih'));
     }
-    public function showMap($id)
+
+    public function showMap()
     {
-        $pemilih = Pemilih::find($id); // Sesuaikan dengan model Pemilih Anda
+        $pemilih = Pemilih::all();
+
+        if ($pemilih->isEmpty()) {
+            // Handle the case when $pemilih is empty, maybe log a message or redirect
+            return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
+        }
+        
         return view('Lokasi', compact('pemilih'));
     }
 }

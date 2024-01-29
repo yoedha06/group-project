@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'doRegister']);
 Route::get('/', [PemilihController::class, 'tampil'])->name('dashboard');
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 // CRUD Pemilih
+Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');
 
 Route::get('pemilih/index', [PemilihController::class, 'index'])->name('pemilih.index');
 Route::get('pemilih/tambah', [PemilihController::class, 'create'])->name('pemilih.create');
@@ -74,7 +76,6 @@ Route::prefix('hasilpemilihan')->group(function () {
 });
 
 
-Route::get('/Lokasi', function () {
-    return view('Lokasi');
-});
-    
+// Route::get('/Lokasi', function () {
+//     return view('Lokasi');
+// });
