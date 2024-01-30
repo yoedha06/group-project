@@ -7,6 +7,9 @@
         <title>Peta</title>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
     </head>
 
     <body>
@@ -81,10 +84,18 @@
                 var pemilih = {!! json_encode($pemilih) !!};
                 var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
 
+                var coordinates = pemilih.map(function(p) {
+                    var coords = p.koordinat.split(',').map(parseFloat);
+                    return new L.LatLng(coords[0], coords[1]);
+                });
+
+                // var polyline = L.polyline(coordinates, {
+                //     color: 'blue'
+                // }).addTo(map);
+
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
-
                 var markers = [];
 
                 function addMarker(p) {
@@ -105,7 +116,6 @@
                         })
                     }).addTo(map);
 
-
                     var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
                         .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
                     marker.bindPopup(popupContent).openPopup();
@@ -116,6 +126,35 @@
                         nama: p.nama_pemilih
                     });
                 }
+                L.Routing.control({
+                    waypoints: coordinates.map(function(coord) {
+                        return L.latLng(coord.lat, coord.lng);
+                    }),
+                    createMarker: function(i, wp, nWps) {
+                        if (i === 0 || i === nWps - 1) {
+                            return L.marker(wp.latLng, {
+                                icon: L.divIcon({
+                                    className: 'custom-marker',
+                                    html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
+                                        '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
+                                        (wp.options.status === 'Sudah Memilih' ? 'green' : 'red') +
+                                        '"/></svg>',
+                                    iconSize: [15, 15],
+                                    iconAnchor: [15, 15],
+                                })
+                            });
+                        } else {
+                            return null;
+                        }
+                    },
+                    lineOptions: {
+                        styles: [{
+                            color: 'green',
+                            opacity: 1,
+                            weight: 3.5
+                        }]
+                    }
+                }).addTo(map);
 
                 pemilih.forEach(function(p) {
                     addMarker(p);
