@@ -5,6 +5,7 @@ use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+//history
+Route::get('/History', [HistoryController::class, 'index']);
 
 
 // CRUD Pemilih
