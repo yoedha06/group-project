@@ -117,8 +117,11 @@
             </div>
 
             <div id="validationMessage" style="display: none; color: red; margin-top: 10px;"></div>
+            <br>
             <div id="map" style="height: 600px"></div>
 
+
+            {{-- script js maps --}}
             <script>
                 var pemilih = {!! json_encode($pemilih) !!};
                 var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
@@ -129,6 +132,45 @@
 
                 var markers = [];
                 var currentFilter = ''; // Variabel untuk menyimpan status pemilihan yang sedang di-filter
+
+
+                function calculateBounds() {
+                    var bounds = new L.LatLngBounds();
+
+                    markers.forEach(function(m) {
+                        bounds.extend(m.marker.getLatLng());
+                    });
+
+                    return bounds;
+                }
+
+                function setupMap() {
+
+                    var maxBounds = [
+                        [-10, 95], // Koordinat sudut barat daya (SW)
+                        [5, 150] // Koordinat sudut timur laut (NE)
+                    ];
+
+                    map = L.map('map', {
+                        center: [-2.5489, 118.0149],
+                        zoom: 5,
+                        maxBounds: maxBounds, // Mengatur batas maksimum peta
+                        maxBoundsViscosity: 0.9, // Kontrol kekenyalan ketika melampaui batas
+                        dragging: true, // Aktifkan fungsi geser peta
+                    });
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    pemilih.forEach(function(p) {
+                        addMarker(p);
+                    });
+
+                    // Setelah menambahkan semua marker, atur tampilan peta agar mencakup semua marker
+                    var bounds = calculateBounds();
+                    map.fitBounds(bounds);
+                }
 
                 function addMarker(p) {
                     if (p.nama_pemilih && p.status_pemilihan && p.koordinat) {
@@ -174,7 +216,7 @@
                 });
 
                 function filterMarkers(status) {
-                    currentFilter = status; // Set variabel currentFilter sesuai dengan status yang di-filter
+                    currentFilter = status;
                     markers.forEach(function(m) {
                         if (m.status === status) {
                             m.marker.addTo(map);
@@ -211,7 +253,7 @@
                             }
                             var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 2 // You can adjust the duration (in seconds) as needed
+                                duration: 8 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
                             });
                         } else {
                             map.removeLayer(m.marker);
