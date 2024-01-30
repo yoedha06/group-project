@@ -64,6 +64,47 @@
             .map-controls button:hover {
                 opacity: 0.8;
             }
+
+            .map-controls div label {
+                display: flex;
+                align-items: center;
+                margin-right: 15px;
+                cursor: pointer;
+            }
+
+            .map-controls div label input {
+                margin-right: 8px;
+            }
+
+            .map-controls div label span {
+                font-size: 16px;
+            }
+
+            .map-controls div label:hover {
+                text-decoration: underline;
+            }
+
+            #validationMessage {
+                display: none;
+                margin-top: 10px;
+                padding: 10px;
+                border: 2px solid #d9534f;
+                /* Warna border untuk pesan error */
+                border-radius: 5px;
+                color: #d9534f;
+                /* Warna teks untuk pesan error */
+                background-color: #f2dede;
+                /* Warna latar belakang untuk pesan error */
+            }
+
+            #validationMessage.success {
+                border-color: #5bc0de;
+                /* Warna border untuk pesan sukses */
+                color: #5bc0de;
+                /* Warna teks untuk pesan sukses */
+                background-color: #d9edf7;
+                /* Warna latar belakang untuk pesan sukses */
+            }
         </style>
         <div class="map-container">
             <div class="map-controls">
@@ -78,47 +119,98 @@
                 </div>
             </div>
 
+            <div id="validationMessage" style="display: none; color: red; margin-top: 10px;"></div>
             <div id="map" style="height: 600px"></div>
 
             <script>
                 var pemilih = {!! json_encode($pemilih) !!};
-                var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
-
-                var coordinates = pemilih.map(function(p) {
-                    var coords = p.koordinat.split(',').map(parseFloat);
-                    return new L.LatLng(coords[0], coords[1]);
-                });
-
-                // var polyline = L.polyline(coordinates, {
-                //     color: 'blue'
-                // }).addTo(map);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+                var map;
                 var markers = [];
+                var currentFilter = ''; // Variabel untuk menyimpan status pemilihan yang sedang di-filter
 
-                function addMarker(p) {
-                    var coordinates = p.koordinat.split(',').map(function(coord) {
-                        return parseFloat(coord.trim());
+                function calculateBounds() {
+                    var bounds = new L.LatLngBounds();
+
+                    markers.forEach(function(m) {
+                        bounds.extend(m.marker.getLatLng());
                     });
 
-                    var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' : 'red';
+                    return bounds;
+                }
+                L.Routing.control({
+                        waypoints: coordinates.map(function(coord) {
+                            return L.latLng(coord.lat, coord.lng);
+                        }),
+                        createMarker: function(i, wp, nWps) {
+                            if (i === 0 || i === nWps - 1) {
+                                return L.marker(wp.latLng, {
 
-                    var marker = L.marker(coordinates, {
-                        icon: L.divIcon({
-                            className: 'custom-marker',
-                            html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
-                                '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
-                                markerColor + '"/></svg>',
-                            iconSize: [15, 15],
-                            iconAnchor: [15, 15],
-                        })
-                    }).addTo(map);
+                                        function setupMap() {
+                                            map = L.map('map').setView([-2.5489, 118.0149],
+                                            5); // Koordinat tengah Indonesia, level zoom 5
+
+                                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                            }).addTo(map);
+
+                                            pemilih.forEach(function(p) {
+                                                addMarker(p);
+                                            });
+
+                                            // Setelah menambahkan semua marker, atur tampilan peta agar mencakup semua marker
+                                            var bounds = calculateBounds();
+                                            map.fitBounds(bounds);
+                                        }
+
+                                        function addMarker(p) {
+                                            if (p.nama_pemilih && p.status_pemilihan && p.koordinat) {
+                                                var coordinates = p.koordinat.split(',').map(function(coord) {
+                                                    return parseFloat(coord.trim());
+                                                });
+
+                                                // Validasi koordinat
+                                                if (!isNaN(coordinates[0]) && !isNaN(coordinates[1])) {
+                                                    var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' :
+                                                        'red';
+
+                                                    var marker = L.marker(coordinates, {
+                                                        icon: L.divIcon({
+                                                            className: 'custom-marker',
+                                                            html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
+                                                                '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
+                                                                (wp.options.status === 'Sudah Memilih' ?
+                                                                    'green' : 'red') +
+                                                                '"/></svg>',
+                                                            iconSize: [15, 15],
+                                                            iconAnchor: [15, 15],
+                                                        })
+                                                    });
+                                                } else {
+                                                    return null;
+                                                }
+                                            },
+                                            lineOptions: {
+                                                styles: [{
+                                                    color: 'green',
+                                                    opacity: 1,
+                                                    weight: 3.5
+                                                }]
+                                            }
+                                        }).addTo(map);
+
+                                    pemilih.forEach(function(p) {
+                                        addMarker(p);
+                                    });
+
+                                    markerColor + '"/></svg>',
+                                    iconSize: [15, 15],
+                                    iconAnchor: [15, 15],
+                                })
+                        }).addTo(map);
 
                     var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
-                        .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
-                    marker.bindPopup(popupContent).openPopup();
+                        .status_pemilihan +
+                        "<br><b>Koordinat:</b> " + p.koordinat; marker.bindPopup(popupContent).openPopup();
 
                     markers.push({
                         marker,
@@ -126,41 +218,16 @@
                         nama: p.nama_pemilih
                     });
                 }
-                L.Routing.control({
-                    waypoints: coordinates.map(function(coord) {
-                        return L.latLng(coord.lat, coord.lng);
-                    }),
-                    createMarker: function(i, wp, nWps) {
-                        if (i === 0 || i === nWps - 1) {
-                            return L.marker(wp.latLng, {
-                                icon: L.divIcon({
-                                    className: 'custom-marker',
-                                    html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
-                                        '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
-                                        (wp.options.status === 'Sudah Memilih' ? 'green' : 'red') +
-                                        '"/></svg>',
-                                    iconSize: [15, 15],
-                                    iconAnchor: [15, 15],
-                                })
-                            });
-                        } else {
-                            return null;
-                        }
-                    },
-                    lineOptions: {
-                        styles: [{
-                            color: 'green',
-                            opacity: 1,
-                            weight: 3.5
-                        }]
-                    }
-                }).addTo(map);
-
-                pemilih.forEach(function(p) {
-                    addMarker(p);
-                });
+                else {
+                    console.warn("Data koordinat tidak valid untuk pemilih:", p);
+                }
+                } else {
+                    console.warn("Data pemilih tidak lengkap atau tidak valid:", p);
+                }
+                }
 
                 function filterMarkers(status) {
+                    currentFilter = status; // Set variabel currentFilter sesuai dengan status yang di-filter
                     markers.forEach(function(m) {
                         if (m.status === status) {
                             m.marker.addTo(map);
@@ -171,6 +238,7 @@
                 }
 
                 function resetMarkers() {
+                    currentFilter = ''; // Reset variabel currentFilter
                     markers.forEach(function(m) {
                         m.marker.addTo(map);
                     });
@@ -182,17 +250,42 @@
 
                 function searchByName() {
                     var searchValue = document.getElementById('searchInput').value.toLowerCase();
+                    var searchDataFound = false;
+
                     markers.forEach(function(m) {
-                        if (m.nama.toLowerCase().includes(searchValue)) {
+                        if ((m.nama.toLowerCase().includes(searchValue) || searchValue === '') &&
+                            (currentFilter === '' || m.status === currentFilter)) {
                             m.marker.addTo(map);
+                            searchDataFound = true; // Setel ke true jika ada data yang ditemukan
+
+                            var coordinates = m.marker.getLatLng();
+                            map.flyTo(coordinates, 17, {
+                                duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                            });
                         } else {
                             map.removeLayer(m.marker);
                         }
                     });
-                }
-            </script>
-    </body>
 
+                    if (!searchDataFound) {
+                        document.getElementById('validationMessage').innerText = "Data Belum Memilih.";
+                        document.getElementById('validationMessage').style.display = 'block';
+                    } else {
+                        // Sembunyikan pesan validasi jika ada data yang ditemukan
+                        document.getElementById('validationMessage').style.display = 'none';
+
+                        // Tampilkan pesan validasi bahwa data ditemukan
+                        document.getElementById('validationMessage').innerText = "Data ditemukan!";
+                        document.getElementById('validationMessage').style.color = 'green';
+                        document.getElementById('validationMessage').style.display = 'block';
+                    }
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    setupMap();
+                });
+            </script>
+        </div>
+    </body>
 
     </html>
 @endsection
