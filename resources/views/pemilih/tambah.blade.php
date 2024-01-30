@@ -42,19 +42,35 @@
                             <div class="form-group">
                                 <label for="alamat">Alamat:</label>
                                 <input type="text" name="alamat" id="alamat"
-                                    class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
+                                placeholder="Alamat Lengkap/Rt Rw"  class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}"
                                     value="{{ old('alamat') }}">
                                 @error('alamat')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
+
+                                <br>
                             </div>
                             <br>
                             {{-- //koordinat --}}
+
                             <div class="form-group">
                                 <label for="koordinat">Koordinat</label>
-                                <div id="map" style="height: 300px; margin-top: 10px;"></div>
+
+                                <!-- Map Container -->
+                                <div id="map-container" style="position: relative;">
+
+                                    <!-- Button in the top-right corner -->
+                                    <button type="button" onclick="getCurrentLocation()" style="position: absolute; top: 260px; right: 10px; z-index: 1000;">
+                                        <i class="bi bi-crosshair"></i>
+                                    </button>
+
+                                    <!-- Map -->
+                                    <div id="map" style="height: 300px; margin-top: 40px;"></div>
+                                </div>
+
+                                <!-- Input for Koordinat -->
                                 <input type="text" name="koordinat" id="koordinat" class="form-control {{ $errors->has('koordinat') ? 'is-invalid' : '' }}" value="{{ old('koordinat') }}">
                                 @error('koordinat')
                                     <div class="invalid-feedback">
@@ -62,6 +78,7 @@
                                     </div>
                                 @enderror
                             </div>
+
                             <script>
                                 var map = L.map('map').setView([-6.9147, 107.6098], 13);
 
@@ -91,6 +108,31 @@
                                     // Update the input field value
                                     document.getElementById('koordinat').value = center.lat + ', ' + center.lng;
                                 });
+
+    function getCurrentLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var currentLat = position.coords.latitude;
+                var currentLng = position.coords.longitude;
+
+                // Update the marker on the map
+                centerMarker.setLatLng([currentLat, currentLng]);
+
+                // Update the input field value
+                document.getElementById('koordinat').value = currentLat + ', ' + currentLng;
+
+                // Center the map to the current location
+                map.setView([currentLat, currentLng], 13);
+            }, function (error) {
+                console.error("Error getting current location:", error);
+                alert("Tidak dapat mendapatkan lokasi saat ini. Pastikan Anda memberikan izin lokasi.");
+            });
+        } else {
+            alert("Geolocation tidak didukung oleh peramban ini.");
+        }
+    }
+
+
                             </script>
                             <br>
                             <div class="form-group">
