@@ -117,8 +117,10 @@
             </div>
         
             <div id="validationMessage" style="display: none; color: red; margin-top: 10px;"></div>
+            <br>
             <div id="map" style="height: 600px"></div>
         
+            {{-- script js maps --}}
             <script>
                 var pemilih = {!! json_encode($pemilih) !!};
                 var map;
@@ -136,7 +138,19 @@
                 }
             
                 function setupMap() {
-                    map = L.map('map').setView([-2.5489, 118.0149], 5); // Koordinat tengah Indonesia, level zoom 5
+
+                    var maxBounds = [
+                        [-10, 95], // Koordinat sudut barat daya (SW)
+                        [5, 150]   // Koordinat sudut timur laut (NE)
+                    ];
+
+                    map = L.map('map', {
+                        center: [-2.5489, 118.0149],
+                        zoom: 5,
+                        maxBounds: maxBounds,  // Mengatur batas maksimum peta
+                        maxBoundsViscosity: 0.9,  // Kontrol kekenyalan ketika melampaui batas
+                        dragging: true,  // Aktifkan fungsi geser peta
+                    });
             
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -191,7 +205,7 @@
                 }
             
                 function filterMarkers(status) {
-                    currentFilter = status; // Set variabel currentFilter sesuai dengan status yang di-filter
+                    currentFilter = status; 
                     markers.forEach(function(m) {
                         if (m.status === status) {
                             m.marker.addTo(map);
@@ -224,7 +238,7 @@
             
                             var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                duration: 8 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
                             });
                         } else {
                             map.removeLayer(m.marker);
