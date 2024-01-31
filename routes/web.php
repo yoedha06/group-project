@@ -5,7 +5,6 @@ use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
-use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //history
-Route::get('/History', [HistoryController::class, 'index']);
-
+Route::resource('history', HistoryController::class);
 
 // CRUD Pemilih
 Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');
@@ -76,9 +74,5 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
+
 });
-
-
-// Route::get('/Lokasi', function () {
-//     return view('Lokasi');
-// });

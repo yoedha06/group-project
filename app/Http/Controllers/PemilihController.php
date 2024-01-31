@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class PemilihController extends Controller
 {
-
     public function tampil()
     {
         return view('dashboard');
@@ -108,9 +107,9 @@ class PemilihController extends Controller
 
     public function showMap()
     {
-        // $pemilih = DB::select("SELECT * FROM pemilih");
-        $pemilih = Pemilih::all();
-        if ($pemilih->isEmpty()) {
+        $pemilih = DB::select("SELECT * FROM pemilih");
+
+        if (empty($pemilih)) {
             // Handle the case when $pemilih is empty, maybe log a message or redirect
             return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
         }
