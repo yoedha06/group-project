@@ -5,6 +5,7 @@ use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\HasilPemilihanController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -74,5 +75,4 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
-
 });
