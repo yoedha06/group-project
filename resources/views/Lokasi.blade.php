@@ -120,7 +120,6 @@
             <br>
             <div id="map" style="height: 600px"></div>
 
-
             {{-- script js maps --}}
             <script>
                 var pemilih = {!! json_encode($pemilih) !!};
@@ -132,7 +131,6 @@
 
                 var markers = [];
                 var currentFilter = ''; // Variabel untuk menyimpan status pemilihan yang sedang di-filter
-
 
                 function calculateBounds() {
                     var bounds = new L.LatLngBounds();
@@ -211,6 +209,23 @@
                     }
                 }
 
+                function filterMarkers(status) {
+                    currentFilter = status;
+                    var filteredMarkers = markers.filter(function(m) {
+                        return m.status === status;
+                    });
+
+                    // Menampilkan atau menyembunyikan pesan validasi
+                    var validationMessage = document.getElementById('validationMessage');
+                    if (filteredMarkers.length === 0) {
+                        validationMessage.innerText = "Data Tidak Ditemukan.";
+                        validationMessage.style.color = 'red';
+                        validationMessage.style.display = 'block';
+                    } else {
+                        validationMessage.style.display = 'none';
+                    }
+
+                    // Menambahkan atau menghapus marker sesuai filter
                 pemilih.forEach(function(p) {
                     addMarker(p);
                 });
@@ -241,30 +256,33 @@
                     var searchValue = document.getElementById('searchInput').value.toLowerCase();
                     var searchDataFound = false;
                     var isDataSelected = false;
-
                     markers.forEach(function(m) {
                         if ((m.nama.toLowerCase().includes(searchValue) || searchValue === '') &&
                             (currentFilter === '' || m.status === currentFilter)) {
                             m.marker.addTo(map);
                             searchDataFound = true; // Setel ke true jika ada data yang ditemukan
-
                             if (m.status === 'Sudah Memilih') {
                                 isDataSelected = true; // Setel ke true jika ada data yang sudah memilih
-                            }
-                            var coordinates = m.marker.getLatLng();
+                            }                            var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 8 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
                             });
                         } else {
                             map.removeLayer(m.marker);
                         }
                     });
-
-
+                    // Menampilkan atau menyembunyikan pesan validasi
+                    var validationMessage = document.getElementById('validationMessage');
                     if (!searchDataFound) {
-                        document.getElementById('validationMessage').innerText = "Data Belum Memilih.";
-                        document.getElementById('validationMessage').style.display = 'block';
+                        validationMessage.innerText = "Data Tidak Ditemukan.";
+                        validationMessage.style.color = 'red';
+                        validationMessage.style.display = 'block';
                     } else {
+
+                        validationMessage.innerText = "Data Ditemukan!";
+                        validationMessage.style.color = 'green';
+                        validationMessage.style.display = 'block';
+
                         // Sembunyikan pesan validasi jika ada data yang ditemukan
                         document.getElementById('validationMessage').style.display = 'none';
 
@@ -272,6 +290,7 @@
                         document.getElementById('validationMessage').innerText = "Data ditemukan!";
                         document.getElementById('validationMessage').style.color = 'green';
                         document.getElementById('validationMessage').style.display = 'block';
+
                     }
                 }
 
@@ -303,6 +322,8 @@
                     }
                 }
             </script>
+
+        </div>
     </body>
 
     </html>
