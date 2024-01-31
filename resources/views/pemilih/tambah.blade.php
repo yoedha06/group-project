@@ -61,10 +61,6 @@
                                 <!-- Map Container -->
                                 <div id="map-container" style="position: relative;">
 
-                                    <!-- Button in the top-right corner -->
-                                    <button type="button" onclick="getCurrentLocation()" style="position: absolute; top: 260px; right: 10px; z-index: 1000;">
-                                        <i class="bi bi-crosshair"></i>
-                                    </button>
 
                                     <!-- Map -->
                                     <div id="map" style="height: 300px; margin-top: 40px;"></div>
@@ -109,28 +105,35 @@
                                     document.getElementById('koordinat').value = center.lat + ', ' + center.lng;
                                 });
 
-    function getCurrentLocation() {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var currentLat = position.coords.latitude;
-                var currentLng = position.coords.longitude;
+                                function getCurrentLocation() {
+                                    if ("geolocation" in navigator) {
+                                        navigator.geolocation.getCurrentPosition(function(position) {
+                                            var currentLat = position.coords.latitude;
+                                            var currentLng = position.coords.longitude;
 
-                // Update the marker on the map
-                centerMarker.setLatLng([currentLat, currentLng]);
+                                            // Update the marker on the map
+                                            centerMarker.setLatLng([currentLat, currentLng]);
 
-                // Update the input field value
-                document.getElementById('koordinat').value = currentLat + ', ' + currentLng;
+                                            // Update the input field value
+                                            document.getElementById('koordinat').value = currentLat + ', ' + currentLng;
 
-                // Center the map to the current location
-                map.setView([currentLat, currentLng], 13);
-            }, function (error) {
-                console.error("Error getting current location:", error);
-                alert("Tidak dapat mendapatkan lokasi saat ini. Pastikan Anda memberikan izin lokasi.");
-            });
-        } else {
-            alert("Geolocation tidak didukung oleh peramban ini.");
-        }
-    }
+                                            // Center the map to the current location
+                                            map.setView([currentLat, currentLng], 13);
+                                        }, function(error) {
+                                            console.error("Error getting current location:", error);
+                                            alert("Tidak dapat mendapatkan lokasi saat ini. Pastikan Anda memberikan izin lokasi.");
+                                        });
+                                    } else {
+                                        alert("Geolocation tidak didukung oleh peramban ini.");
+                                    }
+                                }
+
+                                // Pemanggilan fungsi getCurrentLocation saat formulir dimuat
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    getCurrentLocation();
+                                });
+                            </script>
+
 
 
                             </script>
