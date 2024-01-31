@@ -34,7 +34,13 @@ Route::middleware(['auth'])->group(function () {
 
 
 //history
-Route::resource('history', HistoryController::class);
+// Route::resource('history', HistoryController::class);
+Route::get('/history/index/{latitude?}/{longitude?}', [HistoryController::class, 'index'])->name('history.index');
+Route::get('/history/create', [HistoryController::class, 'create'])->name('history.create');
+Route::post('/history/store', [HistoryController::class, 'store'])->name('history.store');
+Route::get('/history/map', [HistoryController::class, 'map'])->name('history.map');
+
+
 
 // CRUD Pemilih
 Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');

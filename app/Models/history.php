@@ -10,5 +10,13 @@ class history extends Model
     use HasFactory;
 
     protected $table = 'histori';
-    protected $guarded = [];
+    protected $fillable = [
+        'latlng',
+        'bounds',
+        'accuracy',
+        'altitude',
+        'altitude_acuracy',
+        'heading',
+        'speeds',
+    ];
 }
