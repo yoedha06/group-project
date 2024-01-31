@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('histori', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pemilih')->references('Id_pemilih')->on('pemilih')->cascadeOnDelete();
-            $table->string('koordinat start');
-            $table->string('koordinat end');
+            $table->string('koordinat_start');
+            $table->string('koordinat_end');
             $table->double('speeds');
             $table->timestamps();
         });

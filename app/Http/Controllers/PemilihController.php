@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pemilih;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PemilihController extends Controller
@@ -107,8 +108,8 @@ class PemilihController extends Controller
 
     public function showMap()
     {
+        // $pemilih = DB::select("SELECT * FROM pemilih");
         $pemilih = Pemilih::all();
-
         if ($pemilih->isEmpty()) {
             // Handle the case when $pemilih is empty, maybe log a message or redirect
             return redirect()->route('lokasi'); // Replace 'some.route' with an actual route
