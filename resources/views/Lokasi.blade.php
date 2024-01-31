@@ -253,7 +253,7 @@
                             }
                             var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 8 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                duration: 3 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
                             });
                         } else {
                             map.removeLayer(m.marker);

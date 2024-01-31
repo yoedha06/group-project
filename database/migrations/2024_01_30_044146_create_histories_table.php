@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('histori', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pemilih')->references('Id_pemilih')->on('pemilih')->cascadeOnDelete();
-            $table->string('koordinat_start');
-            $table->string('koordinat_end');
-            $table->double('speeds');
+            $table->string('latlng');
+            $table->string('bounds');
+            $table->float('accuracy');
+            $table->float('altitude');
+            $table->float('altitude_acuracy');
+            $table->float('heading');
+            $table->float('speeds');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('histori');
     }
 };

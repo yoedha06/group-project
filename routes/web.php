@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //history
-Route::get('/History', [HistoryController::class, 'index']);
+Route::resource('history', HistoryController::class);
 
 
 // CRUD Pemilih

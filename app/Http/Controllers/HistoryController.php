@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\history;
+use App\Models\Pemilih;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -21,7 +22,8 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('history.create');
+
     }
 
     /**
@@ -29,16 +31,13 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        history::create($request->all());
+        return redirect()->route('history.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(history $history)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
