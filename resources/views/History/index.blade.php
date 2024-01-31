@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-
-        {{-- Pemilih h --}}
+        {{-- history --}}
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
             <thead style="text-align: center;">
                 <tr>
@@ -23,6 +22,9 @@
                         <td>{{ $h->koordinat_start }}</td>
                         <td>{{ $h->koordinat_end }}</td>
                         <td>{{ $h->speeds }}</td>
+                        <td>
+                            <a href="{{ route('history.map') }}" class="btn btn-primary">History Map</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
