@@ -8,59 +8,55 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $history = history::all();
         return view('history.index', compact('history'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('history.create');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         history::create($request->all());
         return redirect()->route('history.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(history $history)
+    public function edit(Request $request, history $history)
     {
-        //
+        return view('history.edit', compact('history'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, history $history)
     {
-        //
+        $validated = $request->validate([
+            'latlng' => 'required',
+            'bounds' => 'required',
+            'accuracy' => 'required',
+            'altitude' => 'required',
+            'altitude_acuracy' => 'required',
+            'heading' => 'required',
+            'speeds' => 'required',
+        ]);
+
+        $history->update($validated);
+
+        session()->flash('berhasil', "updated successfully!");
+
+        return to_route('history.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(history $history)
     {
-        //
+        $history = history::findOrFail($history->id);
+        $history->delete();
+
+        return redirect()->route('history.index')->with('success', 'Pemilih berhasil dihapus!');
     }
 
     public function HistoryMap()
