@@ -75,5 +75,4 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
-
 });
