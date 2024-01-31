@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //history
-Route::resource('history', HistoryController::class);
+Route::resource('history', HistoryController::class)->except('show');
 
 // CRUD Pemilih
 Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');
