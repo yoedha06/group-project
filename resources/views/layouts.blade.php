@@ -150,8 +150,7 @@
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
                 </li>
                 <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt">&nbsp;</i>Maps Pemilih</a>
-                <a href="{{ route('history.index') }}"><i class="bi bi-geo-alt">&nbsp;</i>History
-                    Maps</a>
+                <a href="{{ route('history.index') }}"><i class="bi bi-clock-history"></i>&nbsp;</i>History Maps</a>
             </ul>
             @if (!request()->has('keyword'))
                 <center><a href="{{ route('dashboard') }}" class="btn btn-danger"><i

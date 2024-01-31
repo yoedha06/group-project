@@ -50,6 +50,17 @@
                             <td>{{ $h->heading }}</td>
                             <td>{{ $h->speeds }}</td>
                             <td>{{ $h->created_at }} - {{ $h->updated_at }}</td>
+                            <td width="170px">
+                                <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
+                                        class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                <form action="{{ route('history.destroy', $h->id) }}" method="post"
+                                    style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

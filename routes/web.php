@@ -41,6 +41,7 @@ Route::post('/history/store', [HistoryController::class, 'store'])->name('histor
 Route::get('/history/map', [HistoryController::class, 'map'])->name('history.map');
 
 
+Route::resource('history', HistoryController::class)->except('show');
 
 // CRUD Pemilih
 Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');
