@@ -10,6 +10,7 @@
         <div class="mb-3">
                 <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
         </div>
+        {{-- history --}}
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
             <thead style="text-align: center;">
                 <tr>
