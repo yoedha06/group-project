@@ -36,6 +36,7 @@
                         <th>heading</th>
                         <th>speeds</th>
                         <th>timestamp</th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +51,7 @@
                             <td>{{ $h->heading }}</td>
                             <td>{{ $h->speeds }}</td>
                             <td>{{ $h->created_at }} - {{ $h->updated_at }}</td>
-                            <td width="170px">
+                            <td>
                                 <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>
                                 <form action="{{ route('history.destroy', $h->id) }}" method="post"
