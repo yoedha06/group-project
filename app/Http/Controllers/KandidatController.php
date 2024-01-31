@@ -107,11 +107,12 @@ class KandidatController extends Controller
     {
         $keyword = $request->input('keyword');
 
+        // Use paginate instead of get for pagination
         $kandidat = Kandidat::where('Nama_Kandidat', 'like', "%$keyword%")
             ->orWhere('Partai_Politik', 'like', "%$keyword%")
             ->orWhere('Nomor_Urut', 'like', "%$keyword%")
             ->orWhere('Program_Kerja', 'like', "%$keyword%")
-            ->get();
+            ->paginate(10); // Adjust the number based on your requirement
 
         return view('kandidat.index', compact('kandidat'));
     }

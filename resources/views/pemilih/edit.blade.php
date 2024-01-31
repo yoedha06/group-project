@@ -110,14 +110,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Koordinat pemilih (ganti ini dengan koordinat yang diinginkan)
             var pemilihCoordinates = [-6.9147, 107.6098];
-            var koordinatString = document.getElementById('koordinat').value;
-            var koordinatArray = koordinatString.split(',').map(function (item) {
-                return parseFloat(item.trim());
-            });
 
-            var coordinates = [koordinatArray];
-
-            var map = L.map('map');
+            var map = L.map('map').setView(pemilihCoordinates, 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
             // Tambahkan marker di tengah-tengah peta sebagai petunjuk
@@ -130,16 +124,14 @@
                 updateCoordinateInput(newLatLng.lat, newLatLng.lng);
             });
 
+            // Event listener untuk menangani perubahan lokasi marker ketika digeser
+            centerMarker.on('dragend', function (event) {
+                var newLatLng = event.target.getLatLng();
+                updateCoordinateInput(newLatLng.lat, newLatLng.lng);
+            });
+
             function updateCoordinateInput(lat, lng) {
                 document.getElementById('koordinat').value = lat + ', ' + lng;
-            }
-
-            // Pemanggilan fungsi untuk menyesuaikan peta saat halaman dimuat
-            adjustMap();
-
-            // Fungsi untuk menyesuaikan peta dengan fitBounds saat koordinat diubah
-            function adjustMap() {
-                map.fitBounds(coordinates, { maxZoom: 13 });
             }
         });
     </script>
