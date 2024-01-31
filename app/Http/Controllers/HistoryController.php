@@ -23,7 +23,6 @@ class HistoryController extends Controller
     public function create()
     {
         return view('history.create');
-
     }
 
     /**
@@ -32,6 +31,7 @@ class HistoryController extends Controller
     public function store(Request $request)
     {
         history::create($request->all());
+        dd($request->all());
         return redirect()->route('history.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
