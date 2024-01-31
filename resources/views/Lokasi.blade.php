@@ -104,169 +104,170 @@
                 function calculateBounds() {
                     var bounds = new L.LatLngBounds();
 
-                function addMarker(p) {
-                    var coordinates = p.koordinat.split(',').map(function(coord) {
-                        return parseFloat(coord.trim());
-                    });
+                    function addMarker(p) {
+                        var coordinates = p.koordinat.split(',').map(function(coord) {
+                            return parseFloat(coord.trim());
+                        });
 
-                    var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' : 'red';
+                        var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' : 'red';
 
-                    var marker = L.marker(coordinates, {
-                        icon: L.divIcon({
-                            className: 'custom-marker',
-                            html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
-                                '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
-                                markerColor + '"/></svg>',
-                            iconSize: [15, 15],
-                            iconAnchor: [15, 15],
-                        })
+                        var marker = L.marker(coordinates, {
+                            icon: L.divIcon({
+                                className: 'custom-marker',
+                                html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
+                                    '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
+                                    markerColor + '"/></svg>',
+                                iconSize: [15, 15],
+                                iconAnchor: [15, 15],
+                            })
+                        }).addTo(map);
+
+                        var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
+                            .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
+                        marker.bindPopup(popupContent).openPopup();
+
+                        markers.push({
+                            marker,
+                            status: p.status_pemilihan,
+                            nama: p.nama_pemilih
+                        });
+                    }
+
+                    var map = L.map('map').setView([51.505, -0.09], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
                     }).addTo(map);
 
-                    var popupContent = "<b>Nama Pemilih:</b> " + p.nama_pemilih + "<br><b>Status Pemilihan:</b> " + p
-                        .status_pemilihan + "<br><b>Koordinat:</b> " + p.koordinat;
-                    marker.bindPopup(popupContent).openPopup();
+                    var historyControl = new L.HistoryControl();
+                    map.addControl(historyControl);
 
-                    markers.push({
-                        marker,
-                        status: p.status_pemilihan,
-                        nama: p.nama_pemilih
-                    });
-                }
-
-                var map = L.map('map').setView([51.505, -0.09], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                }).addTo(map);
-
-                var historyControl = new L.HistoryControl();
-                map.addControl(historyControl);
-
-                var routingControl = L.Routing.control({
-                    waypoints: coordinates.map(function(coord) {
-                        return L.latLng(coord.lat, coord.lng);
-                    }),
-                    createMarker: function(i, wp, nWps) {
-                        if (i === 0 || i === nWps - 1) {
-                            return L.marker(wp.latLng, {
-                                icon: L.divIcon({
-                                    className: 'custom-marker',
-                                    html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
-                                        '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
-                                        (wp.options.status === 'Sudah Memilih' ? 'green' : 'red') +
-                                        '"/></svg>',
-                                    iconSize: [15, 15],
-                                    iconAnchor: [15, 15],
-                                })
-                            });
-                        } else {
-                            return null;
+                    var routingControl = L.Routing.control({
+                        waypoints: coordinates.map(function(coord) {
+                            return L.latLng(coord.lat, coord.lng);
+                        }),
+                        createMarker: function(i, wp, nWps) {
+                            if (i === 0 || i === nWps - 1) {
+                                return L.marker(wp.latLng, {
+                                    icon: L.divIcon({
+                                        className: 'custom-marker',
+                                        html: '<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">' +
+                                            '<path d="M12 0C5.37 0 0 5.37 0 12s12 24 12 24 12-10.8 12-24S18.63 0 12 0zm0 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="' +
+                                            (wp.options.status === 'Sudah Memilih' ? 'green' : 'red') +
+                                            '"/></svg>',
+                                        iconSize: [15, 15],
+                                        iconAnchor: [15, 15],
+                                    })
+                                });
+                            } else {
+                                return null;
+                            }
+                        },
+                        lineOptions: {
+                            styles: [{
+                                color: 'green',
+                                opacity: 1,
+                                weight: 3.5
+                            }]
                         }
-                    },
-                    lineOptions: {
-                        styles: [{
-                            color: 'green',
-                            opacity: 1,
-                            weight: 3.5
-                        }]
+                    }).addTo(map);
+
+                    function filterMarkers(status) {
+                        currentFilter = status;
+                        var filteredMarkers = markers.filter(function(m) {
+                            return m.status === status;
+                        });
+
+                        // Menampilkan atau menyembunyikan pesan validasi
+                        var validationMessage = document.getElementById('validationMessage');
+                        if (filteredMarkers.length === 0) {
+                            validationMessage.innerText = "Data Tidak Ditemukan.";
+                            validationMessage.style.color = 'red';
+                            validationMessage.style.display = 'block';
+                        } else {
+                            validationMessage.style.display = 'none';
+                        }
                     }
-                }).addTo(map);
-
-                function filterMarkers(status) {
-                    currentFilter = status;
-                    var filteredMarkers = markers.filter(function(m) {
-                        return m.status === status;
-                    });
-
-                    // Menampilkan atau menyembunyikan pesan validasi
-                    var validationMessage = document.getElementById('validationMessage');
-                    if (filteredMarkers.length === 0) {
-                        validationMessage.innerText = "Data Tidak Ditemukan.";
-                        validationMessage.style.color = 'red';
-                        validationMessage.style.display = 'block';
-                    } else {
-                        validationMessage.style.display = 'none';
-                    }
-
                     // Menambahkan atau menghapus marker sesuai filter
-                pemilih.forEach(function(p) {
-                    addMarker(p);
-                });
-
-                function filterMarkers(status) {
-                    markers.forEach(function(m) {
-                        if (m.status === status) {
-                            m.marker.addTo(map);
-                        } else {
-                            map.removeLayer(m.marker);
-                        }
+                    pemilih.forEach(function(p) {
+                        addMarker(p);
                     });
-                }
 
-                function resetMarkers() {
-                    markers.forEach(function(m) {
-                        m.marker.addTo(map);
-                    });
-                }
-
-                function showLocationOnMap(latitude, longitude) {
-                    map.setView([latitude, longitude], 13);
-                }
-
-                function searchByName() {
-                    var searchValue = document.getElementById('searchInput').value.toLowerCase();
-                    var searchDataFound = false;
-                    var isDataSelected = false;
-                    markers.forEach(function(m) {
-                        if ((m.nama.toLowerCase().includes(searchValue) || searchValue === '') &&
-                            (currentFilter === '' || m.status === currentFilter)) {
-                            m.marker.addTo(map);
-                            searchDataFound = true; // Setel ke true jika ada data yang ditemukan
-                            if (m.status === 'Sudah Memilih') {
-                                isDataSelected = true; // Setel ke true jika ada data yang sudah memilih
-                            }                            var coordinates = m.marker.getLatLng();
-                            map.flyTo(coordinates, 17, {
-                                duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
-                            });
-                        } else {
-                            map.removeLayer(m.marker);
-                        }
-                    });
-                    // Menampilkan atau menyembunyikan pesan validasi
-                    var validationMessage = document.getElementById('validationMessage');
-                    if (!searchDataFound) {
-                        validationMessage.innerText = "Data Tidak Ditemukan.";
-                        validationMessage.style.color = 'red';
-                        validationMessage.style.display = 'block';
-                    } else {
-
-                        validationMessage.innerText = "Data Ditemukan!";
-                        validationMessage.style.color = 'green';
-                        validationMessage.style.display = 'block';
-
-                        // Sembunyikan pesan validasi jika ada data yang ditemukan
-                        document.getElementById('validationMessage').style.display = 'none';
-
-                        // Tampilkan pesan validasi bahwa data ditemukan
-                        document.getElementById('validationMessage').innerText = "Data ditemukan!";
-                        document.getElementById('validationMessage').style.color = 'green';
-                        document.getElementById('validationMessage').style.display = 'block';
-
+                    function filterMarkers(status) {
+                        markers.forEach(function(m) {
+                            if (m.status === status) {
+                                m.marker.addTo(map);
+                            } else {
+                                map.removeLayer(m.marker);
+                            }
+                        });
                     }
-                }
 
-
-                function filterMarkers(status) {
-                    currentFilter = status;
-                    var filterDataFound = false; // Tandai apakah data sesuai dengan filter
-
-                    markers.forEach(function(m) {
-                        if (m.nama.toLowerCase().includes(searchValue)) {
+                    function resetMarkers() {
+                        markers.forEach(function(m) {
                             m.marker.addTo(map);
+                        });
+                    }
+
+                    function showLocationOnMap(latitude, longitude) {
+                        map.setView([latitude, longitude], 13);
+                    }
+
+                    function searchByName() {
+                        var searchValue = document.getElementById('searchInput').value.toLowerCase();
+                        var searchDataFound = false;
+                        var isDataSelected = false;
+                        markers.forEach(function(m) {
+                            if ((m.nama.toLowerCase().includes(searchValue) || searchValue === '') &&
+                                (currentFilter === '' || m.status === currentFilter)) {
+                                m.marker.addTo(map);
+                                searchDataFound = true; // Setel ke true jika ada data yang ditemukan
+                                if (m.status === 'Sudah Memilih') {
+                                    isDataSelected = true; // Setel ke true jika ada data yang sudah memilih
+                                }
+                                var coordinates = m.marker.getLatLng();
+                                map.flyTo(coordinates, 17, {
+                                    duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                });
+                            } else {
+                                map.removeLayer(m.marker);
+                            }
+                        });
+                        // Menampilkan atau menyembunyikan pesan validasi
+                        var validationMessage = document.getElementById('validationMessage');
+                        if (!searchDataFound) {
+                            validationMessage.innerText = "Data Tidak Ditemukan.";
+                            validationMessage.style.color = 'red';
+                            validationMessage.style.display = 'block';
                         } else {
-                            map.removeLayer(m.marker);
+
+                            validationMessage.innerText = "Data Ditemukan!";
+                            validationMessage.style.color = 'green';
+                            validationMessage.style.display = 'block';
+
+                            // Sembunyikan pesan validasi jika ada data yang ditemukan
+                            document.getElementById('validationMessage').style.display = 'none';
+
+                            // Tampilkan pesan validasi bahwa data ditemukan
+                            document.getElementById('validationMessage').innerText = "Data ditemukan!";
+                            document.getElementById('validationMessage').style.color = 'green';
+                            document.getElementById('validationMessage').style.display = 'block';
+
                         }
-                    });
-                }
+                    }
+
+
+                    function filterMarkers(status) {
+                        currentFilter = status;
+                        var filterDataFound = false; // Tandai apakah data sesuai dengan filter
+
+                        markers.forEach(function(m) {
+                            if (m.nama.toLowerCase().includes(searchValue)) {
+                                m.marker.addTo(map);
+                            } else {
+                                map.removeLayer(m.marker);
+                            }
+                        });
+                    }
             </script>
 
         </div>
