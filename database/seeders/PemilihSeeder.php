@@ -17,16 +17,9 @@ class PemilihSeeder extends Seeder
             'nama_pemilih' => 'Yuda Hidayat',
             'tanggal_lahir' => '2005-01-02',
             'alamat' => 'Jalan Contoh No.3',
+            'koordinat' => '-6.987654321, 107.987654321',
             'no_ktp' => '1234567835676875',
             'status_pemilihan' => 'Belum Memilih',
-        ]);
-
-        Pemilih::create([
-            'nama_pemilih' => 'Zaki ',
-            'tanggal_lahir' => '2005-06-11',
-            'alamat' => 'Jalan Lain No. 456',
-            'no_ktp' => '9876543212567658',
-            'status_pemilihan' => 'Sudah Memilih',
         ]);
     }
 }

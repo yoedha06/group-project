@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class PemilihController extends Controller
 {
-
     public function tampil()
     {
         return view('dashboard');
