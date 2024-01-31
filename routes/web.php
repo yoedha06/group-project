@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+//history
+Route::resource('history', HistoryController::class);
+
 // CRUD Pemilih
 Route::get('/lokasi/{latitude?}/{longitude?}', [PemilihController::class, 'showMap'])->name('lokasi');
 
@@ -72,11 +75,4 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
 
-    //history
-    // Route::get('/History', [HistoryController::class, 'index']);
 });
-
-
-// Route::get('/Lokasi', function () {
-//     return view('Lokasi');
-// });

@@ -223,9 +223,10 @@
                             searchDataFound = true; // Setel ke true jika ada data yang ditemukan
                             if (m.status === 'Sudah Memilih') {
                                 isDataSelected = true; // Setel ke true jika ada data yang sudah memilih
-                            }                            var coordinates = m.marker.getLatLng();
+                            }                            
+                            var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 2 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                duration: 3 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
                             });
                         } else {
                             map.removeLayer(m.marker);
