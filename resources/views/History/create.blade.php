@@ -44,9 +44,9 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="altitude_accuracy">altitude_accuracy</label>
-                                <input type="number" name="altitude_accuracy" id="altitude_accuracy" class="form-control {{ $errors->has('altitude_accuracy') ? 'is-invalid' : '' }}" value="{{ old('altitude_accuracy') }}">
-                                @error('altitude_accuracy')
+                                <label for="altitude_acuracy">altitude_accuracy</label>
+                                <input type="number" name="altitude_acuracy" id="altitude_acuracy" class="form-control {{ $errors->has('altitude_acuracy') ? 'is-invalid' : '' }}" value="{{ old('altitude_acuracy') }}">
+                                @error('altitude_acuracy')
                                     <div class="invalid-feedback">{{$massage}}</div>
                                 @enderror
                             </div>
