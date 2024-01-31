@@ -33,7 +33,7 @@
                         <td>{{ $h->bounds }}</td>
                         <td>{{ $h->accuracy }}</td>
                         <td>{{ $h->altitude }}</td>
-                        <td>{{ $h->altitude_accuracy }}</td>
+                        <td>{{ $h->altitude_acuracy }}</td>
                         <td>{{ $h->heading }}</td>
                         <td>{{ $h->speeds }}</td>
                         <td>{{ $h->created_at }} - {{ $h->updated_at }}</td>
