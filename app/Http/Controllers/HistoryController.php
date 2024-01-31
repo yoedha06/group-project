@@ -63,4 +63,16 @@ class HistoryController extends Controller
     {
         //
     }
+
+    public function HistoryMap()
+    {
+        $history = history::all();
+
+        if ($history->isEmpty()) {
+            // Handle the case when $history is empty, maybe log a message or redirect
+            return redirect()->route('history'); // Replace 'some.route' with an actual route
+        }
+
+        return view('history.map', compact('history'));
+    }
 }
