@@ -103,7 +103,7 @@
 
                 function calculateBounds() {
                     var bounds = new L.LatLngBounds();
-
+                }
                 function addMarker(p) {
                     var coordinates = p.koordinat.split(',').map(function(coord) {
                         return parseFloat(coord.trim());
@@ -188,10 +188,10 @@
                     }
 
                     // Menambahkan atau menghapus marker sesuai filter
-                pemilih.forEach(function(p) {
-                    addMarker(p);
+                    pemilih.forEach(function(p) {
+                        addMarker(p);
                 });
-
+                }
                 function filterMarkers(status) {
                     markers.forEach(function(m) {
                         if (m.status === status) {
