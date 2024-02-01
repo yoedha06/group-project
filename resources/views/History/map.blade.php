@@ -19,6 +19,8 @@
 
         var historyData = @json($history);
 
+        var map = L.map('map');
+
         var layerGroup = L.layerGroup();
         var polylinePoints = [];
 
@@ -68,5 +70,44 @@
 
         // Adding a Polyline connecting the circle markers
         layerGroup.addTo(map);
+            // Create a popup with latitude and bounds information
+            var popupContent = "<b>Latitude:</b> " + lat +
+                "<br><b>Longitude:</b> " + lng +
+                "<br><b>Bounds:</b> " + "{{ $record->bounds }}";
+
+            marker.bindPopup(popupContent);
+        @endforeach
+
+        // Add the polyline after adding the markers
+        var coordinatesArray = [
+            @foreach ($history as $record)
+                [{{ $record->latlng }}],
+            @endforeach
+        ];
+
+        // Define a function to determine the color based on speed
+        function getColor(speeds) {
+            return speeds < 40 ? 'green' : speeds < 60 ? 'yellow' : 'red';
+        }
+
+        var polyline = L.polyline(coordinatesArray, {
+            color: getColor({{ $history[0]->speeds }}), // Initial color based on the first record's speed
+        }).addTo(map);
+        
+        //BOUNDS
+        var bounds = L.latLngBounds(coordinatesArray);
+        map.fitBounds(bounds);  // Set MaxBounds agar tidak bisa di-zoom keluar dari garis batas
+
+        // Tambahkan layer tile OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Set view agar peta berada di tengah batas
+        map.fitBounds(bounds);
+        // Update polyline color based on speed dynamically
+        @foreach ($history as $record)
+            polyline.setStyle({ color: getColor({{ $record->speeds }}) });
+        @endforeach
     </script>
 @endsection
