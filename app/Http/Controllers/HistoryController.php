@@ -12,7 +12,7 @@ class HistoryController extends Controller
 
     public function index()
     {
-        $history = DB::table('histori')->get();
+        $history = DB::table('histori')->orderBy('created_at', 'desc')->get();
 
         if (empty($history)) {
             return redirect()->route('history');
