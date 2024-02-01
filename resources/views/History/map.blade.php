@@ -32,14 +32,7 @@
             var speed = parseFloat(historyData[i].speeds);
             var accuracy = parseFloat(historyData[i].accuracy);
 
-            var color;
-            if (speed < 20) {
-                color = 'green';
-            } else if (speed >= 20 && speed <= 40) {
-                color = 'yellow';
-            } else {
-                color = 'red';
-            }
+            var color = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
 
             var circleMarker = L.circleMarker([lat, lng], {
                 radius: 0,
@@ -48,20 +41,19 @@
             });
 
             layerGroup.addLayer(circleMarker);
-
             polylinePoints.push([lat, lng]);
 
             // Calculate polyline color and weight based on accuracy
             var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
-            var polylineWeight;
+            var polylineWeight = accuracy >= 0 && accuracy < 20 ? 10 : accuracy >= 20 && accuracy <= 50 ? 5 : 3;
 
-            if (accuracy >= 0 && accuracy < 20) {
-                polylineWeight = 10;
-            } else if (accuracy >= 20 && accuracy <= 50) {
-                polylineWeight = 5;
-            } else {
-                polylineWeight = 3;
-            }
+            // if (accuracy >= 0 && accuracy < 20) {
+            //     polylineWeight = 10;
+            // } else if (accuracy >= 20 && accuracy <= 50) {
+            //     polylineWeight = 5;
+            // } else {
+            //     polylineWeight = 3;
+            // }
 
             if (polylinePoints.length > 1) {
                 // Draw polyline segment with appropriate color and weight
