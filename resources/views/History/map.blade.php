@@ -46,6 +46,7 @@
                 stroke: false,
             });
 
+
             layerGroup.addLayer(circleMarker);
 
             polylinePoints.push([lat, lng]);
