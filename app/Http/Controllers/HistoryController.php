@@ -19,11 +19,8 @@ class HistoryController extends Controller
         }
 
         // dd($history); // Debugging statement
-
-        $start = Pemilih::first()->koordinat;
-        $end = History::first()->latlng;
-
-        return view('history.index', compact('history', 'start', 'end'));
+        $end = History::get();
+        return view('history.index', compact('history', 'end'));
     }
 
 

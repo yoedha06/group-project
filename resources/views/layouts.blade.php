@@ -13,8 +13,8 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     {{-- Font & Icon CSS --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-xwz5KD/WT06P4ATnA5ou22Ld9bpAjsEe+JykRQs4Mj47Ro9X1W9wCr/YQnNRvBwoQzN3eFiOSt5ZyZ5OL/kDgw=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-H+2SyFiX9xT8BpsjUVm5+cWJiBuK2F/QtyWngPgzXLt6tiEn1B7P6KXSN2OiYpdYs7z3mnu+GlkRdQl+EZ6+FA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- link logo pemilu check --}}
@@ -35,6 +35,13 @@
             font-family: Arial, sans-serif;
             overflow-x: hidden;
             /* Hide horizontal scrollbar */
+            transition: background-color 0.5s;
+            /* Add transition effect for background color change */
+        }
+
+        body.dark-mode {
+            background-color: #343a40;
+            color: white;
         }
 
         #sidebar {
@@ -94,6 +101,39 @@
             margin-top: 20px;
         }
 
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            /* Align to the right */
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+        }
+
+        #mode-toggle {
+            background-color: transparent;
+            color: black;
+            border: none;
+            cursor: pointer;
+            /* Add cursor pointer */
+        }
+
+        #mode-toggle i {
+            margin-right: 5px;
+        }
+
+        #moon-icon,
+        #sun-icon {
+            display: inline;
+            /* Ensure icons are initially displayed */
+        }
+
+        #moon-icon.hide,
+        #sun-icon.hide {
+            display: none;
+            /* Hide icons when necessary */
+        }
+
         @keyframes rotateLogo {
             0% {
                 transform: rotateY(0deg);
@@ -129,6 +169,14 @@
         </div>
     </div> --}}
 
+    <!-- Navbar -->
+    <div class="navbar">
+        <button id="mode-toggle">
+            <i class="bi bi-moon-fill" id="moon-icon"></i>
+            <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
+        </button>
+    </div>
+
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
@@ -137,6 +185,7 @@
                 <h3>Pemilu</h3>
             </div>
             <ul class="list-unstyled">
+                <!-- Tambahkan daftar menu sesuai kebutuhan -->
                 <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
                     <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
                 </li>
@@ -149,8 +198,8 @@
                 <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
                     <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
                 </li>
-                <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt">&nbsp;</i>Maps Pemilih</a>
-                <a href="{{ route('history.index') }}"><i class="bi bi-clock-history"></i>&nbsp;</i>History Maps</a>
+                <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt"></i> Maps Pemilih</a>
+                <a href="{{ route('history.index') }}"><i class="bi bi-clock-history"></i> History Maps</a>
             </ul>
             @if (!request()->has('keyword'))
                 <center><a href="{{ route('dashboard') }}" class="btn btn-danger"><i
@@ -166,23 +215,54 @@
     </div>
 
     <!-- Bootstrap JS and other scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Menunggu konten utama dimuat
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     // Menghilangkan splash screen setelah 1 detik
-        //     setTimeout(function() {
-        //         document.getElementById('splash-screen').style.display = 'none';
-        //     }, 1000);
-        // });
-    </script>
-    {{-- Map --}}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the mode from localStorage, default to 'light' if not set
+            const savedMode = localStorage.getItem('mode') || 'light';
+
+            // Set the body class based on the saved mode
+            document.body.classList.toggle('dark-mode', savedMode === 'dark');
+
+            // Toggle icons based on the saved mode
+            toggleIcons(savedMode === 'dark');
+
+            // Remove the splash screen after 1 second
+            setTimeout(function() {
+                document.getElementById('splash-screen').style.display = 'none';
+            }, 1000);
+        });
+
+        document.getElementById('mode-toggle').addEventListener('click', function() {
+            // Toggle dark mode class on the body
+            document.body.classList.toggle('dark-mode');
+
+            // Save the current mode to localStorage
+            const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('mode', currentMode);
+
+            // Toggle icons based on the current mode
+            toggleIcons(document.body.classList.contains('dark-mode'));
+        });
+
+        function toggleIcons(isDarkMode) {
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIcon = document.getElementById('sun-icon');
+
+            if (isDarkMode) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'inline';
+            } else {
+                moonIcon.style.display = 'inline';
+                sunIcon.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 </html>
