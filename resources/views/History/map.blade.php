@@ -51,7 +51,15 @@
 
             // Calculate polyline color and weight based on accuracy
             var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
-            var polylineWeight = accuracy === 0 ? 10 : accuracy > 20 ? 2 : 5;
+            var polylineWeight;
+
+            if (accuracy >= 10 && accuracy < 20) {
+                polylineWeight = 10;
+            } else if (accuracy >= 20 && accuracy <= 50) {
+                polylineWeight = 5;
+            } else {
+                polylineWeight = 2;
+            }
 
             if (polylinePoints.length > 1) {
                 // Draw polyline segment with appropriate color and weight
