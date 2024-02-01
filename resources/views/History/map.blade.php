@@ -39,9 +39,8 @@
 </head>
 
 @section('content')
+<button class="btn btn-danger" onclick="window.location.href='{{ route('history.index') }}'"><i class="bi bi-arrow-left-circle"></i>&nbsp;Kembali ke History</button>
     <div id="map" style="height: 600px"></div>
-    <button class="btn btn-danger" onclick="window.location.href='{{ route('history.index') }}'">Kembali ke History</button>
-
     <script>
         var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -116,7 +115,17 @@
             }
         }
 
-        // Adding a Polyline connecting the circle markers
-        layerGroup.addTo(map);
+                var allLatLngs = polylinePoints.concat(historyData.map(function(item) {
+                var latlngStr = item.latlng;
+                var latlngArr = latlngStr.split(", ");
+                var lat = parseFloat(latlngArr[0]);
+                var lng = parseFloat(latlngArr[1]);
+                return L.latLng(lat, lng);
+            }));
+
+            map.fitBounds(L.latLngBounds(allLatLngs));
+
+            // Adding a Polyline connecting the circle markers
+            layerGroup.addTo(map);
     </script>
 @endsection
