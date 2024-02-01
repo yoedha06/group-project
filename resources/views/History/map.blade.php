@@ -12,10 +12,7 @@
 @section('content')
     <div id="map" style="height: 600px"></div>
     <script>
-        var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        var map = L.map('map');
 
         @foreach ($history as $record)
             var coordinates = "{{ $record->latlng }}".split(',');
@@ -49,7 +46,18 @@
         var polyline = L.polyline(coordinatesArray, {
             color: getColor({{ $history[0]->speeds }}), // Initial color based on the first record's speed
         }).addTo(map);
+        
+        //BOUNDS
+        var bounds = L.latLngBounds(coordinatesArray);
+        map.fitBounds(bounds);  // Set MaxBounds agar tidak bisa di-zoom keluar dari garis batas
 
+        // Tambahkan layer tile OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Set view agar peta berada di tengah batas
+        map.fitBounds(bounds);
         // Update polyline color based on speed dynamically
         @foreach ($history as $record)
             polyline.setStyle({ color: getColor({{ $record->speeds }}) });

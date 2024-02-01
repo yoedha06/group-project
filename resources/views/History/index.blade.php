@@ -50,7 +50,7 @@
                             <td>{{ $h->altitude_acuracy }}</td>
                             <td>{{ $h->heading }}</td>
                             <td>{{ $h->speeds }}</td>
-                            <td>{{ $h->created_at }} - {{ $h->updated_at }}</td>
+                            <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
                             <td>
                                 <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
                                         class="bi bi-pencil-square">&nbsp;</i>Edit</a>

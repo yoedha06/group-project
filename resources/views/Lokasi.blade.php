@@ -118,7 +118,7 @@
                 var pemilih = {!! json_encode($pemilih) !!};
                 var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(map);
 
@@ -147,9 +147,9 @@
                         dragging: true,
                     });
 
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(map);
+                    // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}', {
+                    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    // }).addTo(map);
 
                     pemilih.forEach(function(p) {
                         addMarker(p);
