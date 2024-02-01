@@ -170,14 +170,6 @@
     </div>
 
     <div class="wrapper">
-        <!-- Navbar -->
-    <div class="navbar">
-        <button id="mode-toggle">
-            <i class="bi bi-moon-fill" id="moon-icon"></i>
-            <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
-        </button>
-    </div>
-
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
