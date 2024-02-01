@@ -207,7 +207,7 @@
                 <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
             </button>
             </div>
-            {{-- content all --}}
+            {{-- content alll --}}
             @yield('content')
         </div>
     </div>
