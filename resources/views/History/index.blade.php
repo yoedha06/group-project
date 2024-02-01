@@ -69,6 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $history->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </body>
 @endsection
