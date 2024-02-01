@@ -12,10 +12,7 @@
 @section('content')
     <div id="map" style="height: 600px"></div>
     <script>
-        var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        var map = L.map('map');
 
         var coordinatesArray = [];
 
@@ -34,5 +31,17 @@
         var polyline = L.polyline(coordinatesArray, {
             color: 'blue'
         }).addTo(map);
+
+        //BOUNDS
+        var bounds = L.latLngBounds(coordinatesArray);
+        map.fitBounds(bounds);  // Set MaxBounds agar tidak bisa di-zoom keluar dari garis batas
+
+        // Tambahkan layer tile OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Set view agar peta berada di tengah batas
+        map.fitBounds(bounds);
     </script>
 @endsection

@@ -15,7 +15,25 @@ class HistorySeeder extends Seeder
     {
         history::create([
             'latlng' => '-6.987654321, 107.987654321',
-            'bounds' => '-6.987654321, 107.987654321',
+            'bounds' => '0',
+            'accuracy' => '100',
+            'altitude' => '100',
+            'altitude_acuracy' => '100',
+            'heading' => '100',
+            'speeds' => '100',
+        ]);
+        history::create([
+            'latlng' => '-6.987654321, 107.987654321',
+            'bounds' => '0',
+            'accuracy' => '100',
+            'altitude' => '100',
+            'altitude_acuracy' => '100',
+            'heading' => '100',
+            'speeds' => '100',
+        ]);
+        history::create([
+            'latlng' => '-6.987654321, 107.987654321',
+            'bounds' => '0',
             'accuracy' => '100',
             'altitude' => '100',
             'altitude_acuracy' => '100',
