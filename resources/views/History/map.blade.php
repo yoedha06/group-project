@@ -64,7 +64,6 @@
             }
 
             if (polylinePoints.length > 1) {
-                // Draw polyline segment with appropriate color and weight
                 var polyline = L.polyline(polylinePoints.slice(-2), {
                     color: polylineColor,
                     weight: polylineWeight,
