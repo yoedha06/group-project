@@ -28,12 +28,14 @@
     {{-- Favicon --}}
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
 
+
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             overflow-x: hidden;
             /* Hide horizontal scrollbar */
+<<<<<<< HEAD
             transition: background-color 0.5s;
             /* Add transition effect for background color change */
         }
@@ -41,6 +43,8 @@
         body.dark-mode {
             background-color: #343a40;
             color: white;
+=======
+>>>>>>> 21a748c72d24e70e582303a3faf44e27bdc5f4e3
         }
 
         #sidebar {
@@ -158,7 +162,7 @@
 
 <body>
     <!-- Splash Screen -->
-    <div id="splash-screen">
+    {{-- <div id="splash-screen">
         <div id="splash-content">
             <!-- Ganti konten lord-icon dengan gambar GIF -->
             <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif" alt="GIF Logo"
@@ -166,7 +170,7 @@
 
             <h2>Pemilu...</h2>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Navbar -->
     <div class="navbar">
@@ -262,7 +266,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>

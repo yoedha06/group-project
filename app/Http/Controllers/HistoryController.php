@@ -5,25 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\history;
 use App\Models\Pemilih;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
 
     public function index()
     {
-        $history = history::all();
-        return view('history.index', compact('history'));
+        $history = DB::table('histori')->get();
+
+        if (empty($history)) {
+            return redirect()->route('history');
+        }
+
+        // dd($history); // Debugging statement
+
+        $start = Pemilih::first()->koordinat;
+        $end = History::first()->latlng;
+
+        return view('history.index', compact('history', 'start', 'end'));
+    }
+
+
+
+    public function map()
+    {
+        $history = DB::table('histori')->get();
+        // dd($history);
+
+        return view('history.map', compact('history'));
     }
 
     public function create()
     {
         return view('history.create');
-
     }
 
     public function store(Request $request)
     {
         history::create($request->all());
+        // dd($request->all());
         return redirect()->route('history.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -59,15 +80,18 @@ class HistoryController extends Controller
         return redirect()->route('history.index')->with('success', 'Pemilih berhasil dihapus!');
     }
 
-    public function HistoryMap()
-    {
-        $history = history::all();
+    // public function HistoryMap()
+    // {
+    //     $history = History::all();
 
-        if ($history->isEmpty()) {
-            // Handle the case when $history is empty, maybe log a message or redirect
-            return redirect()->route('history'); // Replace 'some.route' with an actual route
-        }
+    //     if ($history->isEmpty()) {
+    //         return redirect()->route('history');
+    //     }
 
-        return view('history.map', compact('history'));
-    }
+    //     $start = Pemilih::first()->koordinat;
+    //     $end = History::first()->latlng;
+    //     // dd($start, $end, $history);
+
+    //     return view('history.index', compact('history', 'start', 'end'));
+    // }
 }
