@@ -169,14 +169,6 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <button id="mode-toggle">
-            <i class="bi bi-moon-fill" id="moon-icon"></i>
-            <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
-        </button>
-    </div>
-
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
@@ -209,6 +201,12 @@
         </nav>
 
         <div class="container container-content">
+            <div class="nav" style="justify-content: end;margin-top: 10px;">
+            <button id="mode-toggle">
+                <i class="bi bi-moon-fill" id="moon-icon"></i>
+                <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
+            </button>
+            </div>
             {{-- content all --}}
             @yield('content')
         </div>

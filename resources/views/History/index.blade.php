@@ -19,10 +19,13 @@
             </center>
             <h2>History</h2>
 
-            <div class="mb-3">
+            <div class="d-flex ">
                 <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
+                &nbsp;
+                <a href="{{ route('history.map') }}" class="btn btn-warning"> <i class="bi bi-geo"></i>Map History</a>
             </div>
-            {{-- history --}}
+
+            
 
             <table class="table table-bordered table-striped" style="margin-top: 10px;">
                 <thead style="text-align: center;">
@@ -43,7 +46,7 @@
                     @foreach ($history as $h)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $h->latlng }}</td>
+                            <td width="150px;">{{ $h->latlng }}</td>
                             <td>{{ $h->bounds }}</td>
                             <td>{{ $h->accuracy }}</td>
                             <td>{{ $h->altitude }}</td>
@@ -66,7 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <a href="{{ route('history.map') }}" class="btn btn-success">Map</a>
+            <div class="d-flex justify-content-center">
+                {{ $history->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </body>
 @endsection
