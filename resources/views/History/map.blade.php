@@ -22,6 +22,8 @@
         var layerGroup = L.layerGroup();
         var polylinePoints = [];
 
+        // ...
+
         for (var i = 0; i < historyData.length; i++) {
             var latlngStr = historyData[i].latlng;
             var latlngArr = latlngStr.split(", ");
@@ -39,9 +41,9 @@
             }
 
             var circleMarker = L.circleMarker([lat, lng], {
-                radius: 0.10,
+                radius: 0,
                 color: color,
-                fillOpacity: 1
+                stroke: false,
             });
 
             layerGroup.addLayer(circleMarker);
@@ -50,12 +52,18 @@
             var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
 
             if (polylinePoints.length > 1) {
-                // Draw polyline segment with appropriate color
+                // Draw polyline segment with appropriate color and weight
                 L.polyline(polylinePoints.slice(-2), {
-                    color: polylineColor
+                    color: polylineColor,
+                    weight: 5,
+                    opacity: 1.0, // Sesuaikan dengan kebutuhan Anda
                 }).addTo(map);
             }
         }
+
+        // ...
+
+
 
         // Adding a Polyline connecting the circle markers
         layerGroup.addTo(map);
