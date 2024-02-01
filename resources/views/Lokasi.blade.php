@@ -86,21 +86,15 @@
                 margin-top: 10px;
                 padding: 10px;
                 border: 2px solid #d9534f;
-                /* Warna border untuk pesan error */
                 border-radius: 5px;
                 color: #d9534f;
-                /* Warna teks untuk pesan error */
                 background-color: #f2dede;
-                /* Warna latar belakang untuk pesan error */
             }
 
             #validationMessage.success {
                 border-color: #5bc0de;
-                /* Warna border untuk pesan sukses */
                 color: #5bc0de;
-                /* Warna teks untuk pesan sukses */
                 background-color: #d9edf7;
-                /* Warna latar belakang untuk pesan sukses */
             }
         </style>
         <div class="map-container">
@@ -110,8 +104,8 @@
                     <button class="search" onclick="searchByName()">Cari</button>
                 </div>
                 <div>
-                    <button class="filter-sudah" onclick="filterMarkers('Sudah Memilih')">Sudah Memilih</button>
-                    <button class="filter-belum" onclick="filterMarkers('Belum Memilih')">Belum Memilih</button>
+                    <button class="filter-sudah" onclick="filterMarkersByStatus('Sudah Memilih')">Sudah Memilih</button>
+                    <button class="filter-belum" onclick="filterMarkersByStatus('Belum Memilih')">Belum Memilih</button>
                     <button class="reset" onclick="resetMarkers()">Lihat Semua</button>
                 </div>
             </div>
@@ -120,8 +114,6 @@
             <br>
             <div id="map" style="height: 600px"></div>
 
-
-            {{-- script js maps --}}
             <script>
                 var pemilih = {!! json_encode($pemilih) !!};
                 var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
@@ -131,32 +123,28 @@
                 }).addTo(map);
 
                 var markers = [];
-                var currentFilter = ''; // Variabel untuk menyimpan status pemilihan yang sedang di-filter
-
+                var currentFilter = '';
 
                 function calculateBounds() {
                     var bounds = new L.LatLngBounds();
-
                     markers.forEach(function(m) {
                         bounds.extend(m.marker.getLatLng());
                     });
-
                     return bounds;
                 }
 
                 function setupMap() {
-
                     var maxBounds = [
-                        [-10, 95], // Koordinat sudut barat daya (SW)
-                        [5, 150] // Koordinat sudut timur laut (NE)
+                        [-10, 95],
+                        [5, 150]
                     ];
 
                     map = L.map('map', {
                         center: [-2.5489, 118.0149],
                         zoom: 5,
-                        maxBounds: maxBounds, // Mengatur batas maksimum peta
-                        maxBoundsViscosity: 0.9, // Kontrol kekenyalan ketika melampaui batas
-                        dragging: true, // Aktifkan fungsi geser peta
+                        maxBounds: maxBounds,
+                        maxBoundsViscosity: 0.9,
+                        dragging: true,
                     });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -167,7 +155,6 @@
                         addMarker(p);
                     });
 
-                    // Setelah menambahkan semua marker, atur tampilan peta agar mencakup semua marker
                     var bounds = calculateBounds();
                     map.fitBounds(bounds);
                 }
@@ -178,7 +165,6 @@
                             return parseFloat(coord.trim());
                         });
 
-                        // Validasi koordinat
                         if (!isNaN(coordinates[0]) && !isNaN(coordinates[1])) {
                             var markerColor = p.status_pemilihan === 'Sudah Memilih' ? 'green' : 'red';
 
@@ -215,10 +201,11 @@
                     addMarker(p);
                 });
 
-                function filterMarkers(status) {
+                function filterMarkersByStatus(status) {
                     currentFilter = status;
+
                     markers.forEach(function(m) {
-                        if (m.status === status) {
+                        if (m.status === status || status === 'Semua') {
                             m.marker.addTo(map);
                         } else {
                             map.removeLayer(m.marker);
@@ -227,7 +214,8 @@
                 }
 
                 function resetMarkers() {
-                    currentFilter = ''; // Reset variabel currentFilter
+                    currentFilter = '';
+
                     markers.forEach(function(m) {
                         m.marker.addTo(map);
                     });
@@ -246,59 +234,37 @@
                         if ((m.nama.toLowerCase().includes(searchValue) || searchValue === '') &&
                             (currentFilter === '' || m.status === currentFilter)) {
                             m.marker.addTo(map);
-                            searchDataFound = true; // Setel ke true jika ada data yang ditemukan
+                            searchDataFound = true;
 
                             if (m.status === 'Sudah Memilih') {
-                                isDataSelected = true; // Setel ke true jika ada data yang sudah memilih
+                                isDataSelected = true;
                             }
+
                             var coordinates = m.marker.getLatLng();
                             map.flyTo(coordinates, 17, {
-                                duration: 3 // Anda dapat menyesuaikan durasi (dalam detik) sesuai kebutuhan
+                                duration: 3
+                            });
+                            m.marker.openPopup();
+
+                            markers.forEach(function(marker) {
+                                if (marker.nama === m.nama && marker.marker !== m.marker) {
+                                    marker.marker.addTo(map);
+                                }
                             });
                         } else {
                             map.removeLayer(m.marker);
                         }
                     });
 
-
                     if (!searchDataFound) {
-                        document.getElementById('validationMessage').innerText = "Data Belum Memilih.";
+                        document.getElementById('validationMessage').innerText =
+                            currentFilter === '' ? "Data not found." : "No matching data for the selected filter.";
                         document.getElementById('validationMessage').style.display = 'block';
                     } else {
-                        // Sembunyikan pesan validasi jika ada data yang ditemukan
                         document.getElementById('validationMessage').style.display = 'none';
 
-                        // Tampilkan pesan validasi bahwa data ditemukan
-                        document.getElementById('validationMessage').innerText = "Data ditemukan!";
-                        document.getElementById('validationMessage').style.color = 'green';
-                        document.getElementById('validationMessage').style.display = 'block';
-                    }
-                }
-
-
-                function filterMarkers(status) {
-                    currentFilter = status;
-                    var filterDataFound = false; // Tandai apakah data sesuai dengan filter
-
-                    m
-                    arkers.forEach(function(m) {
-                        if (m.status === status) {
-                            m.marker.addTo(map);
-                            filterDataFound = true; // Setel ke true jika ada data yang sesuai dengan filter
-                        } else {
-                            map.removeLayer(m.marker);
-                        }
-                    });
-
-                    // Tampilkan pesan validasi jika tidak ada data yang sesuai dengan filter
-                    if (!searchDataFound) {
-                        document.getElementById('validationMessage').innerText = "Data Belum Memilih.";
-                        document.getElementById('validationMessage').style.display = 'block';
-                    } else {
-                        // Sembunyikan pesan validasi jika ada data yang sesuai dengan filter
-                        document.getElementById('validationMessage').style.display = 'none';
-
-                        document.getElementById('validationMessage').innerText = "Data ditemukan!";
+                        document.getElementById('validationMessage').innerText =
+                            isDataSelected ? "Selected data found!" : "Data found!";
                         document.getElementById('validationMessage').style.color = 'green';
                         document.getElementById('validationMessage').style.display = 'block';
                     }

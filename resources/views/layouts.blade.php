@@ -159,7 +159,7 @@
 
 <body>
     <!-- Splash Screen -->
-    {{-- <div id="splash-screen">
+    <div id="splash-screen">
         <div id="splash-content">
             <!-- Ganti konten lord-icon dengan gambar GIF -->
             <img src="https://cdn.kibrispdr.org/data/390/gambar-kartun-coblos-4.gif" alt="GIF Logo"
@@ -167,7 +167,7 @@
 
             <h2>Pemilu...</h2>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Navbar -->
     <div class="navbar">
