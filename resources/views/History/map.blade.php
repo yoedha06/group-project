@@ -55,12 +55,12 @@
             var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
             var polylineWeight;
 
-            if (accuracy >= 10 && accuracy < 20) {
+            if (accuracy >= 0 && accuracy < 20) {
                 polylineWeight = 10;
             } else if (accuracy >= 20 && accuracy <= 50) {
                 polylineWeight = 5;
             } else {
-                polylineWeight = 2;
+                polylineWeight = 3;
             }
 
             if (polylinePoints.length > 1) {
@@ -87,5 +87,4 @@
         // Adding a Polyline connecting the circle markers
         layerGroup.addTo(map);
     </script>
-
 @endsection
