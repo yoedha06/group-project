@@ -28,10 +28,9 @@ class HistoryController extends Controller
     public function map()
     {
         $history = DB::table('histori')->get();
-        // dd($history);
-
         return view('history.map', compact('history'));
     }
+
 
     public function create()
     {

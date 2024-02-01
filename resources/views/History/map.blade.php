@@ -17,22 +17,47 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var coordinatesArray = [];
+        var historyData = @json($history);
 
-        @foreach ($history as $record)
-            var coordinates = "{{ $record->latlng }}".split(',');
-            var lat = parseFloat(coordinates[0]);
-            var lng = parseFloat(coordinates[1]);
+        var layerGroup = L.layerGroup();
+        var polylinePoints = [];
 
-            var marker = L.circleMarker([lat, lng], {
-                radius: 5
-            }).addTo(map);
+        for (var i = 0; i < historyData.length; i++) {
+            var latlngStr = historyData[i].latlng;
+            var latlngArr = latlngStr.split(", ");
+            var lat = parseFloat(latlngArr[0]);
+            var lng = parseFloat(latlngArr[1]);
+            var speed = parseFloat(historyData[i].speeds);
 
-            coordinatesArray.push([lat, lng]);
-        @endforeach
+            var color;
+            if (speed < 20) {
+                color = 'green';
+            } else if (speed >= 20 && speed <= 40) {
+                color = 'yellow';
+            } else {
+                color = 'red';
+            }
 
-        var polyline = L.polyline(coordinatesArray, {
-            color: 'blue'
-        }).addTo(map);
+            var circleMarker = L.circleMarker([lat, lng], {
+                radius: 0.10,
+                color: color,
+                fillOpacity: 1
+            });
+
+            layerGroup.addLayer(circleMarker);
+
+            polylinePoints.push([lat, lng]);
+            var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
+
+            if (polylinePoints.length > 1) {
+                // Draw polyline segment with appropriate color
+                L.polyline(polylinePoints.slice(-2), {
+                    color: polylineColor
+                }).addTo(map);
+            }
+        }
+
+        // Adding a Polyline connecting the circle markers
+        layerGroup.addTo(map);
     </script>
 @endsection
