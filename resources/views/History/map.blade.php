@@ -11,8 +11,6 @@
 
 @section('content')
     <div id="map" style="height: 600px"></div>
-    <button onclick="window.location.href='{{ route('history.index') }}'">Kembali ke History</button>
-
     <script>
         var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -68,24 +66,16 @@
                 var polyline = L.polyline(polylinePoints.slice(-2), {
                     color: polylineColor,
                     weight: polylineWeight,
-                    opacity: 1.0,
+                    opacity: 1.0, // Sesuaikan dengan kebutuhan Anda
                 }).addTo(map);
 
                 // Add popup with data
                 var popupContent = "Speed: " + speed + " km/h<br>Accuracy: " + accuracy + " m";
                 polyline.bindPopup(popupContent);
             }
-
-            // Add markers for the initial and final points
-            if (i === 0 || i === historyData.length - 1) {
-                var marker = L.marker([lat, lng]).addTo(map);
-                var markerPopupContent = "Speed: " + speed + " km/h<br>Accuracy: " + accuracy + " m";
-                marker.bindPopup(markerPopupContent);
-            }
         }
 
         // Adding a Polyline connecting the circle markers
         layerGroup.addTo(map);
     </script>
-
 @endsection
