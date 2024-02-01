@@ -280,7 +280,8 @@
                     currentFilter = status;
                     var filterDataFound = false; // Tandai apakah data sesuai dengan filter
 
-                    markers.forEach(function(m) {
+                    m
+                    arkers.forEach(function(m) {
                         if (m.status === status) {
                             m.marker.addTo(map);
                             filterDataFound = true; // Setel ke true jika ada data yang sesuai dengan filter
