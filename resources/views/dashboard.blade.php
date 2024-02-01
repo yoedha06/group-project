@@ -294,6 +294,32 @@
             padding: 50px;
             text-align: center;
         }
+        body.night-mode {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+/* Aturan gaya untuk tabel dalam mode malam */
+body.night-mode table {
+    background-color: #1a1e21; /* Warna latar belakang tabel */
+    color: #ffffff; /* Warna teks pada tabel */
+    border-color: #ffffff; /* Warna garis tepi tabel */
+}
+
+body.night-mode th,
+body.night-mode td {
+    border-color: #ffffff; /* Warna garis tepi sel tabel */
+}
+
+/* Gaya tambahan untuk elemen lain jika diperlukan */
+
+
+/* Gaya tambahan untuk elemen lain jika diperlukan */
+
+
+/* Add more night mode styles for other elements as needed */
+
+
     </style>
 </head>
 
@@ -350,6 +376,10 @@
                             @endif
                         </div>
                     </div>
+                    <button id="mode-toggle">
+                        <i id="moon-icon" class="bi bi-moon"></i>
+                        <i id="sun-icon" class="bi bi-brightness-high" style="display: none;"></i>
+                    </button>
             </div>
 
     </nav>
@@ -685,6 +715,45 @@
 
     // Panggil fungsi updateTimer untuk menampilkan timer secara langsung
     updateTimer();
+    document.addEventListener('DOMContentLoaded', function () {
+    const body = document.body;
+    const moonIcon = document.getElementById('moon-icon');
+    const sunIcon = document.getElementById('sun-icon');
+
+    // Check if user has a preferred mode in local storage
+    const preferredMode = localStorage.getItem('preferredMode');
+
+    // Apply preferred mode or default to day mode
+    if (preferredMode === 'night') {
+        body.classList.add('night-mode');
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'inline';
+    } else {
+        body.classList.add('day-mode');
+        moonIcon.style.display = 'inline';
+        sunIcon.style.display = 'none';
+    }
+
+    // Toggle between day and night modes when clicked
+    document.getElementById('mode-toggle').addEventListener('click', function () {
+        if (body.classList.contains('day-mode')) {
+            body.classList.remove('day-mode');
+            body.classList.add('night-mode');
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'inline';
+            localStorage.setItem('preferredMode', 'night');
+        } else {
+            body.classList.remove('night-mode');
+            body.classList.add('day-mode');
+            moonIcon.style.display = 'inline';
+            sunIcon.style.display = 'none';
+            localStorage.setItem('preferredMode', 'day');
+        }
+    });
+});
+
+
+
 </script>
 
 </body>
