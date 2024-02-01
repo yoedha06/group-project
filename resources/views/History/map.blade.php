@@ -32,7 +32,7 @@
         @endforeach
 
         var polyline = L.polyline(coordinatesArray, {
-            color: 'red'
+            color: 'blue'
         }).addTo(map);
     </script>
 @endsection
