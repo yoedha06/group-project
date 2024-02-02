@@ -201,13 +201,14 @@
         </nav>
 
         <div class="container container-content">
+            {{-- content all --}}
             <div class="nav" style="justify-content: end;margin-top: 10px;">
             <button id="mode-toggle">
                 <i class="bi bi-moon-fill" id="moon-icon"></i>
                 <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
             </button>
             </div>
-            {{-- content all --}}
+            {{-- content alll --}}
             @yield('content')
         </div>
     </div>
