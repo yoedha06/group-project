@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\PartaiPolitikController;
 use App\Http\Controllers\KandidatController;
@@ -82,4 +83,6 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
+    Route::get('/grafik', [ChartController::class, 'index'])->name('hasilpemilih.grafik');
+
 });
