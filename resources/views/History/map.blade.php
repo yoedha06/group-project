@@ -16,7 +16,8 @@
         }
 
         #map {
-            height: 600px;
+            display: grid;
+            height: 580px;
             margin-top: 20px;
         }
 
@@ -41,7 +42,7 @@
 @section('content')
     <button class="btn btn-danger" onclick="window.location.href='{{ route('history.index') }}'"><i
             class="bi bi-arrow-left-circle"></i>&nbsp;Kembali ke History</button>
-    <div id="map" style="height: 600px"></div>
+    <div id="map"></div>
     <script>
         var map = L.map('map').setView([-6.895364793103795, 107.53971757412086], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -73,16 +74,8 @@
             polylinePoints.push([lat, lng]);
 
             // Calculate polyline color and weight based on accuracy
-            var polylineColor = speed < 20 ? "green" : speed >= 20 && speed <= 40 ? "yellow" : "red";
+            var polylineColor = speed < 20 ? "#7BFF00" : speed >= 20 && speed <= 40 ? "#FFFF19" : "#FF2B11";
             var polylineWeight = accuracy >= 0 && accuracy < 20 ? 10 : accuracy >= 20 && accuracy <= 50 ? 5 : 3;
-
-            // if (accuracy >= 0 && accuracy < 20) {
-            //     polylineWeight = 10;
-            // } else if (accuracy >= 20 && accuracy <= 50) {
-            //     polylineWeight = 5;
-            // } else {
-            //     polylineWeight = 3;
-            // }
 
             if (polylinePoints.length > 1) {
                 var polyline = L.polyline(polylinePoints.slice(-2), {
