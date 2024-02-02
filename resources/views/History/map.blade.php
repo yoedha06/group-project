@@ -105,14 +105,28 @@
 
             // Add markers for the initial and final points
             if (i === 0 || i === historyData.length - 1) {
-                var marker = L.marker([lat, lng]).addTo(map);
+    var marker = L.marker([lat, lng]).addTo(map);
 
-                // Add popup with latitude and bounds information
-                var markerPopupContent = "Latitude: " + lat.toFixed(6) +
-                    "<br>Longitude: " + lng.toFixed(6) +
-                    "<br>Bounds: " + map.getBounds().toBBoxString();
-                marker.bindPopup(markerPopupContent);
-            }
+    // Add popup with latitude and bounds information
+    var markerPopupContent =
+        "<div style='max-width: 200px; overflow: hidden; text-overflow: ellipsis;'>" +
+        "<div style='font-size: 12px;'>" +
+        "Latitude: " + lat.toFixed(6) +
+        "<br>Longitude: " + lng.toFixed(6) +
+        "<br>Bounds: " + map.getBounds().toBBoxString() +
+        "</div>" +
+        "</div>";
+
+    // Set the maxWidth option to control the maximum width of the popup
+    var popupOptions = {
+        maxWidth: 200, // Adjust this value according to your needs
+    };
+
+    marker.bindPopup(markerPopupContent, popupOptions);
+}
+
+
+
         }
 
                 var allLatLngs = polylinePoints.concat(historyData.map(function(item) {
