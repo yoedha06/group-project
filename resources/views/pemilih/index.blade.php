@@ -50,49 +50,58 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pemilih as $p)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $p->nama_pemilih }}</td>
-                        <td>{{ $p->tanggal_lahir }}</td>
-                        <td>{{ $p->alamat }}</td>
-                        <td style="width:100px;">{{ $p->koordinat }}</td>
-                        <td>{{ $p->no_ktp }}</td>
-                        <td>
-                            <span class="badge {{ $p->status_pemilihan == 'Sudah Memilih' ? 'bg-success' : 'bg-danger' }}">
-                                {{ $p->status_pemilihan }}
-                            </span>
-                        </td>
-                        <td>
-                            @if (auth()->user()->role === 'admin')
-                                {{-- Edit Button --}}
-                                <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
-                                        class="bi bi-pencil-square"></i> Edit</a>
+                @if (count($pemilih) > 0)
+                    @foreach ($pemilih as $p)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $p->nama_pemilih }}</td>
+                            <td>{{ $p->tanggal_lahir }}</td>
+                            <td>{{ $p->alamat }}</td>
+                            <td style="width:100px;">{{ $p->koordinat }}</td>
+                            <td>{{ $p->no_ktp }}</td>
+                            <td>
+                                <span class="badge {{ $p->status_pemilihan == 'Sudah Memilih' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $p->status_pemilihan }}
+                                </span>
+                            </td>
+                            <td>
+                                @if (auth()->user()->role === 'admin')
+                                    {{-- Edit Button --}}
+                                    <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
+                                            class="bi bi-pencil-square"></i> Edit</a>
 
-                                {{-- Delete Form --}}
-                                <form id="deleteForm-{{ $p->Id_Pemilih }}"
-                                    action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
-                                            class="bi bi-trash3-fill"></i> Hapus</button>
-                                </form>
-                            @endif
+                                    {{-- Delete Form --}}
+                                    <form id="deleteForm-{{ $p->Id_Pemilih }}"
+                                        action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
+                                                class="bi bi-trash3-fill"></i> Hapus</button>
+                                    </form>
+                                @endif
 
-                            {{-- JavaScript Confirm Delete --}}
-                            <script>
-                                function confirmDelete(Id_Pemilih) {
-                                    if (confirm("Apakah Anda yakin ingin menghapus pemilih ini?")) {
-                                        document.getElementById('deleteForm-' + Id_Pemilih).submit();
-                                    } else {
-                                        alert("Penghapusan pemilih dibatalkan.");
+                                {{-- JavaScript Confirm Delete --}}
+                                <script>
+                                    function confirmDelete(Id_Pemilih) {
+                                        if (confirm("Apakah Anda yakin ingin menghapus pemilih ini?")) {
+                                            document.getElementById('deleteForm-' + Id_Pemilih).submit();
+                                        } else {
+                                            alert("Penghapusan pemilih dibatalkan.");
+                                        }
                                     }
-                                }
-                            </script>
+                                </script>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="8" class="text-center">
+                            <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
+                            <p class="mt-2">Tidak ada data, maaf.</p>
                         </td>
                     </tr>
-                @endforeach
+                @endif
             </tbody>
         </table>
 
