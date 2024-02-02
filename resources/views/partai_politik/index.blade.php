@@ -28,7 +28,6 @@
             <thead>
                 <tr>
                     <th>List</th>
-                    <th>ID Partai</th>
                     <th>Nama Partai</th>
                     <th>Ideologi</th>
                     <th>Jumlah Anggota</th>
@@ -43,7 +42,6 @@
                 @foreach ($partaiPolitiks as $partaiPolitik)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $partaiPolitik->Id_Partai }}</td>
                         <td>{{ $partaiPolitik->NamaPartai }}</td>
                         <td width="200px;">{{ $partaiPolitik->Ideologi }}</td>
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
