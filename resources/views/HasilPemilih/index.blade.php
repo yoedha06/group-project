@@ -7,8 +7,16 @@
         </center>
         <h2>Hasil Pemilihan</h2>
         <div class="mb-3">
-        @if(auth()->user()->role === 'admin')
-            <a href="/hasilpemilihan/create" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Tambah Hasil Pemilih</a>
+            @if (auth()->user()->role === 'admin')
+                <a href="/hasilpemilihan/create" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Tambah Hasil Pemilih</a>
+            @endif
+        </div>
+        <div class="mb-3 float-right">
+            @if (auth()->user()->role === 'admin')
+                <a href="/hasilpemilihan/grafik" class="btn btn-success">
+                    <i class="bi bi-bar-chart-line"></i> <!-- Icon grafik menggunakan Bootstrap Icons -->
+                    Lihat Grafik
+                </a>
             @endif
         </div>
 
@@ -27,8 +35,8 @@
                     {{-- <th scope="col">Id Hasil</th> --}}
                     <th scope="col">Nama Pemilih</th>
                     <th scope="col">Nama Kandidat</th>
-                    @if(auth()->user()->role === 'admin')
-                    <th scope="col">Aksi</th>
+                    @if (auth()->user()->role === 'admin')
+                        <th scope="col">Aksi</th>
                     @endif
                 </tr>
             </thead>
@@ -40,14 +48,14 @@
                         <td>{{ $hasil->pemilih->nama_pemilih ?? 'Null' }}</td>
                         <td>{{ $hasil->kandidat->Nama_Kandidat ?? 'Null' }}</td>
                         <td>
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('hasilpemilihan.edit', ['id' => $hasil->Id_HasilPemilihan]) }}"
-                                class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                            <a href="{{ route('hasilpemilihan.delete', ['id' => $hasil->Id_HasilPemilihan]) }}"
-                                class="btn btn-danger"><i class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
+                            @if (auth()->user()->role === 'admin')
+                                <a href="{{ route('hasilpemilihan.edit', ['id' => $hasil->Id_HasilPemilihan]) }}"
+                                    class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                <a href="{{ route('hasilpemilihan.delete', ['id' => $hasil->Id_HasilPemilihan]) }}"
+                                    class="btn btn-danger"><i class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
                         </td>
-                        @endif
-                    </tr>
+                @endif
+                </tr>
                 @endforeach
             </tbody>
         </table>
