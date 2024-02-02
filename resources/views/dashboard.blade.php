@@ -295,34 +295,21 @@
             text-align: center;
         }
         body.night-mode {
-    background-color: #343a40;
-    color: #ffffff;
-}
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        body.night-mode table {
+            background-color: #1a1e21; /* Warna latar belakang tabel */
+            color: #ffffff; /* Warna teks pada tabel */
+            border-color: #ffffff; /* Warna garis tepi tabel */
+        }
 
-/* Aturan gaya untuk tabel dalam mode malam */
-body.night-mode table {
-    background-color: #1a1e21; /* Warna latar belakang tabel */
-    color: #ffffff; /* Warna teks pada tabel */
-    border-color: #ffffff; /* Warna garis tepi tabel */
-}
-
-body.night-mode th,
-body.night-mode td {
-    border-color: #ffffff; /* Warna garis tepi sel tabel */
-}
-
-/* Gaya tambahan untuk elemen lain jika diperlukan */
-
-
-/* Gaya tambahan untuk elemen lain jika diperlukan */
-
-
-/* Add more night mode styles for other elements as needed */
-
-
+        body.night-mode th,
+        body.night-mode td {
+            border-color: #ffffff; /* Warna garis tepi sel tabel */
+        }
     </style>
 </head>
-
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -526,10 +513,10 @@ body.night-mode td {
         <section class="features">
             <div class="container">
                 <div class="feature-box">
-                    <h2 class="display-4 text-center">Pengumuman Pemilu</h2>
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="feature">
+                                <h3>Pengumuman Pemilu</h3>
                                 <img src="http://smkn11bdg.sch.id/fotoGuru/1620289429.jpg" alt="Pengumuman Pemilu"
                                     class="img-fluid">
                                 <p class="mt-3">
