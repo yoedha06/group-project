@@ -24,6 +24,9 @@ crossorigin=""/>
                                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 }).addTo(map);
+
+                                var maxBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
+                                map.setMaxBounds(maxBounds);
                             
                                 // Create a red icon for the marker
                                 var redIcon = L.icon({
@@ -65,16 +68,16 @@ crossorigin=""/>
                                 function showError(error) {
                                     switch (error.code) {
                                         case error.PERMISSION_DENIED:
-                                            alert("Geolocation permission denied by user.");
+                                            alert("Izinkan lokasi pada pengaturan,untuk mendapatkan lokasi anda.");
                                             break;
                                         case error.POSITION_UNAVAILABLE:
-                                            alert("Location information is unavailable.");
+                                            alert("Informasi lokasi tidak tersedia.");  
                                             break;
                                         case error.TIMEOUT:
-                                            alert("Geolocation request timed out.");
+                                            alert("Permintaan geolokasi telah habis waktu.");
                                             break;
                                         case error.UNKNOWN_ERROR:
-                                            alert("An unknown error occurred.");
+                                            alert("Terjadi kesalahan yang tidak diketahui.");
                                             break;
                                     }
                                 }
@@ -88,8 +91,6 @@ crossorigin=""/>
                                     document.getElementById('latlng').value = markerLatLng.lat + ', ' + markerLatLng.lng;
                                 });
                             </script>
-                            
-                            
                             <br>
                             <div class="form-group">
                                 <label for="latlng">latlng</label>
