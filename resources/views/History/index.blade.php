@@ -43,31 +43,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($history as $h)
+                    @if(count($history) > 0)
+                        @foreach ($history as $h)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td width="150px;">{{ $h->latlng }}</td>
+                                <td>{{ $h->bounds }}</td>
+                                <td>{{ $h->accuracy }}</td>
+                                <td>{{ $h->altitude }}</td>
+                                <td>{{ $h->altitude_acuracy }}</td>
+                                <td>{{ $h->heading }}</td>
+                                <td>{{ $h->speeds }}</td>
+                                <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
+                                <td>
+                                    <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
+                                            class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                    <form action="{{ route('history.destroy', $h->id) }}" method="post"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
+                                            class="bi bi-trash3-fill"></i> Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td width="150px;">{{ $h->latlng }}</td>
-                            <td>{{ $h->bounds }}</td>
-                            <td>{{ $h->accuracy }}</td>
-                            <td>{{ $h->altitude }}</td>
-                            <td>{{ $h->altitude_acuracy }}</td>
-                            <td>{{ $h->heading }}</td>
-                            <td>{{ $h->speeds }}</td>
-                            <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
-                            <td>
-                                <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
-                                        class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                                <form action="{{ route('history.destroy', $h->id) }}" method="post"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
-                                        class="bi bi-trash3-fill"></i> Hapus</button>
-                                </form>
+                            <td colspan="8" class="text-center">
+                                <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
+                                <p class="mt-2">Tidak ada data, maaf.</p>
                             </td>
                         </tr>
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
