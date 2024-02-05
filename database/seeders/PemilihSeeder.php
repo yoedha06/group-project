@@ -49,5 +49,45 @@ class PemilihSeeder extends Seeder
             'status_pemilihan' => 'Belum Memilih',
 
         ]);
+
+        Pemilih::create([
+            'nama_pemilih' => 'rapi ronaldo',
+            'tanggal_lahir' => '2005-02-04',
+            'alamat' => 'Jalan Contoh No.6',
+            'koordinat' => '-6.902739462784161, 107.6450518761327',
+            'no_ktp' => '1234527804876878',
+            'status_pemilihan' => 'Belum Memilih',
+
+        ]);
+
+        Pemilih::create([
+            'nama_pemilih' => 'gita',
+            'tanggal_lahir' => '2005-02-04',
+            'alamat' => 'Jalan Contoh No.6',
+            'koordinat' => '-6.94636422702139, 107.62206301824433',
+            'no_ktp' => '1234527005676878',
+            'status_pemilihan' => 'Belum Memilih',
+
+        ]);
+
+        Pemilih::create([
+            'nama_pemilih' => 'starboy',
+            'tanggal_lahir' => '2005-02-04',
+            'alamat' => 'Jalan Contoh No.6',
+            'koordinat' => '-6.890128429021905, 107.60971079609537',
+            'no_ktp' => '1234527885676878',
+            'status_pemilihan' => 'Belum Memilih',
+
+        ]);
+
+        Pemilih::create([
+            'nama_pemilih' => 'arya mullet',
+            'tanggal_lahir' => '2005-02-04',
+            'alamat' => 'Jalan Contoh No.6',
+            'koordinat' => '-6.888765053918652, 107.56647801857399',
+            'no_ktp' => '1234527805672878',
+            'status_pemilihan' => 'Belum Memilih',
+
+        ]);
     }
 }
