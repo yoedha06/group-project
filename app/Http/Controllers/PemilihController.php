@@ -16,8 +16,8 @@ class PemilihController extends Controller
     }
     public function index()
     {
-        $pemilih = Pemilih::paginate(5);
-        return view('pemilih.index', compact('pemilih'));
+        $data['pemilih'] = Pemilih::get();
+        return view('pemilih.index', $data);
     }
 
     public function create()
@@ -90,6 +90,13 @@ class PemilihController extends Controller
         $pemilih->delete();
 
         return redirect()->route('pemilih.index')->with('success', 'Pemilih berhasil dihapus!');
+    }
+
+    public function removeMulti(Request $request)
+    {
+        $ids = $request->ids;
+        Pemilih::whereIn('Id_Pemilih',explode(",",$ids))->delete();
+        return response()->json(['status'=>true,'message'=>"Data pemilih berhasil dihapus."]);
     }
 
     public function search(Request $request)
