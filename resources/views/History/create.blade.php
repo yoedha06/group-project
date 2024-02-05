@@ -25,7 +25,17 @@ crossorigin=""/>
                                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 }).addTo(map);
                             
-                                var marker = L.marker([0, 0], { draggable: true }).addTo(map);
+                                // Create a red icon for the marker
+                                var redIcon = L.icon({
+                                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                                    iconSize: [25, 41],
+                                    iconAnchor: [12, 41],
+                                    popupAnchor: [1, -34],
+                                    tooltipAnchor: [16, -28],
+                                    shadowSize: [41, 41]
+                                });
+                            
+                                var marker = L.marker([0, 0], { draggable: true, icon: redIcon }).addTo(map);
                             
                                 function getLocation() {
                                     if (navigator.geolocation) {
@@ -78,6 +88,7 @@ crossorigin=""/>
                                     document.getElementById('latlng').value = markerLatLng.lat + ', ' + markerLatLng.lng;
                                 });
                             </script>
+                            
                             
                             <br>
                             <div class="form-group">
