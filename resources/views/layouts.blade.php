@@ -292,7 +292,7 @@ label {
                 <a href="{{ route('history.index') }}"><i class="bi bi-clock-history"></i> History Maps</a>
             </ul>
             @if (!request()->has('keyword'))
-                <center><a href="{{ route('dashboard') }}" class="btn btn-danger"><i
+                <center><a href="{{ route('dashboard') }}" class="btn btn-danger" style="box-shadow: 0px 0px 5px #c32323,0px 0px 30px #c32323,0px 0px 90px #c32323;"><i
                             class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
                 </center>
             @endif
