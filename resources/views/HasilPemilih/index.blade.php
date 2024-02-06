@@ -41,22 +41,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($hasilpemilihan as $hasil)
+                @if(count($hasilpemilihan) > 0)
+                    @foreach ($hasilpemilihan as $hasil)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            {{-- <td>{{ $hasil->Id_HasilPemilihan }}</td> --}}
+                            <td>{{ $hasil->pemilih->nama_pemilih ?? 'Null' }}</td>
+                            <td>{{ $hasil->kandidat->Nama_Kandidat ?? 'Null' }}</td>
+                            <td>
+                                @if (auth()->user()->role === 'admin')
+                                    <a href="{{ route('hasilpemilihan.edit', ['id' => $hasil->Id_HasilPemilihan]) }}"
+                                        class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                    <a href="{{ route('hasilpemilihan.delete', ['id' => $hasil->Id_HasilPemilihan]) }}"
+                                        class="btn btn-danger"><i class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
+                            </td>
+                                @endif
+                    </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        {{-- <td>{{ $hasil->Id_HasilPemilihan }}</td> --}}
-                        <td>{{ $hasil->pemilih->nama_pemilih ?? 'Null' }}</td>
-                        <td>{{ $hasil->kandidat->Nama_Kandidat ?? 'Null' }}</td>
-                        <td>
-                            @if (auth()->user()->role === 'admin')
-                                <a href="{{ route('hasilpemilihan.edit', ['id' => $hasil->Id_HasilPemilihan]) }}"
-                                    class="btn btn-warning"><i class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                                <a href="{{ route('hasilpemilihan.delete', ['id' => $hasil->Id_HasilPemilihan]) }}"
-                                    class="btn btn-danger"><i class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
+                        <td colspan="8" class="text-center">
+                            <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
+                            <p class="mt-2">Tidak ada data, maaf.</p>
                         </td>
+                    </tr>
                 @endif
-                </tr>
-                @endforeach
             </tbody>
         </table>
         @if (request()->has('keyword') && isset($hasilpemilihan) && count($hasilpemilihan) > 0)

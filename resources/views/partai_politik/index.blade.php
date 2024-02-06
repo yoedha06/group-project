@@ -28,7 +28,6 @@
             <thead>
                 <tr>
                     <th>List</th>
-                    <th>ID Partai</th>
                     <th>Nama Partai</th>
                     <th>Ideologi</th>
                     <th>Jumlah Anggota</th>
@@ -40,10 +39,10 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($partaiPolitiks) > 0)
                 @foreach ($partaiPolitiks as $partaiPolitik)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $partaiPolitik->Id_Partai }}</td>
                         <td>{{ $partaiPolitik->NamaPartai }}</td>
                         <td width="200px;">{{ $partaiPolitik->Ideologi }}</td>
                         <td>{{ $partaiPolitik->JumlahAnggota }}</td>
@@ -59,10 +58,18 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i class="bi bi-trash"></i>Hapus</button>
                             </form>
-                            @endif
+                        @endif
                         </td>
                     </tr>
                 @endforeach
+                @else
+                    <tr>
+                        <td colspan="8" class="text-center">
+                            <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
+                            <p class="mt-2">Tidak ada data, maaf.</p>
+                        </td>
+                    </tr>
+                @endif
             </tbody>
         </table>
         @if (request()->has('keyword') && isset($partaiPolitiks) && count($partaiPolitiks) > 0)

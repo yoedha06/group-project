@@ -110,7 +110,6 @@
 
                 marker.bindPopup(markerPopupContent, popupOptions);
             }
-
         }
 
         // Adding a Polyline connecting the circle markers

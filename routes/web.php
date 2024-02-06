@@ -54,6 +54,8 @@ Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->n
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
 Route::get('/pemilih/search', [PemilihController::class, 'search'])->name('pemilih.search');
+Route::get('/pemilih/map', [PemilihController::class, 'map'])->name('pemilih.map');
+Route::delete('delete-all', [PemilihController::class, 'removeMulti']);
 
 
 //Partai Politik

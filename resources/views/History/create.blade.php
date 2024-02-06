@@ -1,5 +1,9 @@
 @extends('layouts')
 <title>Tambah History</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet-geolocation@4.2.0/dist/leaflet-geolocation.js"></script>
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -10,12 +14,89 @@
                     <div class="card-body">
                         <form action="{{ route('history.store') }}" method="POST">
                             @csrf
+                            <div id="map" style="height:300px;"></div>
+                            
+                            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+                            
+                            <script>
+                                var map = L.map('map').setView([0, 0], 2);
+                            
+                                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                }).addTo(map);
 
+                                var maxBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
+                                map.setMaxBounds(maxBounds);
+                            
+                                // Create a red icon for the marker
+                                var redIcon = L.icon({
+                                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                                    iconSize: [25, 41],
+                                    iconAnchor: [12, 41],
+                                    popupAnchor: [1, -34],
+                                    tooltipAnchor: [16, -28],
+                                    shadowSize: [41, 41]
+                                });
+                            
+                                var marker = L.marker([0, 0], { draggable: true, icon: redIcon }).addTo(map);
+                            
+                                function getLocation() {
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(showPosition, showError);
+                                    } else {
+                                        alert("Geolocation is not supported by this browser.");
+                                    }
+                                }
+                            
+                                function showPosition(position) {
+                                    var lat = position.coords.latitude;
+                                    var lng = position.coords.longitude;
+                            
+                                    // Update map to the user's current location
+                                    map.setView([lat, lng], 15);
+                            
+                                    // Update marker position
+                                    marker.setLatLng([lat, lng]);
+                            
+                                    // Update input latlng value
+                                    document.getElementById('latlng').value = lat + ', ' + lng;
+                            
+                                    // Add a popup to the marker indicating the current location
+                                    marker.bindPopup('Lokasi Terkini').openPopup();
+                                }
+                            
+                                function showError(error) {
+                                    switch (error.code) {
+                                        case error.PERMISSION_DENIED:
+                                            alert("Izinkan lokasi pada pengaturan,untuk mendapatkan lokasi anda.");
+                                            break;
+                                        case error.POSITION_UNAVAILABLE:
+                                            alert("Informasi lokasi tidak tersedia.");  
+                                            break;
+                                        case error.TIMEOUT:
+                                            alert("Permintaan geolokasi telah habis waktu.");
+                                            break;
+                                        case error.UNKNOWN_ERROR:
+                                            alert("Terjadi kesalahan yang tidak diketahui.");
+                                            break;
+                                    }
+                                }
+                            
+                                // Call getLocation function when the page loads
+                                window.onload = getLocation;
+                            
+                                // Update marker position and input value when marker is dragged
+                                marker.on('dragend', function (event) {
+                                    var markerLatLng = marker.getLatLng();
+                                    document.getElementById('latlng').value = markerLatLng.lat + ', ' + markerLatLng.lng;
+                                });
+                            </script>
+                            <br>
                             <div class="form-group">
                                 <label for="latlng">latlng</label>
                                 <input type="text" name="latlng" id="latlng" class="form-control {{ $errors->has('latlng') ? 'is-invalid' : '' }}" value="{{ old('latlng') }}">
                                 @error('latlng')
-                                    <div class="invalid-feedback">{{$massage}}</div>
+                                    <div class="invalid-feedback">{{$message}}</div>
                                 @enderror
                             </div>
                             <br>

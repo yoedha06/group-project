@@ -97,7 +97,7 @@
                 background-color: #d9edf7;
             }
         </style>
-        <div class="map-container">
+        <div class="map-container" style="margin-top:10px;">
             <div class="map-controls">
                 <div>
                     <input type="text" id="searchInput" placeholder="Cari Nama Pemilih">
@@ -111,7 +111,6 @@
             </div>
 
             <div id="validationMessage" style="display: none; color: red; margin-top: 10px;"></div>
-            <br>
             <div id="map" style="height: 600px"></div>
 
             <script>
