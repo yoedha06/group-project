@@ -13,13 +13,12 @@
         <h2>Pemilih</h2>
 
         {{-- Add Pemilih Button --}}
-        <div class="mb-3">
-            @if (auth()->user()->role === 'admin')
-                <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah Pemilih</a>
-                
-            @endif
-        </div>
-        <button class="btn btn-danger btn-xs removeAll mb-3">Remove All Selected Data</button>
+        @if (auth()->user()->role === 'admin')
+            <div class="d-flex">
+                <a href="{{ route('pemilih.create') }}" class="btn btn-success mb-3"><i class="bi bi-plus-lg"></i> Tambah Pemilih</a>&nbsp;
+                <button class="btn btn-danger btn-xs removeAll mb-3">Remove All Selected Data</button>   
+            </div>
+        @endif       
 
         {{-- Search Form --}}
         <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
@@ -44,7 +43,9 @@
         <table class="table table-bordered table-striped" style="margin-top: 10px;">
             <thead style="text-align: center;">
                 <tr>
-                    <th><input type="checkbox" id="checkboxesMain"></th>
+                    @if (auth()->user()->role === 'admin')
+                    <th style="text-align: left;"><input type="checkbox" id="checkboxesMain"></th>
+                    @endif
                     <th>No</th>
                     <th>Nama Pemilih</th>
                     <th>Tanggal Lahir</th>
@@ -62,7 +63,9 @@
                     @if($pemilih->count())
                         @foreach ($pemilih as $key => $p)
                         <tr id="tr_{{$p->Id_pemilih}}">
+                            @if (auth()->user()->role === 'admin')
                                 <td><input type="checkbox" class="checkbox" data-id="{{$p->Id_Pemilih}}"></td>
+                            @endif
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $p->nama_pemilih }}</td>
                                 <td>{{ $p->tanggal_lahir }}</td>
@@ -74,34 +77,34 @@
                                         {{ $p->status_pemilihan }}
                                     </span>
                                 </td>
-                                <td>
-                                    @if (auth()->user()->role === 'admin')
-                                        {{-- Edit Button --}}
-                                        <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
-                                                class="bi bi-pencil-square"></i> Edit</a>
+                                @if (auth()->user()->role === 'admin')
+                                    <td>
+                                        
+                                            {{-- Edit Button --}}
+                                            <a href="{{ route('pemilih.edit', $p->Id_Pemilih) }}" class="btn btn-warning"><i
+                                                    class="bi bi-pencil-square"></i> Edit</a>
 
-                                        {{-- Delete Form --}}
-                                        <form id="deleteForm-{{ $p->Id_Pemilih }}"
-                                            action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
-                                                    class="bi bi-trash3-fill"></i> Hapus</button>
-                                        </form>
-                                    @endif
-
-                                    {{-- JavaScript Confirm Delete --}}
-                                    <script>
-                                        function confirmDelete(Id_Pemilih) {
-                                            if (confirm("Apakah Anda yakin ingin menghapus pemilih ini?")) {
-                                                document.getElementById('deleteForm-' + Id_Pemilih).submit();
-                                            } else {
-                                                alert("Penghapusan pemilih dibatalkan.");
+                                            {{-- Delete Form --}}
+                                            <form id="deleteForm-{{ $p->Id_Pemilih }}"
+                                                action="{{ route('pemilih.delete', $p->Id_Pemilih) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="confirmDelete('{{ $p->Id_Pemilih }}')"><i
+                                                        class="bi bi-trash3-fill"></i> Hapus</button>
+                                            </form>
+                                        {{-- JavaScript Confirm Delete --}}
+                                        <script>
+                                            function confirmDelete(Id_Pemilih) {
+                                                if (confirm("Apakah Anda yakin ingin menghapus pemilih ini?")) {
+                                                    document.getElementById('deleteForm-' + Id_Pemilih).submit();
+                                                } else {
+                                                    alert("Penghapusan pemilih dibatalkan.");
+                                                }
                                             }
-                                        }
-                                    </script>
-                                </td>
+                                        </script>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     @endif
@@ -115,12 +118,6 @@
                 @endif
             </tbody>
         </table>
-
-        {{-- Pagination Links
-        <div class="flex justify-content-center">
-            {{ $pemilih->links('pagination::bootstrap-5') }}
-        </div> --}}
-
         {{-- Back Button --}}
         @if (request()->has('keyword') && isset($pemilih) && count($pemilih) > 0)
             <a href="{{ url()->previous() }}" class="btn btn-success btn-sm mt-3">
@@ -184,3 +181,8 @@
         </script>
     </div>
 @endsection
+
+        {{-- Pagination Links
+        <div class="flex justify-content-center">
+            {{ $pemilih->links('pagination::bootstrap-5') }}
+        </div> --}}

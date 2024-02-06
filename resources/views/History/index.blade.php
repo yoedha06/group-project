@@ -20,8 +20,10 @@
             <h2>History</h2>
 
             <div class="d-flex ">
+                @if (auth()->user()->role === 'admin')
                 <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
                 &nbsp;
+                @endif
                 <a href="{{ route('history.map') }}" class="btn btn-warning"> <i class="bi bi-geo"></i>Map History</a>
             </div>
 
@@ -39,7 +41,9 @@
                         <th>heading</th>
                         <th>speeds</th>
                         <th>timestamp</th>
+                        @if (auth()->user()->role === 'admin')
                         <th>action</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -55,18 +59,20 @@
                                 <td>{{ $h->heading }}</td>
                                 <td>{{ $h->speeds }}</td>
                                 <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
-                                <td>
-                                    <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                                    <form action="{{ route('history.destroy', $h->id) }}" method="post"
-                                        style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
-                                            class="bi bi-trash3-fill"></i> Hapus</button>
-                                    </form>
-                                </td>
+                                @if (auth()->user()->role === 'admin')
+                                    <td>
+                                        <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
+                                                class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                        <form action="{{ route('history.destroy', $h->id) }}" method="post"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
+                                                class="bi bi-trash3-fill"></i> Hapus</button>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     @else
