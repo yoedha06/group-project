@@ -13,10 +13,12 @@
         </div>
         <div class="mb-3 float-right">
             @if (auth()->user()->role === 'admin')
-                <a href="/hasilpemilihan/grafik" class="btn btn-success">
-                    <i class="bi bi-bar-chart-line"></i> <!-- Icon grafik menggunakan Bootstrap Icons -->
-                    Lihat Grafik
-                </a>
+                @if(count($hasilpemilihan) > 0)
+                    <a href="/hasilpemilihan/grafik" class="btn btn-success">
+                        <i class="bi bi-bar-chart-line"></i> <!-- Icon grafik menggunakan Bootstrap Icons -->
+                        Lihat Grafik
+                    </a>
+                @endif
             @endif
         </div>
 
