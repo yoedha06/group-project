@@ -49,20 +49,20 @@
                             <td>{{ $item->Partai_Politik }}</td>
                             <td>{{ $item->Nomor_Urut }}</td>
                             <td>{{ $item->Program_Kerja }}</td>
-                            <td style="width:200px;">
-                                @if (auth()->user()->role === 'admin')
-                                    <a href="/kandidat/edit/{{ $item->Id_Kandidat }}" class="btn btn-warning btn-sm"><i
-                                            class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                                    <form action="/kandidat/destroy{{ $item->Id_Kandidat }}" method="POST"
-                                        style="display: inline-block;"
-                                        onsubmit="return confirm('Yakin ingin hapus data?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
-                                    </form>
-                                @endif
-                            </td>
+                            @if (auth()->user()->role === 'admin')
+                                <td style="width:200px;">
+                                        <a href="/kandidat/edit/{{ $item->Id_Kandidat }}" class="btn btn-warning btn-sm"><i
+                                                class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                        <form action="/kandidat/destroy{{ $item->Id_Kandidat }}" method="POST"
+                                            style="display: inline-block;"
+                                            onsubmit="return confirm('Yakin ingin hapus data?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="bi bi-trash3-fill">&nbsp;</i>Hapus</button>
+                                        </form>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
 
