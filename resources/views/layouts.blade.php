@@ -110,30 +110,6 @@
             padding: 10px 20px;
         }
 
-        #mode-toggle {
-            background-color: transparent;
-            color: black;
-            border: none;
-            cursor: pointer;
-            /* Add cursor pointer */
-        }
-
-        #mode-toggle i {
-            margin-right: 5px;
-        }
-
-        #moon-icon,
-        #sun-icon {
-            display: inline;
-            /* Ensure icons are initially displayed */
-        }
-
-        #moon-icon.hide,
-        #sun-icon.hide {
-            display: none;
-            /* Hide icons when necessary */
-        }
-
         @keyframes rotateLogo {
             0% {
                 transform: rotateY(0deg);
@@ -153,11 +129,123 @@
                 transform: translateY(20px);
             }
         }
+
+    /* css night mode */
+    .btn-container {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.btn-container i {
+  display: inline-block;
+  position: relative;
+  top: -9px;
+}
+
+label {
+  font-size: 13px;
+  color: #424242;
+  font-weight: 500;
+}
+
+.btn-color-mode-switch {
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner {
+  margin: 0px;
+  width: 140px;
+  height: 30px;
+  background: #E0E0E0;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+    /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+  display: block;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before {
+  content: attr(data-on);
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  top: 7px;
+  right: 20px;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
+  content: attr(data-off);
+  width: 70px;
+  height: 25px;
+  background: #fff;
+  border-radius: 26px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 6px -2px #111;
+  padding: 5px 0px;
+}
+
+.btn-color-mode-switch > .alert {
+  display: none;
+  background: #FF9800;
+  border: none;
+  color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"] {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner {
+  background: #151515;
+  color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after {
+  content: attr(data-on);
+  left: 68px;
+  background: #3c3c3c;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before {
+  content: attr(data-off);
+  right: auto;
+  left: 20px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked ~ .alert {
+  display: block;
+}
+
+.dark-preview {
+  background: #0d0d0d;
+}
+
+.white-preview {
+  background: #fff;
+}
+
+
+    /* penutup css night mode */
     </style>
 
 </head>
 
-<body>
+<body id="body-mode">
     <!-- Splash Screen -->
     <div id="splash-screen">
         <div id="splash-content">
@@ -171,11 +259,21 @@
 
     <div class="wrapper">
         <!-- Sidebar -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="active">
+            <center>
+            <div class="btn-container">
+                <label class="switch btn-color-mode-switch">
+                    <input value="1" id="color_mode" name="color_mode" type="checkbox">
+                    <label class="btn-color-mode-switch-inner" data-off="Light" data-on="Dark" for="color_mode"></label>
+                </label>
+            </div>
+            </center>        
+
             <div class="sidebar-header">
                 <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" alt="Logo">
                 <h3>Pemilu</h3>
             </div>
+
             <ul class="list-unstyled">
                 <!-- Tambahkan daftar menu sesuai kebutuhan -->
                 <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
@@ -201,13 +299,6 @@
         </nav>
 
         <div class="container container-content">
-            {{-- content all --}}
-            <div class="nav" style="justify-content: end;margin-top: 10px;">
-            <button id="mode-toggle">
-                <i class="bi bi-moon-fill" id="moon-icon"></i>
-                <i class="bi bi-brightness-high-fill" id="sun-icon"></i>
-            </button>
-            </div>
             {{-- content alll --}}
             @yield('content')
         </div>
@@ -222,46 +313,53 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve the mode from localStorage, default to 'light' if not set
-            const savedMode = localStorage.getItem('mode') || 'light';
-
-            // Set the body class based on the saved mode
-            document.body.classList.toggle('dark-mode', savedMode === 'dark');
-
-            // Toggle icons based on the saved mode
-            toggleIcons(savedMode === 'dark');
-
-            // Remove the splash screen after 1 second
+            // Menghilangkan splash screen setelah 1 detik
             setTimeout(function() {
                 document.getElementById('splash-screen').style.display = 'none';
             }, 1000);
         });
+    </script>
 
-        document.getElementById('mode-toggle').addEventListener('click', function() {
-            // Toggle dark mode class on the body
-            document.body.classList.toggle('dark-mode');
-
-            // Save the current mode to localStorage
-            const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            localStorage.setItem('mode', currentMode);
-
-            // Toggle icons based on the current mode
-            toggleIcons(document.body.classList.contains('dark-mode'));
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLocalStorageMode();
         });
 
-        function toggleIcons(isDarkMode) {
-            const moonIcon = document.getElementById('moon-icon');
-            const sunIcon = document.getElementById('sun-icon');
-
-            if (isDarkMode) {
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'inline';
+        function checkLocalStorageMode() {
+            if (localStorage.getItem('mode') === 'dark') {
+                changeToDarkMode();
             } else {
-                moonIcon.style.display = 'inline';
-                sunIcon.style.display = 'none';
+                changeToLightMode();
             }
         }
-    </script>
+
+        function changeToDarkMode() {
+            document.getElementById('body-mode').className = 'dark-mode';
+            document.getElementById('sidebar').className = 'dark-mode active';
+            localStorage.setItem('mode', 'dark');
+        }
+
+        function changeToLightMode() {
+            document.getElementById('body-mode').className = '';
+            document.getElementById('sidebar').className = 'active';
+            localStorage.setItem('mode', 'light');
+        }
+
+        document.querySelector('.btn-color-mode-switch').addEventListener('click', function() {
+            if (document.body.classList.contains('dark-mode')) {
+                changeToLightMode();
+            } else {
+                changeToDarkMode();
+            }
+        });
+</script>
+
+
+
+
+
+
+
     {{-- JavaScript Checkbox --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script type = "text/javascript" >
