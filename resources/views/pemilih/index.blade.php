@@ -16,7 +16,7 @@
         @if (auth()->user()->role === 'admin')
             <div class="d-flex">
                 <a href="{{ route('pemilih.create') }}" class="btn btn-success mb-3"><i class="bi bi-plus-lg"></i> Tambah Pemilih</a>&nbsp;
-                <button class="btn btn-danger btn-xs removeAll mb-3">Remove All Selected Data</button>   
+                <button class="btn btn-danger btn-xs removeAll mb-3">Hapus Data yang dipilih</button>   
             </div>
         @endif       
 
