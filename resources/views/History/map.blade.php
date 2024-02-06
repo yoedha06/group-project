@@ -100,6 +100,7 @@
                     "Latitude: " + lat.toFixed(6) +
                     "<br>Longitude: " + lng.toFixed(6) +
                     "<br>Bounds: " + map.getBounds().toBBoxString() +
+                    "<br>Jam: " + historyData[i].created_at +
                     "</div>" +
                     "</div>";
 
