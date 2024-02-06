@@ -66,7 +66,7 @@ class HistoryController extends Controller
         session()->flash('berhasil', "updated successfully!");
 
         return to_route('history.index');
-    }
+    } 
 
     public function destroy(history $history)
     {
