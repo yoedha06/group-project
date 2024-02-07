@@ -17,6 +17,7 @@
         integrity="sha512-H+2SyFiX9xT8BpsjUVm5+cWJiBuK2F/QtyWngPgzXLt6tiEn1B7P6KXSN2OiYpdYs7z3mnu+GlkRdQl+EZ6+FA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     {{-- link logo pemilu check --}}
     <link rel="icon" type="image/png" href="/assets/images/logo.png" />
     {{-- Link Icon --}}
@@ -130,117 +131,133 @@
             }
         }
 
-    /* css night mode */
-    .btn-container {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
+        /* css night mode */
+        .btn-container {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
 
-.btn-container i {
-  display: inline-block;
-  position: relative;
-  top: -9px;
-}
+        .btn-container i {
+            display: inline-block;
+            position: relative;
+            top: -9px;
+        }
 
-label {
-  font-size: 13px;
-  color: #424242;
-  font-weight: 500;
-}
+        label {
+            font-size: 13px;
+            color: #424242;
+            font-weight: 500;
+        }
 
-.btn-color-mode-switch {
-  display: inline-block;
-  margin: 0px;
-  position: relative;
-}
+        .btn-color-mode-switch {
+            display: inline-block;
+            margin: 0px;
+            position: relative;
+        }
 
-.btn-color-mode-switch > label.btn-color-mode-switch-inner {
-  margin: 0px;
-  width: 140px;
-  height: 30px;
-  background: #E0E0E0;
-  border-radius: 26px;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s ease;
-    /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
-  display: block;
-}
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner {
+            margin: 0px;
+            width: 140px;
+            height: 30px;
+            background: #E0E0E0;
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+            display: block;
+        }
 
-.btn-color-mode-switch > label.btn-color-mode-switch-inner:before {
-  content: attr(data-on);
-  position: absolute;
-  font-size: 12px;
-  font-weight: 500;
-  top: 7px;
-  right: 20px;
-}
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner:before {
+            content: attr(data-on);
+            position: absolute;
+            font-size: 12px;
+            font-weight: 500;
+            top: 7px;
+            right: 20px;
+        }
 
-.btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
-  content: attr(data-off);
-  width: 70px;
-  height: 25px;
-  background: #fff;
-  border-radius: 26px;
-  position: absolute;
-  left: 2px;
-  top: 2px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0px 0px 6px -2px #111;
-  padding: 5px 0px;
-}
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner:after {
+            content: attr(data-off);
+            width: 70px;
+            height: 25px;
+            background: #fff;
+            border-radius: 26px;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0px 0px 6px -2px #111;
+            padding: 5px 0px;
+        }
 
-.btn-color-mode-switch > .alert {
-  display: none;
-  background: #FF9800;
-  border: none;
-  color: #fff;
-}
+        .btn-color-mode-switch>.alert {
+            display: none;
+            background: #FF9800;
+            border: none;
+            color: #fff;
+        }
 
-.btn-color-mode-switch input[type="checkbox"] {
-  cursor: pointer;
-  width: 50px;
-  height: 25px;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  margin: 0px;
-}
+        .btn-color-mode-switch input[type="checkbox"] {
+            cursor: pointer;
+            width: 50px;
+            height: 25px;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            margin: 0px;
+        }
 
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner {
-  background: #151515;
-  color: #fff;
-}
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner {
+            background: #151515;
+            color: #fff;
+        }
 
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after {
-  content: attr(data-on);
-  left: 68px;
-  background: #3c3c3c;
-}
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:after {
+            content: attr(data-on);
+            left: 68px;
+            background: #3c3c3c;
+        }
 
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before {
-  content: attr(data-off);
-  right: auto;
-  left: 20px;
-}
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:before {
+            content: attr(data-off);
+            right: auto;
+            left: 20px;
+        }
 
-.btn-color-mode-switch input[type="checkbox"]:checked ~ .alert {
-  display: block;
-}
+        .btn-color-mode-switch input[type="checkbox"]:checked~.alert {
+            display: block;
+        }
 
-.dark-preview {
-  background: #0d0d0d;
-}
+        .dark-preview {
+            background: #0d0d0d;
+        }
 
-.white-preview {
-  background: #fff;
-}
+        .white-preview {
+            background: #fff;
+        }
 
+        .dropdown-menu {
+            background-color: #fff;
+            /* White background */
+            color: #000 !important;
+            /* Black text */
+        }
 
-    /* penutup css night mode */
+        .dropdown-menu a {
+            color: #000 !important;
+            /* Black text for dropdown items */
+        }
+
+        /* Add this style to remove the transition */
+        .dropdown-menu.show {
+            transition: none;
+        }
+
+        /* penutup css night mode */
     </style>
 
 </head>
@@ -261,13 +278,14 @@ label {
         <!-- Sidebar -->
         <nav id="sidebar" class="active">
             <center>
-            <div class="btn-container">
-                <label class="switch btn-color-mode-switch">
-                    <input value="1" id="color_mode" name="color_mode" type="checkbox">
-                    <label class="btn-color-mode-switch-inner" data-off="Light" data-on="Dark" for="color_mode"></label>
-                </label>
-            </div>
-            </center>        
+                <div class="btn-container">
+                    <label class="switch btn-color-mode-switch">
+                        <input value="1" id="color_mode" name="color_mode" type="checkbox">
+                        <label class="btn-color-mode-switch-inner" data-off="Light" data-on="Dark"
+                            for="color_mode"></label>
+                    </label>
+                </div>
+            </center>
 
             <div class="sidebar-header">
                 <img src="{{ asset('/assets/images/ppp-removebg-preview.png') }}" alt="Logo">
@@ -276,23 +294,27 @@ label {
 
             <ul class="list-unstyled">
                 <!-- Tambahkan daftar menu sesuai kebutuhan -->
-                <li class="{{ Request::is('pemilih*') ? 'active' : '' }}">
-                    <a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih</a>
+                <li class="{{ Request::is('home') ? 'active' : '' }}">
+                    <a href="{{ route('home') }}"><i class="bi bi-house-door"></i> Home</a>
                 </li>
-                <li class="{{ Request::is('kandidat*') ? 'active' : '' }}">
-                    <a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-list"></i> Data Master <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Data Pemilih</a></li>
+                        <li><a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a></li>
+                        <li><a href="{{ route('partai_politik.index') }}"><i class="bi bi-flag"></i> Partai Politik</a></li>
+                        <li><a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart-line"></i> Hasil Pemilihan</a></li>
+                    </ul>
                 </li>
-                <li class="{{ Request::is('partai_politik*') ? 'active' : '' }}">
-                    <a href="{{ route('partai_politik.index') }}"><i class="bi bi-building"></i> Partai Politik</a>
-                </li>
-                <li class="{{ Request::is('hasilpemilihan*') ? 'active' : '' }}">
-                    <a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart"></i> Hasil Pemilihan</a>
-                </li>
+
                 <a href="{{ route('lokasi') }}"><i class="bi bi-geo-alt"></i> Maps Pemilih</a>
                 <a href="{{ route('history.index') }}"><i class="bi bi-clock-history"></i> History Maps</a>
             </ul>
             @if (!request()->has('keyword'))
-                <center><a href="{{ route('dashboard') }}" class="btn btn-danger" style="box-shadow: 0px 0px 5px #c32323,0px 0px 30px #c32323,0px 0px 90px #c32323;"><i
+                <center><a href="{{ route('dashboard') }}" class="btn btn-danger"
+                        style="box-shadow: 0px 0px 5px #c32323,0px 0px 30px #c32323,0px 0px 90px #c32323;"><i
                             class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
                 </center>
             @endif
@@ -310,6 +332,9 @@ label {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -352,7 +377,7 @@ label {
                 changeToDarkMode();
             }
         });
-</script>
+    </script>
 
 
 
@@ -362,7 +387,7 @@ label {
 
     {{-- JavaScript Checkbox --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
-    <script type = "text/javascript" >
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#checkboxesMain').on('click', function(e) {
                 if ($(this).is(':checked', true)) {
@@ -389,7 +414,7 @@ label {
                     if (confirm("Are you sure you want to delete")) {
                         var stuId = userIdArr.join(",");
                         $.ajax({
-                            url: "{{url('delete-all')}}",
+                            url: "{{ url('delete-all') }}",
                             type: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -412,7 +437,8 @@ label {
                     }
                 }
             });
-        }); 
+        });
     </script>
 </body>
+
 </html>
