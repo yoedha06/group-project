@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" /> 
+
     <title>Pemilu</title>
     <style>
         #splash-screen {
@@ -336,16 +337,19 @@
                         <ul class="navbar-nav">
                         @if(auth()->check())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
+                                <a class="nav-link" href="{{ route('home') }}"><b><i class="bi bi-house-door-fill"></i> Home</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
+                                <a class="nav-link" href="{{ route('pemilih.index') }}"><b><i class="bi bi-person-fill"></i> Pemilih</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
+                                <a class="nav-link" href="{{ route('kandidat.index') }}"><b><i class="bi bi-people-fill"></i> Kandidat</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
+                                <a class="nav-link" href="{{ route('partai_politik.index') }}"><b><i class="bi bi-flag-fill"></i> Partai Politik</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b><i class="bi bi-bar-chart-line-fill"></i> Hasil Pemilihan</b></a>
                             </li>
                             @endif
                         </ul>
