@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use App\Charts\MonthlyUsersChart;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class PemilihController extends Controller
 {
@@ -95,8 +97,8 @@ class PemilihController extends Controller
     public function removeMulti(Request $request)
     {
         $ids = $request->ids;
-        Pemilih::whereIn('Id_Pemilih',explode(",",$ids))->delete();
-        return response()->json(['status'=>true,'message'=>"Data pemilih berhasil dihapus."]);
+        Pemilih::whereIn('Id_Pemilih', explode(",", $ids))->delete();
+        return response()->json(['status' => true, 'message' => "Data pemilih berhasil dihapus."]);
     }
 
     public function search(Request $request)
@@ -124,5 +126,24 @@ class PemilihController extends Controller
         }
 
         return view('Lokasi', compact('pemilih'));
+    }
+
+
+    public function home(MonthlyUsersChart $chart)
+    {
+        $title = 'lokasi';
+        $jumlah_pemilih = \App\Models\Pemilih::count();
+        $jumlah_kandidat = \App\Models\Kandidat::count();
+        $jumlah_hasil_pemilihan = \App\Models\HasilPemilihan::count();
+
+        // Create an instance of LarapexChart
+        $larapexChart = new LarapexChart;
+
+        // Pass the LarapexChart instance to the MonthlyUsersChart constructor
+        $chartBuilder = new MonthlyUsersChart($larapexChart);
+        $chart = $chartBuilder->build();
+
+        // Pass the chart instance and other data to the view
+        return view('home', compact('jumlah_pemilih', 'jumlah_kandidat', 'jumlah_hasil_pemilihan', 'chart', 'title'));
     }
 }

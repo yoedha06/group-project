@@ -13,81 +13,83 @@
 @section('content')
 
     <body>
-        <div class="container mt-4">
-            <center>
-                <h1>Pemilu</h1>
-            </center>
-            <h2>History</h2>
+        <br>
+        <br>
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+            <li class="breadcrumb-item active"><i class="fas fa-history"></i> History</li>
+        </ol>
 
-            <div class="d-flex ">
-                @if (auth()->user()->role === 'admin')
+
+        <div class="d-flex ">
+            @if (auth()->user()->role === 'admin')
                 <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
                 &nbsp;
-                @endif
-                <a href="{{ route('history.map') }}" class="btn btn-warning"> <i class="bi bi-geo"></i>Map History</a>
-            </div>
+            @endif
+            <a href="{{ route('history.map') }}" class="btn btn-warning"> <i class="bi bi-geo"></i>Map History</a>
+        </div>
 
-            
 
-            <table class="table table-bordered table-striped" style="margin-top: 10px;">
-                <thead style="text-align: center;">
-                    <tr>
-                        <th>No</th>
-                        <th>latlng</th>
-                        <th>bounds</th>
-                        <th>accuracy</th>
-                        <th>altitude</th>
-                        <th>altitude_accuracy</th>
-                        <th>heading</th>
-                        <th>speeds</th>
-                        <th>timestamp</th>
-                        @if (auth()->user()->role === 'admin')
+
+        <table class="table table-bordered table-striped" style="margin-top: 10px;">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>No</th>
+                    <th>latlng</th>
+                    <th>bounds</th>
+                    <th>accuracy</th>
+                    <th>altitude</th>
+                    <th>altitude_accuracy</th>
+                    <th>heading</th>
+                    <th>speeds</th>
+                    <th>timestamp</th>
+                    @if (auth()->user()->role === 'admin')
                         <th>action</th>
-                        @endif
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(count($history) > 0)
-                        @foreach ($history as $h)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td width="150px;">{{ $h->latlng }}</td>
-                                <td>{{ $h->bounds }}</td>
-                                <td>{{ $h->accuracy }}</td>
-                                <td>{{ $h->altitude }}</td>
-                                <td>{{ $h->altitude_acuracy }}</td>
-                                <td>{{ $h->heading }}</td>
-                                <td>{{ $h->speeds }}</td>
-                                <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
-                                @if (auth()->user()->role === 'admin')
-                                    <td>
-                                        <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
-                                                class="bi bi-pencil-square">&nbsp;</i>Edit</a>
-                                        <form action="{{ route('history.destroy', $h->id) }}" method="post"
-                                            style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
-                                                class="bi bi-trash3-fill"></i> Hapus</button>
-                                        </form>
-                                    </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="8" class="text-center">
-                                <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
-                                <p class="mt-2">Tidak ada data, maaf.</p>
-                            </td>
-                        </tr>
                     @endif
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center">
-                {{ $history->links('pagination::bootstrap-5') }}
-            </div>
+                </tr>
+            </thead>
+            <tbody>
+                @if (count($history) > 0)
+                    @foreach ($history as $h)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td width="150px;">{{ $h->latlng }}</td>
+                            <td>{{ $h->bounds }}</td>
+                            <td>{{ $h->accuracy }}</td>
+                            <td>{{ $h->altitude }}</td>
+                            <td>{{ $h->altitude_acuracy }}</td>
+                            <td>{{ $h->heading }}</td>
+                            <td>{{ $h->speeds }}</td>
+                            <td width="200px;">{{ $h->created_at }} - {{ $h->updated_at }}</td>
+                            @if (auth()->user()->role === 'admin')
+                                <td>
+                                    <a href="{{ route('history.edit', $h->id) }}" class="btn btn-warning"><i
+                                            class="bi bi-pencil-square">&nbsp;</i>Edit</a>
+                                    <form action="{{ route('history.destroy', $h->id) }}" method="post"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
+                                                class="bi bi-trash3-fill"></i> Hapus</button>
+                                    </form>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="8" class="text-center">
+                            <i class="bi bi-emoji-dizzy" style="font-size: 4rem;"></i>
+                            <p class="mt-2">Tidak ada data, maaf.</p>
+                        </td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            {{ $history->links('pagination::bootstrap-5') }}
+        </div>
         </div>
     </body>
 @endsection

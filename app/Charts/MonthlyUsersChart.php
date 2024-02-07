@@ -18,7 +18,7 @@ class MonthlyUsersChart
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
         // Group by candidate and count the votes for each candidate
-        $kandidatResults = HasilPemilihan::select('Id_Kandidat')->groupBy('Id_Kandidat')->orderByRaw('COUNT(*) DESC')->limit(3)->get();
+        $kandidatResults = HasilPemilihan::select('Id_Kandidat')->groupBy('Id_Kandidat')->orderByRaw('COUNT(*) DESC')->get();
         $kandidatLabels = [];
         $kandidatData = [];
 
