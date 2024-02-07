@@ -159,13 +159,13 @@
         .btn-color-mode-switch>label.btn-color-mode-switch-inner {
             margin: 0px;
             width: 140px;
-            height: 30px;
+            height: 34px;
             background: #E0E0E0;
             border-radius: 26px;
             overflow: hidden;
             position: relative;
             transition: all 0.3s ease;
-            /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+            box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;
             display: block;
         }
 
@@ -181,7 +181,6 @@
         .btn-color-mode-switch>label.btn-color-mode-switch-inner:after {
             content: attr(data-off);
             width: 70px;
-            height: 25px;
             background: #fff;
             border-radius: 26px;
             position: absolute;
@@ -252,6 +251,10 @@
             /* Black text for dropdown items */
         }
 
+        .dropdown-menu a:hover {
+            color: #dd0000 !important;
+        }
+
         /* Add this style to remove the transition */
         .dropdown-menu.show {
             transition: none;
@@ -282,7 +285,8 @@
                     <label class="switch btn-color-mode-switch">
                         <input value="1" id="color_mode" name="color_mode" type="checkbox">
                         <label class="btn-color-mode-switch-inner" data-off="Light" data-on="Dark"
-                            for="color_mode"></label>
+                            for="color_mode">
+                        </label>
                     </label>
                 </div>
             </center>
@@ -302,10 +306,10 @@
                         <i class="bi bi-list"></i> Data Master <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Data Pemilih</a></li>
-                        <li><a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat</a></li>
-                        <li><a href="{{ route('partai_politik.index') }}"><i class="bi bi-flag"></i> Partai Politik</a></li>
-                        <li><a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart-line"></i> Hasil Pemilihan</a></li>
+                        <li><a href="{{ route('pemilih.index') }}"><i class="bi bi-person"></i> Pemilih </a></li>
+                        <li><a href="{{ route('kandidat.index') }}"><i class="bi bi-person"></i> Kandidat </a></li>
+                        <li><a href="{{ route('partai_politik.index') }}"><i class="bi bi-flag"></i> Partai Politik </a></li>
+                        <li><a href="{{ route('hasilpemilihan.index') }}"><i class="bi bi-bar-chart-line"></i> Hasil Pemilihan </a></li>
                     </ul>
                 </li>
 
