@@ -673,7 +673,7 @@
     });
 
     // Tanggal pemilu dimulai (tahun, bulan (0-11), tanggal, jam, menit, detik)
-    var electionStartDate = new Date(2024, 3, 20, 0, 0, 0).getTime();
+    var electionStartDate = new Date(2024, 1, 14, 07, 00, 00).getTime();
 
     // Fungsi untuk mengupdate tampilan timer
     function updateTimer() {
