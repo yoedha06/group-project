@@ -357,7 +357,7 @@
                     <div class="row">
                         <div class="col" style="margin-right:150px;">
                             @if(auth()->guest())
-                                        <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
+                                        <a class="btn btn-outline-dark" href="{{ route('login') }}"><b>Login</b></a>
                                     @endif
                             @if(auth()->check())
                                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
