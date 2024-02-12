@@ -13,9 +13,7 @@
 @section('content')
 
     <body>
-        <br>
-        <br>
-        <ol class="breadcrumb float-sm-right">
+        <ol class="breadcrumb float-sm-right" style="padding-top: 10px;">
             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
             <li class="breadcrumb-item active"><i class="fas fa-history"></i> History</li>
         </ol>
