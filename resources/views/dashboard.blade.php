@@ -6,309 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
-    <title>Pemilu</title>
-    <style>
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            perspective: 1000px;
-        }
-
-        #splash-content {
-            text-align: center;
-            animation: rotateLogo 2s infinite linear, moveUpAndDown 2s infinite alternate;
-            transform-style: preserve-3d;
-            z-index: 1001;
-        }
-
-        #myLordIcon {
-            width: 250px;
-            height: 250px;
-            cursor: pointer;
-            transform: translateZ(50px);
-        }
-
-        h2 {
-            color: #000;
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        @keyframes rotateLogo {
-            0% {
-                transform: rotateY(0deg);
-            }
-
-            100% {
-                transform: rotateY(360deg);
-            }
-        }
-
-        @keyframes moveUpAndDown {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(20px);
-            }
-        }
-
-        /* Body Styles */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            background-color: #f8f9fa;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-        }
-
-        .navbar-brand {
-            font-size: 24px;
-            padding: 10px;
-            margin-right: auto;
-            /* Memindahkan logo ke ujung kiri */
-        }
-
-        .navbar-brand img {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
-        }
-
-        .navbar-nav .nav-item {
-            margin-right: 10px;
-        }
-
-        .container-fluid {
-            padding-top: 60px;
-            padding-bottom: 20px;
-        }
-
-        b {
-            color: black;
-        }
-
-        /* Content Styles */
-        .features {
-            display: flex;
-            justify-content: space-around;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-        }
-
-        .feature-box {
-            flex: 1;
-            margin: 0 10px;
-            max-width: 300px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature h2 {
-            margin-bottom: 10px;
-        }
-
-        .feature p {
-            margin-bottom: 20px;
-        }
-
-        .feature-divider {
-            border: 1px solid #ddd;
-            margin: 20px 0;
-        }
-
-
-        .candidates {
-            background-color: #fff;
-            padding: 40px;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .candidate {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .candidate img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .candidate img.sama-ukuran {
-            width: 100%;
-            height: auto;
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: #f44336;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            color: #000;
-            /* Warna teks */
-        }
-
-        .logo-text {
-            margin-left: 10px;
-        }
-
-        .logo-text p {
-            margin: 5px 0;
-
-        }
-
-        .candidate-details {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            z-index: 1;
-        }
-
-        .candidate:hover .candidate-details {
-            display: block;
-        }
-
-        .candidate {
-            position: relative;
-        }
-
-        .candidate img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .candidate-details {
-            display: none;
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.9);
-            /* Transparansi putih */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            z-index: 1;
-            text-align: center;
-            width: 80%;
-            /* Sesuaikan lebar sesuai kebutuhan */
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .candidate:hover .candidate-details {
-            display: block;
-        }
-
-        .candidate h3 {
-            margin-top: 10px;
-        }
-
-        .candidate p {
-            margin-bottom: 10px;
-        }
-
-        .schedule table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .schedule-box {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            padding: 20px;
-        }
-
-        .table th,
-        .table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        .table th {
-            background-color: #f2f2f2;
-        }
-
-        b {
-            color: black;
-        }
-
-        b:hover {
-            color: red;
-        }
-
-        .countdown {
-            text-align: center;
-            font-size: 2em;
-            margin-top: 20px;
-            color: #fff;
-            background-color: #f44336;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            background-color: #f44336;
-            color: #fff;
-            padding: 50px;
-            text-align: center;
-        }
-        body.night-mode {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-        body.night-mode table {
-            background-color: #1a1e21; /* Warna latar belakang tabel */
-            color: #ffffff; /* Warna teks pada tabel */
-            border-color: #ffffff; /* Warna garis tepi tabel */
-        }
-
-        body.night-mode th,
-        body.night-mode td {
-            border-color: #ffffff; /* Warna garis tepi sel tabel */
-        }
-    </style>
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" /> 
+    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}" />
+    <title>Dashboard</title>
 </head>
 <body>
 
@@ -336,16 +36,19 @@
                         <ul class="navbar-nav">
                         @if(auth()->check())
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('pemilih.index') }}"><b>Pemilih</b></a>
+                                <a class="nav-link" href="{{ route('home') }}"><b><i class="bi bi-house-door-fill"></i> Home</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('kandidat.index') }}"><b>Kandidat</b></a>
+                                <a class="nav-link" href="{{ route('pemilih.index') }}"><b><i class="bi bi-person-fill"></i> Pemilih</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('partai_politik.index') }}"><b>Partai Politik</b></a>
+                                <a class="nav-link" href="{{ route('kandidat.index') }}"><b><i class="bi bi-people-fill"></i> Kandidat</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b>Hasil Pemilihan</b></a>
+                                <a class="nav-link" href="{{ route('partai_politik.index') }}"><b><i class="bi bi-flag-fill"></i> Partai Politik</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('hasilpemilihan.index') }}"><b><i class="bi bi-bar-chart-line-fill"></i> Hasil Pemilihan</b></a>
                             </li>
                             @endif
                         </ul>
@@ -353,44 +56,49 @@
                     <div class="row">
                         <div class="col" style="margin-right:150px;">
                             @if(auth()->guest())
-                                        <a class="btn btn-outline-primary" href="{{ route('login') }}"><b>Login</b></a>
+                                        <a class="btn btn-outline-dark" href="{{ route('login') }}"><b>Login</b></a>
                                     @endif
                             @if(auth()->check())
                                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="btn btn-outline-dark">Logout</button>
+                                    <button type="submit" class="btn btn-outline-dark" style="width: 120px;"><b><i class="bi bi-box-arrow-right">&nbsp;Logout</i></b></button>
                                 </form>
                             @endif
                         </div>
                     </div>
-                    <button id="mode-toggle">
-                        <i id="moon-icon" class="bi bi-moon"></i>
-                        <i id="sun-icon" class="bi bi-brightness-high" style="display: none;"></i>
-                    </button>
+
+                    <div class="custom-control custom-switch mode-toggle" style="padding-top: 10px;">
+                        <input type="checkbox" class="custom-control-input" id="mode-toggle">
+                        <label class="custom-control-label" for="mode-toggle"><p>Mode</p></label>
+                    </div>
+                    
             </div>
 
     </nav>
+
     <br>
     <br>
 
     <header style="text-align: center; padding: 50px; background-color: red; color: #fff;">
-    @if(auth()->check())
-    @php
-        $userName = auth()->user()->name;
-    @endphp
-    <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
-        Selamat Datang, {{ $userName }} di Pemilu 2024
-    </h1>
-@else
-    <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
-        Selamat Datang di Pemilu 2024
-    </h1>
-@endif
-
-        <p style="font-size: 1.2em; line-height: 1.5; max-width: 800px; margin: 0 auto;">Beri suara Anda untuk masa
+        @if(auth()->check())
+            @php
+                $userName = auth()->user()->name;
+            @endphp
+            <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
+                Selamat Datang {{ $userName }} di Pemilu 2024
+            </h1>
+        @else
+            <h1 class="display-4" style="font-size: 2.5em; margin-bottom: 20px;">
+                Selamat Datang di Pemilu 2024
+            </h1>
+        @endif
+        <h2 style="font-size: 1.2em; line-height: 1.5; max-width: 800px; margin: 0 auto; color:white;">
+            Beri suara Anda untuk masa
             depan yang lebih baik! Ikuti debat, pelajari visi dan misi kandidat, dan partisipasi aktif dalam Pemilu
-            2024.</p>
+            2024.
+        </h2>
     </header>
+
     <div class="container">
         <section class="features">
             <section class="countdown" id="countdown">
@@ -403,7 +111,6 @@
         <section class="features">
             <div class="feature-box">
                 <div class="feature">
-
                     <h2>Informasi Pemilu</h2>
                     <p>Pemilihan Umum 2024 akan diselenggarakan pada tanggal <strong>20 April 2024</strong>. Segera
                         daftarkan diri Anda untuk memberikan suara!</p>
@@ -475,8 +182,8 @@
         <section class="features">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="feature-box">
+                    <div class="col">
+                        <div class="feature-box" style="min-width:100%;white-space:normal;">
                             <h3>Tujuan Pemilu</h3>
                             <p>
                                 Tujuan dari Pemilu 2024 adalah memberikan hak suara kepada warga negara untuk memilih
@@ -487,11 +194,8 @@
                                 mewujudkan prinsip demokrasi.
                             </p>
                         </div>
-                    </div>
-
-                    <!-- Kesimpulan Pemilu -->
-                    <div class="col-lg-6">
-                        <div class="feature-box">
+                        <!-- Kesimpulan Pemilu -->
+                        <div class="feature-box" style="min-width:100%;white-space:normal;top:20px;">
                             <h3>Kesimpulan</h3>
                             <p>
                                 Pemilu adalah suatu proses yang krusial dalam menjalankan prinsip demokrasi di suatu
@@ -602,7 +306,7 @@
                         </p>
                     </div>
                     <div class="col-lg-6">
-                        <h3>Telpon</h3>
+                        <h3>Telepon</h3>
                         <p>
                             <strong>Telepon:</strong> +62 83123456789<br>
                             <strong>Email:</strong> info@pemilu2024.com<br>
@@ -644,15 +348,14 @@
                     </div>
                 </div>
             </div>
+        </section>
     </div>
-    </section>
-
-
+    
     <footer>
         <p class="mb-0">&copy;CopyrightCIGS PRIDE 2024.</p>
     </footer>
-</body>
 
+</body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -669,7 +372,7 @@
     });
 
     // Tanggal pemilu dimulai (tahun, bulan (0-11), tanggal, jam, menit, detik)
-    var electionStartDate = new Date(2024, 3, 20, 0, 0, 0).getTime();
+    var electionStartDate = new Date(2024, 1, 14, 07, 00, 00).getTime();
 
     // Fungsi untuk mengupdate tampilan timer
     function updateTimer() {
@@ -702,47 +405,23 @@
 
     // Panggil fungsi updateTimer untuk menampilkan timer secara langsung
     updateTimer();
-    document.addEventListener('DOMContentLoaded', function () {
-    const body = document.body;
-    const moonIcon = document.getElementById('moon-icon');
-    const sunIcon = document.getElementById('sun-icon');
-
-    // Check if user has a preferred mode in local storage
-    const preferredMode = localStorage.getItem('preferredMode');
-
-    // Apply preferred mode or default to day mode
-    if (preferredMode === 'night') {
-        body.classList.add('night-mode');
-        moonIcon.style.display = 'none';
-        sunIcon.style.display = 'inline';
-    } else {
-        body.classList.add('day-mode');
-        moonIcon.style.display = 'inline';
-        sunIcon.style.display = 'none';
-    }
-
-    // Toggle between day and night modes when clicked
-    document.getElementById('mode-toggle').addEventListener('click', function () {
-        if (body.classList.contains('day-mode')) {
-            body.classList.remove('day-mode');
-            body.classList.add('night-mode');
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'inline';
-            localStorage.setItem('preferredMode', 'night');
-        } else {
-            body.classList.remove('night-mode');
-            body.classList.add('day-mode');
-            moonIcon.style.display = 'inline';
-            sunIcon.style.display = 'none';
-            localStorage.setItem('preferredMode', 'day');
-        }
-    });
-});
-
-
-
 </script>
 
-</body>
+<script>
+    // Ambil elemen toggle mode
+    const modeToggle = document.getElementById('mode-toggle');
 
-</html>
+    // Tambahkan event listener untuk perubahan toggle
+    modeToggle.addEventListener('change', function () {
+        // Jika toggle dipilih, ubah mode ke gelap
+        if (this.checked) {
+            document.body.classList.remove('day-mode');
+            document.body.classList.add('night-mode');
+        } else {
+            // Jika tidak dipilih, ubah mode ke terang
+            document.body.classList.remove('night-mode');
+            document.body.classList.add('day-mode');
+        }
+    });
+
+</script>

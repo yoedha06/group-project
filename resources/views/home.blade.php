@@ -150,7 +150,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
     </section>
-    <div class="container px-4 mx-auto">
+    <div class="container py-4">
 
         <div class="p-6 m-20 bg-white rounded shadow">
             {!! $chart->container() !!}
