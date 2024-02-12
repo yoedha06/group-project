@@ -84,11 +84,11 @@
             var polylineWeight;
 
             if (accuracy >= 10 && accuracy < 20) {
-                polylineWeight = 10;
+                polylineWeight = 2;
             } else if (accuracy >= 20 && accuracy <= 50) {
                 polylineWeight = 5;
             } else {
-                polylineWeight = 2;
+                polylineWeight = 10;
             }
 
             if (polylinePoints.length > 1) {
