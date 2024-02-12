@@ -61,9 +61,10 @@
             @endif
         </tbody>
     </table>
+    {{ $hasilpemilihan->links('pagination::bootstrap-5') }}
     @if (request()->has('keyword') && isset($hasilpemilihan) && count($hasilpemilihan) > 0)
-        <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
-                class="bi bi-arrow-left-circle"></i>Kembali</a>
+        <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i class="bi bi-arrow-left-circle"></i>
+            Kembali</a>
     @endif
     </div>
 @endsection
