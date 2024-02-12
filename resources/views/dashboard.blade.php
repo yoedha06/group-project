@@ -151,27 +151,23 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1 April 2024</td>
+                                <td>16 - 18 Oktober 2023</td>
                                 <td>Pembukaan Pendaftaran Kandidat</td>
                             </tr>
                             <tr>
-                                <td>5 April 2024</td>
+                                <td>Desember 2023 - Februari 2024</td>
                                 <td>Debat Kandidat</td>
                             </tr>
                             <tr>
-                                <td>15 April 2024</td>
-                                <td>Debat Kandidat Putaran Kedua (jika ada)</td>
+                                <td>14 February 2024</td>
+                                <td>Pemilihan Umum< /td>
                             </tr>
                             <tr>
-                                <td>20 April 2024</td>
-                                <td>Pemilihan Umum</td>
-                            </tr>
-                            <tr>
-                                <td>25 April 2024</td>
+                                <td>20 Maret 2024</td>
                                 <td>Pengumuman Hasil</td>
                             </tr>
                             <tr>
-                                <td>28 April 2024</td>
+                                <td>20 - 25 Maret 2024</td>
                                 <td>Deklarasi Pemenang</td>
                             </tr>
                         </tbody>
