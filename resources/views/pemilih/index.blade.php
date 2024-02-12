@@ -13,30 +13,38 @@
     <div class="content-wrapper">
         <!-- Breadcrumb -->
         <br>
-        <br>
+        
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
-                <li class="breadcrumb-item active"><i class="fas fa-users"></i> Pemilih</li>
-            </ol>
-        </nav>
-
-        <!-- Add Pemilih Button -->
-        @if (auth()->user()->role === 'admin')
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah
-                    Pemilih</a>
-                <button class="btn btn-danger btn-xs removeAll">Hapus Data yang dipilih</button>
+            <div class="container">
+                <div class="row align-items-center" style="margin-top:-15px;">
+                    <div class="col">
+                        <ol class="breadcrumb" style="margin: 10px;">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active"><i class="fas fa-users"></i> Pemilih</li>
+                        </ol>
+                    </div>
+                    <div class="col-auto" style="padding: 2px;">
+                        <!-- Add Pemilih Button -->
+                        @if (auth()->user()->role === 'admin')
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('pemilih.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah Pemilih</a>&nbsp;
+                            <button class="btn btn-danger btn-xs removeAll ml-2">Hapus Data yang dipilih</button>
+                        </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-        @endif
+        </nav>
+        <br>    
+        
 
         <!-- Search Form -->
         <form action="{{ route('pemilih.search') }}" method="GET" class="mb-4">
-            <div class="input-group">
-                <input type="text" class="form-control" name="keyword" style="border-radius: 7px;"
+            <div class="input-group" style="margin-top: -19px;">
+                <input type="text" class="form-control" name="keyword" style="border-radius:7px;"
                     placeholder="Cari pemilih...">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
+                    <button class="btn btn-outline-primary mx-2" type="submit"><i class="bi bi-search"></i> Cari</button>
                 </div>
             </div>
         </form>
@@ -50,7 +58,7 @@
         @endif
 
         <!-- Pemilih Table -->
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" style="margin-top:-10px;">
             <thead style="text-align: center;">
                 <tr>
                     @if (auth()->user()->role === 'admin')
@@ -126,6 +134,10 @@
                 @endif
             </tbody>
         </table>
+
+        <div class="d-flex justify-content-between" style="margin-top:-12px;">
+            {{ $pemilih->links('pagination::bootstrap-5') }}
+        </div>
 
         <!-- Back Button -->
         @if (request()->has('keyword') && isset($pemilih) && count($pemilih) > 0)
