@@ -12,7 +12,7 @@
 <body>
 <section class="wrapper">
     <a href="{{route("dashboard")}}" style="color: white;">
-        Kembali
+        Back
     </a>
 <div class="form signup">
     <header>Signup</header>

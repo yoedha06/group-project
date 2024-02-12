@@ -12,7 +12,7 @@ class KandidatController extends Controller
      */
     public function index()
     {
-        $kandidat = Kandidat::paginate(1);
+        $kandidat = Kandidat::all();
         return view('kandidat.index', compact('kandidat'));
     }
 
