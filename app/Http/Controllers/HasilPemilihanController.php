@@ -15,7 +15,7 @@ class HasilPemilihanController extends Controller
      */
     public function index()
     {
-        $hasilpemilihan = HasilPemilihan::all();
+        $hasilpemilihan = HasilPemilihan::paginate(5);
         return view('HasilPemilih.index', compact('hasilpemilihan'));
     }
 
@@ -106,10 +106,13 @@ class HasilPemilihanController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $hasilpemilihan = HasilPemilihan::where('Id_HasilPemilihan', 'like', "%$keyword%")
-            ->orWhere('Id_Pemilih', 'like', "%$keyword%")
-            ->orWhere('Id_Kandidat', 'like', "%$keyword%")
-            ->get();
+        $hasilpemilihan = HasilPemilihan::whereHas('pemilih', function ($query) use ($keyword) {
+            $query->where('nama_pemilih', 'like', "%$keyword%");
+        })
+            ->orWhereHas('kandidat', function ($query) use ($keyword) {
+                $query->where('Nama_Kandidat', 'like', "%$keyword%");
+            })
+            ->paginate(5);
 
         return view('hasilpemilih.index', compact('hasilpemilihan'));
     }
