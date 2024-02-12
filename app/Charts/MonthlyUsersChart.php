@@ -15,23 +15,24 @@ class MonthlyUsersChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build(): \ArielMejiaDev\LarapexCharts\BarChart
     {
         // Group by candidate and count the votes for each candidate
         $kandidatResults = HasilPemilihan::select('Id_Kandidat')->groupBy('Id_Kandidat')->orderByRaw('COUNT(*) DESC')->get();
         $kandidatLabels = [];
         $kandidatData = [];
-
+    
         foreach ($kandidatResults as $result) {
             $kandidat = Kandidat::find($result->Id_Kandidat);
             $kandidatLabels[] = $kandidat->Nama_Kandidat;
             $kandidatData[] = HasilPemilihan::where('Id_Kandidat', $result->Id_Kandidat)->count();
         }
-
-        return $this->chart->pieChart()
-            ->setTitle('Grafik Hasil Pemilihan')
-            ->setSubtitle('Jumlah Pemilih untuk Setiap Kandidat')
-            ->addData($kandidatData)
-            ->setLabels($kandidatLabels);
+    
+        return $this->chart->barChart()
+        ->setTitle('Grafik Hasil Pemilihan')
+        ->setSubtitle('Jumlah Pemilih untuk Setiap Kandidat')
+        ->addData('Jumlah Pemilih', $kandidatData)
+        ->setLabels($kandidatLabels);
     }
+    
 }
