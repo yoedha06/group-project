@@ -17,6 +17,7 @@
                         @if (auth()->user()->role === 'admin')
                             <a href="/hasilpemilihan/create" class="btn btn-primary"><i class="bi bi-plus-lg"></i>Tambah Hasil Pemilih</a>
                         @endif
+                        <a href="{{route("home")}}" class="btn btn-warning"><i class="bi bi-bar-chart-line-fill"></i>&nbsp;view grafik</a>
                     </div>
                 </div>
             </div>
