@@ -13,7 +13,9 @@
                 </label>
                 <select class="form-select form-select-lg" name="Id_Pemilih" id="Id_Pemilih">
                     @foreach ($pemilih as $p)
-                        <option value="{{ $p->Id_Pemilih }}">{{ $p->Id_Pemilih }} - {{ $p->nama_pemilih }}</option>
+                        @if (!$p->hasilPemilihan()->exists())
+                            <option value="{{ $p->Id_Pemilih }}">{{ $p->nama_pemilih }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -25,7 +27,7 @@
                 </label>
                 <select class="form-select form-select-lg" name="Id_Kandidat" id="Id_Kandidat">
                     @foreach ($kandidat as $k)
-                        <option value="{{ $k->Id_Kandidat }}">{{ $k->Id_Kandidat }} - {{ $k->Nama_Kandidat }}</option>
+                        <option value="{{ $k->Id_Kandidat }}">{{ $k->Nama_Kandidat }}</option>
                     @endforeach
                 </select>
             </div>

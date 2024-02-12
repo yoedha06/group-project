@@ -110,12 +110,13 @@ class PemilihController extends Controller
             ->orWhere('alamat', 'like', "%$keyword%")
             ->orWhere('no_ktp', 'like', "%$keyword%")
             ->orWhere('status_pemilihan', 'like', "%$keyword%")
-            ->paginate(10); // Adjust the number based on your requirement
+            ->paginate(5); // Adjust the number based on your requirement
 
         return view('pemilih.index', compact('pemilih'));
     }
 
 
+    
     public function showMap()
     {
         $pemilih = DB::select("SELECT * FROM pemilih");

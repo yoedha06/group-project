@@ -78,6 +78,10 @@
             @endif
         </tbody>
     </table>
+
+    {{ $partaiPolitiks->links('pagination::bootstrap-5') }}
+
+
     @if (request()->has('keyword') && isset($partaiPolitiks) && count($partaiPolitiks) > 0)
         <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                 class="bi bi-arrow-left-circle"></i>Kembali</a>
