@@ -1,29 +1,39 @@
 @extends('layouts')
-
+<title>kandidat</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <br>
-    <br>
-    <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
-        <li class="breadcrumb-item active"><i class="fas fa-user"></i> Kandidat</li>
-    </ol>
-    <main>
-
+    <div class="content-wrapper">
+        <br>
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <div class="row align-items-center" style="margin-top:-15px;">
+                    <div class="col">
+                        <ol class="breadcrumb" style="margin: 10px;">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active"><i class="fas fa-user"></i> Kandidat</li>
+                        </ol>
+                    </div>
+                    <div class="col-auto" style="padding: 2px;">
+                        @if (auth()->user()->role === 'admin')
+                            <a href="/kandidat/create" type="button" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Tambah Data
+                                Kandidat</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <br>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
-        @if (auth()->user()->role === 'admin')
-            <a href="/kandidat/create" type="button" class="btn btn-primary mb-4"><i class="bi bi-plus-lg"></i> Tambah Data
-                Kandidat</a>
-        @endif
+        
         <form action="{{ route('kandidat.search') }}" method="GET" class="mb-4">
-            <div class="input-group">
-                <input type="text" class="form-control" name="keyword" placeholder="Cari kandidat...">
+            <div class="input-group" style="margin-top: -19px;">
+                <input type="text" class="form-control" name="keyword" placeholder="Cari kandidat..." style="border-radius: 7px;">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i> Cari</button>
+                    <button class="btn btn-outline-primary mx-2" type="submit"><i class="bi bi-search"></i> Cari</button>
                 </div>
             </div>
         </form>
@@ -69,13 +79,10 @@
 
             </tbody>
         </table>
-        <div class="d-flex justify-content-center">
-            {{ $kandidat->links('pagination::bootstrap-5') }}
-        </div>
+
         @if (request()->has('keyword') && isset($kandidat) && count($kandidat) > 0)
             <a href="{{ url()->previous() }}" class="btn btn-success btn-block mt-4"><i
                     class="bi bi-arrow-left-circle"></i> Kembali</a>
         @endif
-    </main>
     </div>
 @endsection
