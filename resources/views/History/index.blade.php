@@ -11,23 +11,26 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 @section('content')
-
-    <body>
-        <div class="container mt-4">
-            <center>
-                <h1>Pemilu</h1>
-            </center>
-            <h2>History</h2>
-
-            <div class="d-flex ">
-                @if (auth()->user()->role === 'admin')
-                <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
-                &nbsp;
-                @endif
-                <a href="{{ route('history.map') }}" class="btn btn-warning"> <i class="bi bi-geo"></i>Map History</a>
+    <div class="content-wrapper">
+        <br>
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <div class="row align-items-center" style="margin-top:-15px;">
+                    <div class="col">
+                        <ol class="breadcrumb" style="margin: 10px;">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active"><i class="fas fa-history"></i> History</li>
+                        </ol>
+                    </div>
+                    <div class="col-auto" style="padding: 2px;">
+                        @if (auth()->user()->role === 'admin')
+                            <a href="{{ route('history.create') }}" class="btn btn-success"><i class="bi bi-plus-lg"></i> Tambah </a>
+                        @endif
+                        <a href="{{ route('history.map') }}" class="btn btn-warning ml-2"> <i class="bi bi-geo"></i>Map History</a>
+                    </div>
+                </div>
             </div>
-
-            
+        </nav>
 
             <table class="table table-bordered table-striped" style="margin-top: 10px;">
                 <thead style="text-align: center;">
@@ -42,12 +45,12 @@
                         <th>speeds</th>
                         <th>timestamp</th>
                         @if (auth()->user()->role === 'admin')
-                        <th>action</th>
+                            <th>action</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($history) > 0)
+                    @if (count($history) > 0)
                         @foreach ($history as $h)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
@@ -69,7 +72,7 @@
                                             @method('DELETE')
                                             <button type="submit"
                                                 class="btn btn-danger"onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i
-                                                class="bi bi-trash3-fill"></i> Hapus</button>
+                                                    class="bi bi-trash3-fill"></i> Hapus</button>
                                         </form>
                                     </td>
                                 @endif
@@ -88,6 +91,7 @@
             <div class="d-flex justify-content-center">
                 {{ $history->links('pagination::bootstrap-5') }}
             </div>
-        </div>
-    </body>
+            </div>
+        </body>
+    </div>
 @endsection

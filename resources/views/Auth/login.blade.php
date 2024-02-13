@@ -11,6 +11,9 @@
 
 <body>
 <section class="wrapper">
+    <a href="{{route("dashboard")}}" style="color: white;">
+        Back
+    </a>
 <div class="form signup">
     <header>Signup</header>
     <form action="{{ route('register') }}" method="POST">
@@ -20,7 +23,8 @@
         <input type="password" placeholder="Password" name="password" required />
         <input type="password" placeholder="Confirm Password" name="password_confirmation" required />
 
-        <select name="role" required>
+        <select name="role" class="custom-select" required>
+            <option value="" disabled selected>Select Role</option>
             <option value="user">User</option>
             <option value="admin">Admin</option>
         </select>

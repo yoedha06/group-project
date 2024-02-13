@@ -16,4 +16,8 @@ class Pemilih extends Model
     {
         return $this->hasOne(HasilPemilihan::class, 'Id_Pemilih');
     }
+    public function hasilPemilihan()
+    {
+        return $this->hasOne(HasilPemilihan::class, 'Id_Pemilih', 'Id_Pemilih');
+    }
 }

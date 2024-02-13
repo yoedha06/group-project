@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
 // Route::post('/history/store', [HistoryController::class, 'store'])->name('history.store');
 Route::get('/history/map', [HistoryController::class, 'map'])->name('history.map');
 
+Route::get('/home', [PemilihController::class, 'home'])->name('home');
 
 Route::resource('history', HistoryController::class)->except('show');
 
@@ -54,10 +55,10 @@ Route::get('pemilih/{Id_Pemilihan}/edit', [PemilihController::class, 'edit'])->n
 Route::post('pemilih/{Id_Pemilihan}', [PemilihController::class, 'update'])->name('pemilih.update');
 Route::delete('pemilih/{Id_Pemilihan}', [PemilihController::class, 'delete'])->name('pemilih.delete');
 Route::get('/pemilih/search', [PemilihController::class, 'search'])->name('pemilih.search');
-Route::get('/pemilih/map', [PemilihController::class, 'map'])->name('pemilih.map');
+Route::get('/pemilih/map', [PemilihController::class, 'showmap'])->name('pemilih.map');
 Route::delete('delete-all', [PemilihController::class, 'removeMulti']);
 
-
+    
 //Partai Politik
 Route::get('/partai_politik', [PartaiPolitikController::class, 'index'])->name('partai_politik.index');
 Route::get('/partai_politik/create', [PartaiPolitikController::class, 'create'])->name('partai_politik.create');
@@ -85,6 +86,4 @@ Route::prefix('hasilpemilihan')->group(function () {
     Route::post('/update/{id}', [HasilPemilihanController::class, 'update'])->name('hasilpemilihan.update');
     Route::get('/delete/{id}', [HasilPemilihanController::class, 'delete'])->name('hasilpemilihan.delete');
     Route::get('/hasilpemilihan/search', [HasilPemilihanController::class, 'search'])->name('hasilpemilihan.search');
-    Route::get('/grafik', [ChartController::class, 'index'])->name('hasilpemilih.grafik');
-
 });

@@ -1,0 +1,238 @@
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            /* Hide horizontal scrollbar */
+            transition: background-color 0.5s;
+            /* Add transition effect for background color change */
+        }
+
+        body.dark-mode {
+            background-color: #343a40;
+            color: white;
+        }
+
+        #sidebar {
+            position: fixed;
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            overflow-y: auto;
+            /* Enable vertical scrollbar if needed */
+            z-index: 1;
+            /* Ensure the sidebar is above the content */
+        }
+
+        .container-content {
+            margin-left: 250px;
+            /* Adjust margin to accommodate the fixed sidebar */
+            transition: margin-left 0.5s;
+            /* Add a smooth transition effect when adjusting the margin */
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            perspective: 1000px;
+        }
+
+        #splash-content {
+            text-align: center;
+            animation: rotateLogo 2s infinite linear, moveUpAndDown 2s infinite alternate;
+            transform-style: preserve-3d;
+        }
+
+        #myLordIcon {
+            width: 250px;
+            height: 250px;
+            cursor: pointer;
+            transform: translateZ(50px);
+        }
+
+        h2 {
+            color: #000;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            /* Align to the right */
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+        }
+
+        @keyframes rotateLogo {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        @keyframes moveUpAndDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        /* css night mode */
+        .btn-container {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .btn-container i {
+            display: inline-block;
+            position: relative;
+            top: -9px;
+        }
+
+        label {
+            font-size: 13px;
+            color: #424242;
+            font-weight: 500;
+        }
+
+        .btn-color-mode-switch {
+            display: inline-block;
+            margin: 0px;
+            position: relative;
+        }
+
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner {
+            margin: 0px;
+            width: 140px;
+            height: 34px;
+            background: #E0E0E0;
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;
+            display: block;
+        }
+
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner:before {
+            content: attr(data-on);
+            position: absolute;
+            font-size: 12px;
+            font-weight: 500;
+            top: 7px;
+            right: 20px;
+        }
+
+        .btn-color-mode-switch>label.btn-color-mode-switch-inner:after {
+            content: attr(data-off);
+            width: 70px;
+            background: #fff;
+            border-radius: 26px;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0px 0px 6px -2px #111;
+            padding: 5px 0px;
+        }
+
+        .btn-color-mode-switch>.alert {
+            display: none;
+            background: #FF9800;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-color-mode-switch input[type="checkbox"] {
+            cursor: pointer;
+            width: 50px;
+            height: 25px;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            margin: 0px;
+        }
+
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner {
+            background: #151515;
+            color: #fff;
+        }
+
+        .dark-mode .breadcrumb-item.active {
+            color: #fff; /* Ubah warna teks menjadi putih saat mode gelap aktif */
+        }
+
+        .dark-mode .breadcrumb-item.active::before {
+            color: #fff; /* Ubah warna slash (/) menjadi putih saat mode gelap aktif */
+        }
+        
+        
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:after {
+            content: attr(data-on);
+            left: 68px;
+            background: #3c3c3c;
+        }
+
+        .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:before {
+            content: attr(data-off);
+            right: auto;
+            left: 20px;
+        }
+
+        .btn-color-mode-switch input[type="checkbox"]:checked~.alert {
+            display: block;
+        }
+
+        .dark-preview {
+            background: #0d0d0d;
+        }
+
+        .white-preview {
+            background: #fff;
+        }
+
+        .dropdown-menu {
+            background-color: #fff;
+            /* White background */
+            color: #000 !important;
+            /* Black text */
+        }
+
+        .dropdown-menu a {
+            color: #000 !important;
+            /* Black text for dropdown items */
+        }
+
+        .dropdown-menu a:hover {
+            color: #dd0000 !important;
+        }
+
+        /* Add this style to remove the transition */
+        .dropdown-menu.show {
+            margin-left: -5px;
+        }

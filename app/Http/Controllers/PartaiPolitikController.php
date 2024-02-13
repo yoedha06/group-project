@@ -9,9 +9,10 @@ class PartaiPolitikController extends Controller
 {
     public function index()
     {
-        $partaiPolitiks = PartaiPolitik::all();
-        return view('partai_politik.index', ['partaiPolitiks' => $partaiPolitiks]);
+        $partaiPolitiks = PartaiPolitik::paginate(5); // Adjust the number based on your preference
+        return view('partai_politik.index', compact('partaiPolitiks'));
     }
+
 
     public function create()
     {
@@ -54,7 +55,7 @@ class PartaiPolitikController extends Controller
     }
     public function delete($Id_Partai)
     {
-        $partaiPolitik= PartaiPolitik::findOrFail($Id_Partai);
+        $partaiPolitik = PartaiPolitik::findOrFail($Id_Partai);
         $partaiPolitik->delete();
 
         return to_route('partai_politik.index')->with('successs', 'Partai Politik berhasil dihapus!.');
@@ -70,9 +71,8 @@ class PartaiPolitikController extends Controller
             ->orWhere('Ideologi', 'like', "%$keyword%")
             ->orWhere('JumlahAnggota', 'like', "%$keyword%")
             ->orWhere('PemimpinPartai', 'like', "%$keyword%")
-            ->get();
+            ->pagination(5);
 
         return view('partai_politik.index', compact('partaiPolitiks'));
     }
-
 }
