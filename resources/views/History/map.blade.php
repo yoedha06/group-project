@@ -169,6 +169,63 @@
 
         map.fitBounds(L.latLngBounds(allLatLngs));
 
+        // Add markers for the initial and final points
+        if (i === 0) {
+            var marker = L.marker([lat, lng]).addTo(map);
+
+            // Add popup with latitude and bounds information
+            var markerPopupContent =
+                "<div style='max-width: 200px; overflow: hidden; text-overflow: ellipsis;'>" +
+                "<div style='font-size: 12px;'>" +
+                "<center><b>Start</b></center><br>" + // Deskripsi Start ditambahkan di sini
+                "Latitude: " + lat.toFixed(6) +
+                "<br>Longitude: " + lng.toFixed(6) +
+                "<br>Bounds: " + map.getBounds().toBBoxString() +
+                "</div>" +
+                "</div>";
+
+            // Set the maxWidth option to control the maximum width of the popup
+            var popupOptions = {
+                maxWidth: 200, // Adjust this value according to your needs
+            };
+
+            marker.bindPopup(markerPopupContent, popupOptions);
+        } else if (i === historyData.length - 1) {
+            var marker = L.marker([lat, lng], {
+                icon: customIcon
+            }).addTo(map);
+
+            // Add popup with latitude and bounds information
+            var markerPopupContent =
+                "<div style='max-width: 200px; overflow: hidden; text-overflow: ellipsis;'>" +
+                "<div style='font-size: 12px;'>" +
+                "<center><b>End</b></center><br>" + // Deskripsi End ditambahkan di sini
+                "Latitude: " + lat.toFixed(6) +
+                "<br>Longitude: " + lng.toFixed(6) +
+                "<br>Bounds: " + map.getBounds().toBBoxString() +
+                "</div>" +
+                "</div>";
+
+            // Set the maxWidth option to control the maximum width of the popup
+            var popupOptions = {
+                maxWidth: 200, // Adjust this value according to your needs
+            };
+
+            marker.bindPopup(markerPopupContent, popupOptions);
+        }
+
+        }
+
+        var allLatLngs = polylinePoints.concat(historyData.map(function(item) {
+            var latlngStr = item.latlng;
+            var latlngArr = latlngStr.split(", ");
+            var lat = parseFloat(latlngArr[0]);
+            var lng = parseFloat(latlngArr[1]);
+            return L.latLng(lat, lng);
+        }));
+
+        map.fitBounds(L.latLngBounds(allLatLngs));
+
         // Adding a Polyline connecting the circle markers
         layerGroup.addTo(map);
     </script>
