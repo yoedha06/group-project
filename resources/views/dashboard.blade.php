@@ -102,7 +102,6 @@
     <div class="container">
         <section class="features">
             <section class="countdown" id="countdown">
-                <h2 class="display-4">Pemilu Akan Dimulai Dalam Waktu:</h2>
                 <div id="timer" class="countdown-timer"></div>
             </section>
         </section>

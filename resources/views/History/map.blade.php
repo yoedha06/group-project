@@ -113,7 +113,7 @@
             polyline.bindPopup(popupContent);
         }
 
-        // Add markers for the initial and final points
+       // Add markers for the initial and final points
         if (i === 0) {
             var marker = L.marker([lat, lng]).addTo(map);
 
@@ -121,6 +121,7 @@
             var markerPopupContent =
                 "<div style='max-width: 200px; overflow: hidden; text-overflow: ellipsis;'>" +
                 "<div style='font-size: 12px;'>" +
+                "<center><b>Start</b></center><br>" + // Deskripsi Start ditambahkan di sini
                 "Latitude: " + lat.toFixed(6) +
                 "<br>Longitude: " + lng.toFixed(6) +
                 "<br>Bounds: " + map.getBounds().toBBoxString() +
@@ -140,6 +141,7 @@
             var markerPopupContent =
                 "<div style='max-width: 200px; overflow: hidden; text-overflow: ellipsis;'>" +
                 "<div style='font-size: 12px;'>" +
+                "<center><b>End</b></center><br>" + // Deskripsi End ditambahkan di sini
                 "Latitude: " + lat.toFixed(6) +
                 "<br>Longitude: " + lng.toFixed(6) +
                 "<br>Bounds: " + map.getBounds().toBBoxString() +
@@ -153,6 +155,7 @@
 
             marker.bindPopup(markerPopupContent, popupOptions);
         }
+
     }
 
     var allLatLngs = polylinePoints.concat(historyData.map(function (item) {

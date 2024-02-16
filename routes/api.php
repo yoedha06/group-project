@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestingApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+route::get('/history', [TestingApiController::class, 'index']);
+route::post('/history/store',[TestingApiController::class, 'store']);
+route::get('history/{id}',[TestingApiController::class, 'edit']);
+route::patch('/history/edit/{id}',[TestingApiController::class, 'update']);
+route::delete('/history/delete/{id}',[TestingApiController::class, 'delete']);
